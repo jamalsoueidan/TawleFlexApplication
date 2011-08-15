@@ -18,9 +18,6 @@ package com.soueidan.games.tawla.components
 
 			width = 100;
 			height = 100;
-			
-			setStyle("left", 80);
-			setStyle("top", 300);
 		}
 		
 		public function add(chip:IChip, index:Number=-1):void {	
@@ -32,6 +29,7 @@ package com.soueidan.games.tawla.components
 		}
 		
 		public function remove(chip:IChip):void {
+			
 		}
 		
 		public function get lastChip():IChip {

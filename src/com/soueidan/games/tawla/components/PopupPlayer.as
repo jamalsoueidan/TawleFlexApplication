@@ -73,7 +73,7 @@ package com.soueidan.games.tawla.components
 			player.name = _textField.text;
 			
 			player.color = _colorList.selectedItem;
-			player.placement = _placementList.selectedItem;
+			//player.placement = _placementList.selectedItem;
 			
 			PlayerManager.add(player);
 			

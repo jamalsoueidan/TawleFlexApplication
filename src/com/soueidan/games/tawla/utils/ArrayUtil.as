@@ -2,7 +2,10 @@ package com.soueidan.games.tawla.utils
 {
 	public class ArrayUtil
 	{
-
+		static public function isEmpty(array:Array):Boolean {
+			return ( array.length == 0 );
+		}
+		
 		static public function toString(array:Array):String {
 			var str:String = "";
 			for each(var item:String in array ) {

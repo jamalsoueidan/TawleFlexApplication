@@ -1,5 +1,6 @@
 package com.soueidan.games.tawla.components
 {
+	import com.soueidan.games.tawla.components.interfaces.IDice;
 	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.events.DiceEvent;
 	
@@ -7,8 +8,9 @@ package com.soueidan.games.tawla.components
 	import flash.geom.Point;
 	
 	import spark.components.Button;
+	import spark.components.Label;
+	import spark.components.TextInput;
 	import spark.components.VGroup;
-	import com.soueidan.games.tawla.components.interfaces.IDice;
 	
 	public class Dice extends VGroup implements IDice
 	{
@@ -17,25 +19,25 @@ package com.soueidan.games.tawla.components
 		override protected function createChildren():void {
 			if ( !_dices) {
 				_dices = new Array();
-				var btn:Button = new Button()
+				var btn:TextInput = new TextInput()
 				_dices.push(btn);
-				btn.label = "1";
+				btn.text = "6";
 				btn.width = 30;
 				addElement(btn);
-				btn = new Button();
-				btn.label = "5";
+				btn = new TextInput();
+				btn.text = "6";
 				btn.width = 30;
 				addElement(btn);
 				_dices.push(btn);
 			}
 			
-			mouseChildren = false;
+			//mouseChildren = false;
 			super.createChildren();
 		}
 		
 		public function shuffle():void {
-			for each(var btn:Button in _dices ) {
-				btn.label = random();
+			for each(var btn:TextInput in _dices ) {
+				btn.text = random();
 			}
 			
 			Game.getInstance().dispatchEvent(new DiceEvent(DiceEvent.CHANGED));
@@ -51,19 +53,37 @@ package com.soueidan.games.tawla.components
 		}
 		
 		public function get all():Array {
-			return [leftValue, rightValue];	
+			if ( isDouble ) {
+				return [leftValue, leftValue, leftValue, leftValue];
+			} else {
+				return [leftValue, rightValue];
+			}		
 		}
 		
-		public function get leftValue():Number {
-			return Number(_dices[0].label);
-		}
-		
-		public function get rightValue():Number {
-			return Number(_dices[1].label);
+		public function get combinations():Array {
+			var combinations:Array = [];
+			if ( isDouble ) {
+				for(var i:int=1;i<5;i++)
+				combinations.push(leftValue*i);
+			} else {
+				combinations.push(leftValue);
+				combinations.push(rightValue);
+				combinations.push(leftValue + rightValue);
+			}
+			return combinations;
 		}
 		
 		public function get isDouble():Boolean {
-			return ( leftValue == rightValue )
+			return ( leftValue == rightValue );
 		}
+		
+		public function get leftValue():Number {
+			return Number(_dices[0].text);
+		}
+		
+		public function get rightValue():Number {
+			return Number(_dices[1].text);
+		}
+	
 	}
 }

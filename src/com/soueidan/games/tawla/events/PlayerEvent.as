@@ -7,6 +7,10 @@ package com.soueidan.games.tawla.events
 	public class PlayerEvent extends Event
 	{
 		static public const TURN_CHANGE:String = "turn_change";
+		static public const IS_HOME:String = "is_home";
+		static public const FINISHED_PLAYING:String = "finished_playing"; // player have no left movements in the pocket :D
+		static public const NO_CHIP_MOVEMENTS:String = "no_chip_movements"; // cannot find any movements for his chip
+		static public const HAVE_A_WINNER:String = "WE_have_winner";
 		
 		private var _player:IPlayer;
 		

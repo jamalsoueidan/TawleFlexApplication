@@ -25,7 +25,7 @@ package com.soueidan.games.tawla.managers
 		}
 		
 		static public function create():IPlayer {
-			return new Player();
+			return new Player(CupManager.create());
 		}
 		
 		static public function get total():Number {
@@ -48,6 +48,7 @@ package com.soueidan.games.tawla.managers
 				setTurn(_players[0]);
 			}
 			
+			DiceManager.reset();
 			Game.getInstance().dispatchEvent(new PlayerEvent(PlayerEvent.TURN_CHANGE,false,false,_player));
 				
 			return _player;
@@ -70,7 +71,7 @@ package com.soueidan.games.tawla.managers
 		
 		static public function convertPosition(position:Number):Number {
 			var player:IPlayer = PlayerManager.player;
-			if ( player.placement == PlacementTypes.BOTTOM ) {
+			if ( player.direction == PlacementTypes.BOTTOM ) {
 				position = 25 - position;
 			}
 			return position;

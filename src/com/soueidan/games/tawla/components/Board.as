@@ -1,7 +1,10 @@
 package com.soueidan.games.tawla.components
 {
+	import com.soueidan.games.tawla.components.interfaces.IChip;
+	import com.soueidan.games.tawla.components.interfaces.ITriangle;
 	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.core.IPlayer;
+	import com.soueidan.games.tawla.core.Player;
 	import com.soueidan.games.tawla.managers.ChipManager;
 	import com.soueidan.games.tawla.managers.PlayerManager;
 	import com.soueidan.games.tawla.managers.TriangleManager;
@@ -15,8 +18,6 @@ package com.soueidan.games.tawla.components
 	import spark.components.Button;
 	import spark.components.Group;
 	import spark.primitives.BitmapImage;
-	import com.soueidan.games.tawla.components.interfaces.IChip;
-	import com.soueidan.games.tawla.components.interfaces.ITriangle;
 
 	public class Board extends Group
 	{
@@ -72,7 +73,6 @@ package com.soueidan.games.tawla.components
 				space += triangle.width + 10;
 				
 				addElement(triangle);
-				TriangleManager.add(triangle);
 				
 				position += 1;
 			}
@@ -139,7 +139,11 @@ package com.soueidan.games.tawla.components
 			var position:int = 0;
 			
 			for each(var player:IPlayer in PlayerManager.all) {
-				triangle = TriangleManager.getFromPlayerPlacementByPosition( player, 1 );
+				if ( player.direction == PlacementTypes.TOP ) {
+					triangle = TriangleManager.getByPosition( 1 );	
+				} else {
+					triangle = TriangleManager.getByPosition( 24 );
+				}
 				
 				for(var i:int=0;i<Game.TOTAL_CHIPS;i++) {
 					chip = ChipManager.create(player, i);

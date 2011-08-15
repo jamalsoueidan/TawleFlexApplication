@@ -41,11 +41,16 @@ package com.soueidan.games.tawla.managers
 			}
 
 			for each(var movement:Number in DiceManager.leftMovements ) {
-				var triangle:ITriangle = TriangleManager.getFromChipPlacementByPosition(chip, movement);
+				var triangle:ITriangle = TriangleManager.getFromChipToPosition(chip, movement);
 				if ( triangle && TriangleManager.canOwnIt(triangle, chip) ) {
 					return true; 
 				}
 			}
+			return false;
+		}
+		
+		static public function lastChipStanding(chip:IChip):Boolean {
+			var position:int = chip.position;
 			return false;
 		}
 	}

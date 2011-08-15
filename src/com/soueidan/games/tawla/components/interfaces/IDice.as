@@ -10,6 +10,7 @@ package com.soueidan.games.tawla.components.interfaces
 		function get isDouble():Boolean;
 		function get total():Number;
 		function get all():Array;
+		function get combinations():Array;
 		function get leftValue():Number;
 		function get rightValue():Number;
 	}

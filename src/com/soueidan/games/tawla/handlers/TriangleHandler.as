@@ -64,15 +64,20 @@ package com.soueidan.games.tawla.handlers
 			_oldTriangle = _chip.parent as ITriangle
 			_oldNumChildren = _oldTriangle.getElementIndex(_chip);
 			
+			// cannot be moved below next linies because we use parent in the register method
+			TriangleManager.showMovementsOnBoard(chip);
+			
 			_oldTriangle.remove(_chip);
 			_game.addElement(_chip);
 		}
 		
 		public function up(evt:MouseEvent):void
-		{
+		{			
 			if ( !_chip ) {
 				return;
 			}
+			
+			TriangleManager.removeAllMovementsOnBoard();
 						
 			if ( _newTriangle ) {
 				// CANNOT BE CHANGED BELOW _newTriangle.add(_chip); BECAUSE add METHOD CHANGE CHIP POSITION
@@ -84,7 +89,6 @@ package com.soueidan.games.tawla.handlers
 				
 				_game.dispatchEvent(new ChipEvent(ChipEvent.MOVED));
 				
-				_oldTriangle.unalert();
 				// you cannot move these two lines below to the end of this method because we 
 				// need to ensure which method gets called this or next.
 				
@@ -110,17 +114,10 @@ package com.soueidan.games.tawla.handlers
 			_chip.y = _game.mouseY - (_chip.height/2);
 			
 			var hitAnything:Boolean;
-			for each(var triangle:ITriangle in TriangleManager.all ) {
-				// did we hit any triangles?
+			for each(var triangle:ITriangle in TriangleManager.movements ) {
 				if ( _chip.hitTestObject(triangle as DisplayObject)) {
-					// do we or can we own this triangle?
-					if ( TriangleManager.canBeMovedTo(triangle, _chip) ) {
-						_newTriangle = triangle;
-						triangle.alert();
-						hitAnything = true;
-					}
-				}  else {
-					triangle.unalert();
+					_newTriangle = triangle;
+					hitAnything = true;
 				}
 			}
 			

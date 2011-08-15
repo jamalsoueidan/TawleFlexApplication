@@ -47,7 +47,7 @@ package com.soueidan.games.tawla.handlers
 				return;
 			}
 			
-			follow = true;
+			//follow = true;
 		}
 		
 		public function update(evt:Event):void

@@ -27,15 +27,15 @@ package com.soueidan.games.tawla.core
 	import spark.components.Application;
 	import spark.components.Button;
 	import spark.components.VGroup;
+
 	
 	public class Game extends Application
 	{
 		private var _board:Board;
 		private var _dice:IDice;
-		private var _cup:ICup;
-		
+	
 		static public const TOTAL_PLAYER:Number = 2;
-		static public const TOTAL_CHIPS:Number = 4; // how many chips to create
+		static public const TOTAL_CHIPS:Number = 3; // how many chips to create
 		
 		static private var _instance:Game;
 		static public function getInstance():Game {
@@ -66,11 +66,6 @@ package com.soueidan.games.tawla.core
 				_dice.y = 200;
 				addElement(_dice);
 			}
-			
-			if ( !_cup ) {
-				_cup = CupManager.create();
-				addElement(_cup);
-			}
 		}
 		
 		public function get board():Board {
@@ -86,6 +81,19 @@ package com.soueidan.games.tawla.core
 			MouseManager.addHandler(new DiceHandler);
 			MouseManager.addHandler(new TriangleHandler);
 			MouseManager.addHandler(new CupHandler);
+			
+			for each(var player:IPlayer in PlayerManager.all ) {
+				var cup:ICup;
+				cup = player.cup;
+				cup.setStyle("left", 150);
+				if ( player.direction == PlacementTypes.BOTTOM ) {
+					cup.setStyle("top",160);
+				} else {
+					cup.setStyle("bottom",160);
+				}
+				addElement(cup);
+			}
+			
 			/*
 			addEventListener(PlayerEvent.TURN_CHANGE, playerTurnChange);
 			addEventListener(DiceEvent.CHANGED, diceChanged);
@@ -93,6 +101,7 @@ package com.soueidan.games.tawla.core
 			
 			AutoPlayManager.createPlayers();
 			_board.setupChips();
+			PlayerManager.next();
 			PlayerManager.next();*/
 			
 		}
@@ -122,9 +131,7 @@ package com.soueidan.games.tawla.core
 		}
 		
 		private function movedChip(evt:ChipEvent):void {			
-			if ( GameManager.finishedPlaying ) {
-				PlayerManager.next();
-			}
+			GameManager.finishedPlaying();
 		}
 	}
 }

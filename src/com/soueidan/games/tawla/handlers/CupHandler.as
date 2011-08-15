@@ -13,7 +13,7 @@ package com.soueidan.games.tawla.handlers
 
 	public class CupHandler implements IHandler
 	{
-		private var _cup:ICup = CupManager.cup;
+		private var _cup:ICup;
 		private var _chip:IChip;
 		
 		public function down(evt:MouseEvent):void
@@ -23,7 +23,8 @@ package com.soueidan.games.tawla.handlers
 				return;
 			}
 			
-			_chip = evt.target as IChip;;
+			_chip = evt.target as IChip;
+			_cup = _chip.player.cup;
 		}
 		
 		public function up(evt:MouseEvent):void
@@ -31,8 +32,7 @@ package com.soueidan.games.tawla.handlers
 			var player:IPlayer = PlayerManager.player;
 			if ( !player.isHome ) {
 				return;
-			}
-			
+			}			
 		}
 		
 		public function update(evt:Event):void
@@ -42,11 +42,11 @@ package com.soueidan.games.tawla.handlers
 				return;
 			}
 			
-			if ( _chip.hitTestObject(_cup as DisplayObject)) {
+			/*if ( _chip.hitTestObject(_cup as DisplayObject)) {
 				_cup.alert();
 			}  else {
 				_cup.unalert();
-			}
+			}*/
 		}
 		
 	}

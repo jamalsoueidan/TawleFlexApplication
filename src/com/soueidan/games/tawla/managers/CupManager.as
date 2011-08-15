@@ -7,18 +7,16 @@ package com.soueidan.games.tawla.managers
 
 	public class CupManager
 	{
-		static private var _cup:ICup;
+		static private var _cups:Array = [];
 		
 		static public function create():ICup {
-			if ( !_cup ) {
-				_cup = new Cup();
-			}
-			
+			var _cup:ICup = new Cup();	
+			_cups.push(_cup);
 			return _cup;
 		}
 		
-		static public function get cup():ICup {
-			return create();
+		static public function get cups():Array {
+			return _cups;
 		}
 	}
 }

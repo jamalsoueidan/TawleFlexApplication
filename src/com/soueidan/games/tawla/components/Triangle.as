@@ -82,7 +82,7 @@ package com.soueidan.games.tawla.components
 			// this line must be after the chip is added to the element
 			// or the isFreeze on the chip wouldn't work since. We set 
 			// the triangle instance in the chip after new position is set
-			TriangleManager.applyPosition(this, chip);
+			chip.position = position;
 			
 			unalert();
 		}

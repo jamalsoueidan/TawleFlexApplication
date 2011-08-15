@@ -68,7 +68,7 @@ package com.soueidan.games.tawla.components
 		}
 	
 		override public function toString():String {
-			return position + ":" + color + ":" + String(_num);
+			return "position: " + position + " color:" + color + " number:" + String(_num);
 		}
 		
 	}
