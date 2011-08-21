@@ -22,13 +22,21 @@ package com.soueidan.games.tawla.managers
 
 	public class MouseManager
 	{
+		static private var _instance:MouseManager;
 		static private var _handlers:Array = [];		
 		static private var _game:Game;
 		
 		static public function init(game:Game):void {
-			var instance:MouseManager = new MouseManager();
-			instance.game = game;
-			instance.execute();
+			_instance = new MouseManager();
+			_instance.game = game;
+		}
+		
+		static public function listen():void {
+			_instance.wake();
+		}
+		
+		static public function stop():void {
+			_instance.die();
 		}
 		
 		static public function addHandler(handler:IHandler):void {
@@ -43,9 +51,15 @@ package com.soueidan.games.tawla.managers
 			_game = value;
 		}
 		
-		private function execute():void {
+		private function wake():void {
 			_game.addEventListener(MouseEvent.MOUSE_DOWN, down);
 			_game.addEventListener(MouseEvent.MOUSE_UP, up);
+		}
+		
+		private function die():void {
+			_game.removeEventListener(MouseEvent.MOUSE_DOWN, down);
+			_game.removeEventListener(MouseEvent.MOUSE_UP, up);
+			_game.removeEventListener(Event.ENTER_FRAME, updateScreen);
 		}
 		
 		private function down(evt:MouseEvent):void {
