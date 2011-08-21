@@ -1,5 +1,6 @@
 package com.soueidan.games.tawla.managers
 {
+	import com.smartfoxserver.v2.entities.SFSUser;
 	import com.soueidan.games.tawla.components.interfaces.IChip;
 	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.core.IPlayer;
@@ -24,8 +25,8 @@ package com.soueidan.games.tawla.managers
 			_players.push(player);
 		}
 		
-		static public function create():IPlayer {
-			return new Player(CupManager.create());
+		static public function create(user:SFSUser):IPlayer {
+			return new Player(CupManager.create(), user);
 		}
 		
 		static public function get total():Number {
@@ -47,9 +48,6 @@ package com.soueidan.games.tawla.managers
 			} else {
 				setTurn(_players[0]);
 			}
-			
-			DiceManager.reset();
-			Game.getInstance().dispatchEvent(new PlayerEvent(PlayerEvent.TURN_CHANGE,false,false,_player));
 				
 			return _player;
 		}
@@ -63,10 +61,31 @@ package com.soueidan.games.tawla.managers
 			return ( _player.color == player.color );
 		}
 		
-		static private function setTurn(player:IPlayer):void {
+		static public function setTurn(player:IPlayer):void {
 			_player = player;
+			
+			DiceManager.reset();
+			Game.getInstance().dispatchEvent(new PlayerEvent(PlayerEvent.TURN_CHANGE,false,false, _player));
+			
 			trace("Turn:", player.name);
-			//Logger.info("Your turn", player.name, player.color);
+		}
+		
+		static public function getPlayerByName(value:String):IPlayer {
+			for each(var player:IPlayer in _players ) {
+				if ( player.name == value ) {
+					return player;
+				}
+			}
+			return null;
+		}
+		
+		static public function getPlayerById(value:int):IPlayer {
+			for each(var player:IPlayer in _players ) {
+				if ( value == player.id ) {
+					return player;
+				}
+			}
+			return null;
 		}
 		
 		static public function convertPosition(position:Number):Number {
