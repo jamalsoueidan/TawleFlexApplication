@@ -1,5 +1,6 @@
 package com.soueidan.games.tawla.managers
 {
+	import com.smartfoxserver.v2.entities.data.ISFSObject;
 	import com.soueidan.games.tawla.components.*;
 	import com.soueidan.games.tawla.components.interfaces.*;
 	import com.soueidan.games.tawla.core.*;
@@ -13,10 +14,12 @@ package com.soueidan.games.tawla.managers
 		static private var _dice:IDice;
 		private static var _registeredMovements:Array = [];
 		
-		static public function registerMovement(triangle:ITriangle, chip:IChip):void {
+		static public function registerMovement(triangle:ITriangle, chip:IChip):int {
 			var move:Number = Math.abs(triangle.position - chip.position);
 			var convertedMovements:Array = DiceManager.convertMovement(move);
-			_registeredMovements = ArrayUtil.merge(_registeredMovements, convertedMovements);		}
+			_registeredMovements = ArrayUtil.merge(_registeredMovements, convertedMovements);	
+			return move;
+		}
 		
 		static public function get registeredMovements():Array {
 			return _registeredMovements;
@@ -104,6 +107,10 @@ package com.soueidan.games.tawla.managers
 			} else {
 				return [dice.leftValue, dice.rightValue];	
 			}
+		}
+		
+		static public function setValues(object:ISFSObject):void {
+			dice.sfsObject = object;
 		}
 	}
 }
