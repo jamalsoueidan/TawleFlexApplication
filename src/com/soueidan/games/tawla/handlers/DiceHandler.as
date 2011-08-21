@@ -37,7 +37,7 @@ package com.soueidan.games.tawla.handlers
 			
 			follow = false;
 			
-			_dice.shuffle();
+			//_dice.shuffle();
 		}
 		
 	

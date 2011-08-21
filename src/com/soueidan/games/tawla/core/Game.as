@@ -114,8 +114,6 @@ package com.soueidan.games.tawla.core
 		}
 		
 		private function applicationReady(evt:FlexEvent):void {			
-			//AutoPlayManager.start();
-			
 			_server = Connector.getInstance();
 			
 			_server.addResponseHandler(StartGameResponseHandler.START_GAME, StartGameResponseHandler);
@@ -130,8 +128,6 @@ package com.soueidan.games.tawla.core
 		}
 		
 		private function playerTurnChanged(evt:PlayerEvent):void {
-			_dice.shuffle();
-			
 			if ( _server.mySelf.id == evt.player.id ) {
 				MouseManager.listen();
 			} else {
