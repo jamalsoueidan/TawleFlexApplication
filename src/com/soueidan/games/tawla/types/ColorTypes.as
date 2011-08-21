@@ -5,8 +5,8 @@ package com.soueidan.games.tawla.types
 
 	public class ColorTypes
 	{
-		static public const WHITE:String = "W";
-		static public const BLACK:String = "B";
+		static public const WHITE:int = 0xFFFFFF;
+		static public const BLACK:int = 0x000000;
 		
 		static public function get ALL():ArrayList {
 			var all:ArrayList = new ArrayList();

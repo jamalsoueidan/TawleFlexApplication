@@ -5,13 +5,15 @@ package com.soueidan.games.tawla.components
 	import com.soueidan.games.tawla.core.IPlayer;
 	import com.soueidan.games.tawla.events.ChipEvent;
 	import com.soueidan.games.tawla.managers.TriangleManager;
+	import com.soueidan.games.tawla.types.ColorTypes;
 	import com.soueidan.games.tawla.types.PlacementTypes;
 	
 	import flash.events.Event;
 	
-	import spark.components.Button;
+	import spark.components.Group;
+	import spark.components.supportClasses.SkinnableComponent;
 	
-	public class Chip extends Button implements IChip
+	public class Chip extends Group implements IChip
 	{
 		static public const START_POSITION:Number = 1; // where to place chips when starting the game
 		
@@ -24,11 +26,12 @@ package com.soueidan.games.tawla.components
 		public function Chip(player:IPlayer, num:Number):void {
 			super();
 			
-			width = 45;
+			height = width = 45;
 			
 			_num = num;
 			_player = player;
-			label = color + ":" + String(_num);
+			
+			//label = color + ":" + String(_num);
 			
 		}
 		
@@ -49,7 +52,7 @@ package com.soueidan.games.tawla.components
 			_triangle = parent as ITriangle;
 		}
 		
-		public function get color():String {
+		public function get color():int {
 			return player.color;
 		}
 		
@@ -67,8 +70,14 @@ package com.soueidan.games.tawla.components
 			return false;
 		}
 	
-		override public function toString():String {
+		/*override public function toString():String {
 			return "position: " + position + " color:" + color + " number:" + String(_num);
+		}*/
+		
+		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+			graphics.beginFill(color);
+			graphics.drawCircle(unscaledWidth/2,unscaledHeight/2,25);
+			graphics.endFill();
 		}
 		
 	}

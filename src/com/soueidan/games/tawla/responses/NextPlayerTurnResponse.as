@@ -5,9 +5,9 @@ package com.soueidan.games.tawla.responses
 	import com.soueidan.games.tawla.core.IPlayer;
 	import com.soueidan.games.tawla.managers.DiceManager;
 	import com.soueidan.games.tawla.managers.PlayerManager;
-	import com.soueidan.smartfoxserver.responseHandlers.BaseClientResponseHandler;
+	import com.soueidan.smartfoxclient.responses.ServerResponseHandler;
 	
-	public class NextPlayerTurnResponseHandler extends BaseClientResponseHandler
+	public class NextPlayerTurnResponse extends ServerResponseHandler
 	{
 		static public const NEXT_PLAYER_TURN:String = "next_player_turn";
 		

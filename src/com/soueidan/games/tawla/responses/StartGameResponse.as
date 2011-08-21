@@ -7,9 +7,8 @@ package com.soueidan.games.tawla.responses
 	import com.soueidan.games.tawla.handlers.*;
 	import com.soueidan.games.tawla.managers.*;
 	import com.soueidan.games.tawla.types.*;
-	import com.soueidan.smartfoxserver.responseHandlers.BaseClientResponseHandler;
 	
-	public class StartGameResponseHandler extends DefaultResponseHandler
+	public class StartGameResponse extends DefaultResponse
 	{
 		static public const START_GAME:String = "start_game";
 		
@@ -20,13 +19,13 @@ package com.soueidan.games.tawla.responses
 			var player:IPlayer;
 			
 			var placement:int;
-			var color:String;
+			var color:int;
 			
 			for each(var user:SFSUser in _server.currentRoom.playerList ) {
-				placement = PlacementTypes.TOP;
+				placement = PlacementTypes.BOTTOM;
 				color = ColorTypes.BLACK;
 				if ( user.id == _server.mySelf.id ) {
-					placement = PlacementTypes.BOTTOM;
+					placement = PlacementTypes.TOP;
 					color = ColorTypes.WHITE;
 				}
 				player = PlayerManager.create(user);
@@ -34,14 +33,14 @@ package com.soueidan.games.tawla.responses
 				player.direction = placement;
 				PlayerManager.add(player);
 			}
-				
-			_game.createCupsForPlayers();
-			_game.board.setupChips();
-			
+
+			_game.startGame();
 			player = PlayerManager.getPlayerById(object.getInt("turn"));
 			PlayerManager.setTurn(player);
 			
 			DiceManager.setValues(object);
+			
+			
 		}
 	}
 }

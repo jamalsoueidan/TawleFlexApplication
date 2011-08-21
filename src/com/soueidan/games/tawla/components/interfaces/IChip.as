@@ -9,7 +9,7 @@ package com.soueidan.games.tawla.components.interfaces
 	public interface IChip extends IVisualElement
 	{
 		function get num():Number;
-		function get color():String;
+		function get color():int;
 		function get position():Number;
 		function set position(value:Number):void;
 		function get isFreezed():Boolean;

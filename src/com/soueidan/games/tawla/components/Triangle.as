@@ -21,7 +21,7 @@ package com.soueidan.games.tawla.components
 	
 	public class Triangle extends Group implements ITriangle
 	{
-		private var _drawColor:int = 0x000000;
+		private var _drawColor:int = 0x6495ED;
 		private var _drawColorChanged:Boolean;
 		
 		private var _chips:Array = [];
@@ -112,11 +112,11 @@ package com.soueidan.games.tawla.components
 		}
 		
 		public function unalert():void {
-			if ( _drawColor == 0x000 ) {
+			if ( _drawColor == 0x6495ED ) {
 				return;
 			}
 			
-			_drawColor = 0x000;
+			_drawColor = 0x6495ED;
 			_drawColorChanged = true;
 			invalidateDisplayList();
 		}

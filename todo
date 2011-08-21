@@ -1,9 +1,15 @@
 features:
 	determine if win by 5 or 2
- 	ask if the opponent want to lose 5 stream when player is sitting on him at the starter position
-	ask if the opponent want to lose 2 streak
-	auto shuffle switch off and on
 	see mouse movements
-	fullscreen mode
 	double click to move chip/checker
-	hint window when changing player etc.
+	when starting to move to cup, move the chip with one click no need to use mouse movements.
+	
+	
+options:
+	username, and score etc.
+	auto shuffle (on/off)
+	fullscreen mode (on/off)
+	ask if the opponent want to lose 5 stream when player is sitting on him at the starter position
+	ask if the opponent want to lose 2 streak
+	hint window/notification when changing player etc.
+	camera angle (free, or choices)?

@@ -15,7 +15,7 @@ package com.soueidan.games.tawla.core
 		private var _chips:Array = new Array();
 		private var _cup:ICup;
 		
-		private var _color:String;
+		private var _color:int;
 		private var _name:String;
 		private var _direction:Number = 1
 		private var _isHome:Boolean;
@@ -50,11 +50,11 @@ package com.soueidan.games.tawla.core
 			_cup = value;
 		}
 
-		public function get color():String {
+		public function get color():int {
 			return _color;
 		}
 		
-		public function set color(value:String):void {
+		public function set color(value:int):void {
 			_color = value;
 		}
 		
@@ -84,6 +84,10 @@ package com.soueidan.games.tawla.core
 		
 		public function addChip(chip:IChip):void {
 			_chips.push(chip);
+		}
+		
+		public function get isRegistered():Boolean {
+			return _sfsUser.getVariable("isRegistered").getBoolValue();
 		}
 		
 		public function removeChip(chip:IChip):void {

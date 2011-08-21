@@ -30,14 +30,14 @@ package com.soueidan.games.tawla.components
 			width = 800;
 			height = 600;
 			
-			setStyle("verticalCenter", 0);
+			setStyle("top", 0);
 			setStyle("horizontalCenter", 0);
 		}
 		
 		override protected function createChildren():void {
 			//initBackground();
 			
-			initTriangles();
+			initEnglishTriangles();
 			
 			super.createChildren();
 		}
@@ -56,7 +56,11 @@ package com.soueidan.games.tawla.components
 			}
 		}
 		
-		private function initTriangles():void {				
+		private function initArabicTriangles():void {
+			
+		}
+		
+		private function initEnglishTriangles():void {				
 			var i:int = 0;
 			var position:int = 1;
 			var total:int = 6;// 6 triangles every round to place on the board		

@@ -4,6 +4,7 @@ package com.soueidan.games.tawla.managers
 	import com.soueidan.games.tawla.components.*;
 	import com.soueidan.games.tawla.components.interfaces.*;
 	import com.soueidan.games.tawla.core.*;
+	import com.soueidan.games.tawla.events.DiceEvent;
 	import com.soueidan.games.tawla.types.*;
 	import com.soueidan.games.tawla.utils.*;
 	
@@ -111,6 +112,7 @@ package com.soueidan.games.tawla.managers
 		
 		static public function setValues(object:ISFSObject):void {
 			dice.sfsObject = object;
+			Game.getInstance().dispatchEvent(new DiceEvent(DiceEvent.CHANGED));
 		}
 	}
 }

@@ -6,17 +6,17 @@ package com.soueidan.games.tawla.requests
 	import com.smartfoxserver.v2.requests.ExtensionRequest;
 	import com.smartfoxserver.v2.requests.IRequest;
 	import com.soueidan.games.tawla.events.PlayerEvent;
-	import com.soueidan.smartfoxserver.core.Connector;
+	import com.soueidan.smartfoxclient.core.SmartFoxClient;
 	
-	public class PlayerFinishTurnRequest extends ExtensionRequest implements IRequest
+	public class PlayerTurnIsFinishedRequest extends ExtensionRequest implements IRequest
 	{
-		protected var _server:Connector = Connector.getInstance();
+		protected var _server:SmartFoxClient = SmartFoxClient.getInstance();
 		
 		protected var _params:ISFSObject;
 		
 		static private const action:String = "player_finish_turn";
 		
-		public function PlayerFinishTurnRequest()
+		public function PlayerTurnIsFinishedRequest()
 		{			
 			super(action, _params, _server.currentRoom, false);
 		}
