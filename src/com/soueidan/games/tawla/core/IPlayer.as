@@ -1,12 +1,14 @@
 package com.soueidan.games.tawla.core
 {
+	import com.smartfoxserver.v2.entities.SFSUser;
 	import com.soueidan.games.tawla.components.interfaces.IChip;
 	import com.soueidan.games.tawla.components.interfaces.ICup;
 
 	public interface IPlayer
 	{
-		function set name(value:String):void;
+		function get sfsUser():SFSUser;
 		function get name():String;
+		function get id():int;
 		
 		function set color(value:String):void;
 		function get color():String;

@@ -1,6 +1,7 @@
 package com.soueidan.games.tawla.core
 {
 
+	import com.smartfoxserver.v2.entities.SFSUser;
 	import com.soueidan.games.tawla.components.Chip;
 	import com.soueidan.games.tawla.components.interfaces.IChip;
 	import com.soueidan.games.tawla.components.interfaces.ICup;
@@ -19,11 +20,25 @@ package com.soueidan.games.tawla.core
 		private var _direction:Number = 1
 		private var _isHome:Boolean;
 		
-		public function Player(cup:ICup):void {
+		private var _sfsUser:SFSUser;
+		
+		public function Player(cup:ICup, user:SFSUser):void {
 			super();
 			
 			_cup = cup;
+			
+			_sfsUser = user;
 		}
+		
+		public function get id():int {
+			return _sfsUser.id;
+		}
+		
+		public function get sfsUser():SFSUser
+		{
+			return _sfsUser;
+		}
+		
 		
 		public function get cup():ICup
 		{
@@ -63,12 +78,8 @@ package com.soueidan.games.tawla.core
 			return _direction;	
 		}
 		
-		public function set name(value:String):void {
-			_name = value;	
-		}
-		
 		public function get name():String {
-			return _name;
+			return _sfsUser.name;
 		}
 		
 		public function addChip(chip:IChip):void {
