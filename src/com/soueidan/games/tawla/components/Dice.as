@@ -1,5 +1,6 @@
 package com.soueidan.games.tawla.components
 {
+	import com.smartfoxserver.v2.entities.data.ISFSObject;
 	import com.soueidan.games.tawla.components.interfaces.IDice;
 	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.events.DiceEvent;
@@ -83,6 +84,11 @@ package com.soueidan.games.tawla.components
 		
 		public function get rightValue():Number {
 			return Number(_dices[1].text);
+		}
+		
+		public function set sfsObject(value:ISFSObject):void {
+			_dices[0].text = value.getInt("leftValue");
+			_dices[1].text = value.getInt("rightValue");
 		}
 	
 	}
