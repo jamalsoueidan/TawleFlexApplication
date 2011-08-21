@@ -69,7 +69,7 @@ package com.soueidan.games.tawla.components
 		}
 		
 		private function submitted(evt:*):void {
-			var player:IPlayer = PlayerManager.create();
+			/*var player:IPlayer = PlayerManager.create();
 			player.name = _textField.text;
 			
 			player.color = _colorList.selectedItem;
@@ -77,7 +77,7 @@ package com.soueidan.games.tawla.components
 			
 			PlayerManager.add(player);
 			
-			PopUpManager.removePopUp(this);
+			PopUpManager.removePopUp(this);*/
 		}
 		
 	}
