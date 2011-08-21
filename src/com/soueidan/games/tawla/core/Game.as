@@ -1,13 +1,25 @@
 package com.soueidan.games.tawla.core
 {
+	import com.smartfoxserver.v2.core.SFSEvent;
+	import com.smartfoxserver.v2.entities.SFSUser;
+	import com.smartfoxserver.v2.entities.data.ISFSObject;
+	import com.smartfoxserver.v2.entities.data.SFSObject;
+	import com.smartfoxserver.v2.requests.ExtensionRequest;
 	import com.soueidan.games.tawla.components.*;
 	import com.soueidan.games.tawla.components.interfaces.*;
 	import com.soueidan.games.tawla.core.*;
 	import com.soueidan.games.tawla.events.*;
 	import com.soueidan.games.tawla.handlers.*;
 	import com.soueidan.games.tawla.managers.*;
+	import com.soueidan.games.tawla.requests.ChipMovedRequest;
+	import com.soueidan.games.tawla.requests.PlayerFinishTurnRequest;
+	import com.soueidan.games.tawla.responses.ChipMovedResponseHandler;
+	import com.soueidan.games.tawla.responses.NextPlayerTurnResponseHandler;
+	import com.soueidan.games.tawla.responses.StartGameResponseHandler;
 	import com.soueidan.games.tawla.types.*;
 	import com.soueidan.games.tawla.utils.*;
+	import com.soueidan.smartfoxserver.core.Connector;
+	import com.soueidan.smartfoxserver.responseHandlers.BaseClientResponseHandler;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
@@ -34,12 +46,19 @@ package com.soueidan.games.tawla.core
 		private var _board:Board;
 		private var _dice:IDice;
 	
+		static private var _instance:Game;
+		
 		static public const TOTAL_PLAYER:Number = 2;
 		static public const TOTAL_CHIPS:Number = 3; // how many chips to create
 		
-		static private var _instance:Game;
+		private var _server:Connector;
+		
 		static public function getInstance():Game {
 			return _instance;
+		}
+		
+		public function get board():Board {
+			return _board;
 		}
 		
 		public function Game() {	
@@ -49,7 +68,19 @@ package com.soueidan.games.tawla.core
 			Logger.showCaller = false;
 			Logger.console = true;
 			
-			addEventListener(FlexEvent.APPLICATION_COMPLETE, applicationComplete);
+			enabled = false;
+			
+			addEventListener(FlexEvent.APPLICATION_COMPLETE, applicationReady);
+		}
+		
+		public function addListener():void {
+			addEventListener(DiceEvent.CHANGED, diceChanged);
+			addEventListener(ChipEvent.MOVED, chipMoved);
+			addEventListener(PlayerEvent.TURN_CHANGE, playerTurnChanged);
+			addEventListener(PlayerEvent.IS_HOME, playerIsHome);
+			addEventListener(PlayerEvent.HAVE_A_WINNER, haveAWinner);
+			addEventListener(PlayerEvent.FINISHED_PLAYING, finishedPlaying);
+			addEventListener(PlayerEvent.NO_CHIP_MOVEMENTS, noChipMovements);
 		}
 		
 		override protected function createChildren():void {
@@ -68,20 +99,7 @@ package com.soueidan.games.tawla.core
 			}
 		}
 		
-		public function get board():Board {
-			return _board;
-		}
-		
-		public function applicationComplete(evt:FlexEvent):void {
-			removeEventListener(FlexEvent.APPLICATION_COMPLETE, applicationComplete);
-			
-			AutoPlayManager.start();
-			
-			MouseManager.init(this);
-			MouseManager.addHandler(new DiceHandler);
-			MouseManager.addHandler(new TriangleHandler);
-			MouseManager.addHandler(new CupHandler);
-			
+		public function createCupsForPlayers():void {
 			for each(var player:IPlayer in PlayerManager.all ) {
 				var cup:ICup;
 				cup = player.cup;
@@ -93,35 +111,32 @@ package com.soueidan.games.tawla.core
 				}
 				addElement(cup);
 			}
-			
-			/*
-			addEventListener(PlayerEvent.TURN_CHANGE, playerTurnChange);
-			addEventListener(DiceEvent.CHANGED, diceChanged);
-			addEventListener(ChipEvent.MOVED, movedChip);
-			
-			AutoPlayManager.createPlayers();
-			_board.setupChips();
-			PlayerManager.next();
-			PlayerManager.next();*/
-			
 		}
 		
-		private function createPlayer():void {
-			if ( PlayerManager.total != TOTAL_PLAYER ) {
-				var popup:PopupPlayer = new PopupPlayer();
-				popup.addEventListener(FlexEvent.REMOVE, closeWindow);
-				PopUpManager.addPopUp(popup, this, true);
-				PopUpManager.centerPopUp(popup);
-			}
+		private function applicationReady(evt:FlexEvent):void {			
+			//AutoPlayManager.start();
+			
+			_server = Connector.getInstance();
+			
+			_server.addResponseHandler(StartGameResponseHandler.START_GAME, StartGameResponseHandler);
+			_server.addResponseHandler(ChipMovedResponseHandler.CHIP_MOVED, ChipMovedResponseHandler);
+			_server.addResponseHandler(NextPlayerTurnResponseHandler.NEXT_PLAYER_TURN, NextPlayerTurnResponseHandler);
+			
+			MouseManager.init(this);
+			MouseManager.addHandler(new DiceHandler);
+			MouseManager.addHandler(new TriangleHandler);
+			
+			addListener();
 		}
 		
-		private function closeWindow(evt:FlexEvent):void {
-			createPlayer();
-		}
-		
-		private function playerTurnChange(evt:PlayerEvent):void {
+		private function playerTurnChanged(evt:PlayerEvent):void {
 			_dice.shuffle();
-			DiceManager.reset();
+			
+			if ( _server.mySelf.id == evt.player.id ) {
+				MouseManager.listen();
+			} else {
+				MouseManager.stop();
+			}
 		}
 		
 		private function diceChanged(evt:DiceEvent):void {
@@ -130,8 +145,38 @@ package com.soueidan.games.tawla.core
 			}
 		}
 		
-		private function movedChip(evt:ChipEvent):void {			
+		private function chipMoved(evt:ChipEvent):void {
+			var extension:ChipMovedRequest = new ChipMovedRequest(evt);
+			_server.send(extension);
+			
 			GameManager.finishedPlaying();
+			TriangleManager.removeAllMovementsOnBoard();
+		}
+		
+		private function playerIsHome(evt:PlayerEvent):void {
+			trace("player is home now");
+		}
+		
+		
+		private function haveAWinner(evt:PlayerEvent):void {			
+			if ( GameManager.winnerExists ) {
+				trace("we have a winner");
+			} else {
+				noChipMovements(evt);
+			}
+		}
+		
+		private function finishedPlaying(evt:PlayerEvent):void {
+			trace("=====> no left movements");
+			haveAWinner(evt);	
+		}
+		
+		private function noChipMovements(evt:PlayerEvent):void {
+			trace("=====> no chip movements anymore");
+			MouseManager.stop();
+			
+			var request:PlayerFinishTurnRequest = new PlayerFinishTurnRequest();
+			_server.send(request);
 		}
 	}
 }
