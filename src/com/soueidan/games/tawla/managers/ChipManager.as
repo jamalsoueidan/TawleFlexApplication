@@ -28,6 +28,15 @@ package com.soueidan.games.tawla.managers
 			return new Chip(player, num);
 		}
 		
+		static public function getChip(player:IPlayer, num:Number):IChip {
+			for each(var chip:IChip in player.chips ) {
+				if (chip.num == num) {
+					return chip;
+				}
+			}
+			return null;
+		}
+		
 		/**
 		 * Check if this chip can move to the dice values
 		 * 
