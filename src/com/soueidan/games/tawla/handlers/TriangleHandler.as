@@ -82,12 +82,12 @@ package com.soueidan.games.tawla.handlers
 			if ( _newTriangle ) {
 				// CANNOT BE CHANGED BELOW _newTriangle.add(_chip); BECAUSE add METHOD CHANGE CHIP POSITION
 				// AND THEN WE CANNOT KNOW FROM TO WHERE THE CHIP WAS MOVED
-				DiceManager.registerMovement(_newTriangle, _chip);
+				var move:int = DiceManager.registerMovement(_newTriangle, _chip);
 				
 				_newTriangle.add(_chip);
 				_oldTriangle.remove(_chip);
 				
-				_game.dispatchEvent(new ChipEvent(ChipEvent.MOVED));
+				_game.dispatchEvent(new ChipEvent(ChipEvent.MOVED,false,false, _chip.num, move));
 				
 				// you cannot move these two lines below to the end of this method because we 
 				// need to ensure which method gets called this or next.
