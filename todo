@@ -7,9 +7,16 @@ features:
 	
 options:
 	username, and score etc.
+	
 	auto shuffle (on/off)
 	fullscreen mode (on/off)
 	ask if the opponent want to lose 5 stream when player is sitting on him at the starter position
 	ask if the opponent want to lose 2 streak
-	hint window/notification when changing player etc.
+	
 	camera angle (free, or choices)?
+	hide controls in the bottom
+	
+	
+	chat/hint window/notification when changing player etc.
+	
+	maybe how many left movements you have?

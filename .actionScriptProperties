@@ -36,9 +36,8 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
-      <libraryPathEntry kind="3" linkType="1" path="/Users/jamalsoueidan/Downloads/ThunderBoltAS3_Flex_v2.3.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/Users/jamalsoueidan/Downloads/tink_flex4_spark.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/Users/jamalsoueidan/github/SmartFoxClient/bin/SmartFoxClient.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="1" linkType="1" path="${DOCUMENTS}/Libs"/>
+      <libraryPathEntry kind="3" linkType="1" path="${DOCUMENTS}/SmartFoxClient/bin/SmartFoxClient.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
