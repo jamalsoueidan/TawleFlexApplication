@@ -37,9 +37,8 @@
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
       <libraryPathEntry kind="3" linkType="1" path="/Applications/SFS2X-RC1a/Client/Flash/API/SFS2X_API_AS3.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/Users/jamalsoueidan/Downloads/greensock-as3/greensock.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/Users/jamalsoueidan/Downloads/ThunderBoltAS3_Flex_v2.3.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/Users/jamalsoueidan/Downloads/tink_flex4_spark.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="${DOCUMENTS}/Libs/ThunderBoltAS3_Gumbo_v2.3.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="${DOCUMENTS}/Libs/tink_flex4_spark.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
