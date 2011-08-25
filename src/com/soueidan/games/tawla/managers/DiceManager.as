@@ -28,6 +28,7 @@ package com.soueidan.games.tawla.managers
 					} 
 				}	 
 			}
+			
 			_registeredMovements = ArrayUtil.merge(_registeredMovements, convertedMovements);
 			trace("move", move, "trianglePosition", triangle.position, "chipPosition", chip.position, "convertedMovements", convertedMovements, "registereted", _registeredMovements);
 			return move;
@@ -116,9 +117,13 @@ package com.soueidan.games.tawla.managers
 					movements.push(dice.leftValue);
 				}
 				return movements;
-			} else {
+			}
+			
+			if ( (dice.leftValue+dice.rightValue) == move ) {
 				return [dice.leftValue, dice.rightValue];	
 			}
+			
+			return [];
 		}
 		
 		static public function setValues(object:ISFSObject):void {
