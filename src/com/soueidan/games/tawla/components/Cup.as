@@ -11,8 +11,8 @@ package com.soueidan.games.tawla.components
 		private var _drawColor:int = 0xFF0040;
 		private var _drawColorChanged:Boolean = true;
 		
-		private var _position:int = 0;
 		private var _chips:Array = [];
+		private var _position:int = 0;
 		
 		public function Cup():void {
 			super();
@@ -31,6 +31,10 @@ package com.soueidan.games.tawla.components
 		
 		public function remove(chip:IChip):void {
 			
+		}
+		
+		public function setPosition(value:Number):void {
+			_position = value;
 		}
 		
 		public function get lastChip():IChip {
@@ -69,7 +73,6 @@ package com.soueidan.games.tawla.components
 			invalidateDisplayList();
 		}
 		
-		
 		public function get position():Number {
 			return _position;
 		}
@@ -78,5 +81,8 @@ package com.soueidan.games.tawla.components
 			return _chips;
 		}
 		
+		public function get isBottom():Boolean {
+			return ( position > 12 ); 
+		}
 	}
 }
