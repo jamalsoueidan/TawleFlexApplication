@@ -11,7 +11,6 @@ package com.soueidan.games.tawla.core
 	import com.soueidan.games.tawla.responses.*;
 	import com.soueidan.games.tawla.types.*;
 	import com.soueidan.games.tawla.utils.*;
-	import com.soueidan.smartfoxclient.core.SmartFoxClient;
 	
 	import mx.events.FlexEvent;
 	
@@ -28,7 +27,7 @@ package com.soueidan.games.tawla.core
 		static private var _instance:Game;
 		
 		static public const TOTAL_PLAYER:Number = 2;
-		static public const TOTAL_CHIPS:Number = 4; // how many chips to create
+		static public const TOTAL_CHIPS:Number = 2; // how many chips to create
 		
 		static public function getInstance():Game {
 			return _instance;
@@ -62,17 +61,15 @@ package com.soueidan.games.tawla.core
 			}
 		}
 		
-		public function createCupsForPlayers():void {
-			for each(var player:IPlayer in PlayerManager.all ) {
-				var cup:ICup;
+		public function addCupsToStage():void {
+			var cup:ICup;
+			for each( var player:IPlayer in PlayerManager.all ) {
 				cup = player.cup;
-				cup.setStyle("left", 0);
 				if ( player.direction == PlacementTypes.BOTTOM ) {
-					cup.position = 0;
-					cup.setStyle("top",160);
+					cup.setPosition(25);
+					cup.setStyle("top",100);
 				} else {
-					cup.position = 25;
-					cup.setStyle("bottom",160);
+					cup.setStyle("bottom",200);
 				}
 				addElement(cup);
 			}
@@ -89,7 +86,7 @@ package com.soueidan.games.tawla.core
 		
 		public function startGame():void
 		{
-			createCupsForPlayers();
+			addCupsToStage();
 			_board.setupChips();
 			
 			var controls:Controls = new Controls();
