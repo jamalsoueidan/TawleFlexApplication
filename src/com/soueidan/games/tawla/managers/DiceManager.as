@@ -15,11 +15,21 @@ package com.soueidan.games.tawla.managers
 		static private var _dice:IDice;
 		private static var _registeredMovements:Array = [];
 		
-		static public function registerMovement(triangle:ITriangle, chip:IChip):int {
+		static public function registerMovement(triangle:ITriangle, chip:IChip):int {			
 			var move:Number = Math.abs(triangle.position - chip.position);
 			var convertedMovements:Array = DiceManager.convertMovement(move);
-			trace("move", move, "convertedMovements", convertedMovements);
-			_registeredMovements = ArrayUtil.merge(_registeredMovements, convertedMovements);	
+			
+			// small fix when user is home 
+			if ( ArrayUtil.isEmpty(convertedMovements) ) {
+				for(var i:int=0;i<leftMovements.length;i++) {
+					if ( leftMovements[i] > move ) { 
+						convertedMovements.push(leftMovements[i]); 
+						break; 
+					} 
+				}	 
+			}
+			_registeredMovements = ArrayUtil.merge(_registeredMovements, convertedMovements);
+			trace("move", move, "trianglePosition", triangle.position, "chipPosition", chip.position, "convertedMovements", convertedMovements, "registereted", _registeredMovements);
 			return move;
 		}
 		
