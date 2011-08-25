@@ -22,6 +22,8 @@ package com.soueidan.games.tawla.components.interfaces
 		function get lastChip():IChip;
 		function get position():Number;
 		
+		function get isBottom():Boolean;
+		
 		function setStyle(styleProp:String, newValue:*):void;
 	}
 }

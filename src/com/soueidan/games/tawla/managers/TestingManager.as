@@ -1,7 +1,6 @@
 package com.soueidan.games.tawla.managers
 {
 	import com.gskinner.motion.GTween;
-	import com.soueidan.games.tawla.components.Triangle;
 	import com.soueidan.games.tawla.components.interfaces.*;
 	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.events.*;
@@ -48,7 +47,7 @@ package com.soueidan.games.tawla.managers
 					chip.x = Xx;
 					chip.y = Yy; 
 					
-					if ( (triangle as Triangle).isBottom ) {
+					if ( triangle.isBottom ) {
 						Yy = (triangle as DisplayObject).localToGlobal(new Point()).y + triangle.height - chip.height;
 					} else {
 						Yy = (triangle as DisplayObject).localToGlobal(new Point()).y;

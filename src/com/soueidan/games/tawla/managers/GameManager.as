@@ -1,16 +1,11 @@
 package com.soueidan.games.tawla.managers
 {
-	import com.soueidan.games.tawla.components.Cup;
 	import com.soueidan.games.tawla.components.interfaces.IChip;
-	import com.soueidan.games.tawla.components.interfaces.IDice;
 	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.core.IPlayer;
 	import com.soueidan.games.tawla.events.PlayerEvent;
-	import com.soueidan.games.tawla.utils.ArrayUtil;
 	
 	import mx.core.FlexGlobals;
-	
-	import org.osflash.thunderbolt.Logger;
 
 	public class GameManager
 	{

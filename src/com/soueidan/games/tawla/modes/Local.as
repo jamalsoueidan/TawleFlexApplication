@@ -1,6 +1,5 @@
 package com.soueidan.games.tawla.modes
 {	
-	import com.gskinner.motion.GTween;
 	import com.soueidan.games.tawla.components.*;
 	import com.soueidan.games.tawla.components.interfaces.*;
 	import com.soueidan.games.tawla.core.*;
@@ -9,21 +8,18 @@ package com.soueidan.games.tawla.modes
 	import com.soueidan.games.tawla.types.*;
 	import com.soueidan.games.tawla.utils.*;
 	
-	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
 	import mx.core.FlexGlobals;
 	
-	import org.osflash.thunderbolt.Logger;
-	
 	import spark.components.Button;
 	import spark.components.VGroup;
 	
 	public class Local implements IMode
 	{
-		private var _autoPlay:Boolean = true;
+		private var _autoPlay:Boolean = false;
 		
 		private var _dice:IDice;
 		private var _game:Game = FlexGlobals.topLevelApplication as Game;
@@ -85,6 +81,7 @@ package com.soueidan.games.tawla.modes
 		
 		private function createComponents():void {
 			_group = new VGroup();
+			_group.setStyle("right",0);
 			_game.addElement(_group);
 			
 			_move = new Button();
