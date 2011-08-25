@@ -37,25 +37,13 @@ package com.soueidan.games.tawla.managers
 			return null;
 		}
 		
-		/**
-		 * Check if this chip can move to the dice values
-		 * 
-		 * @param chip Chip that needs to move 
-		 * @return Boolean
-		 * 
-		 */
-		static public function canMove(chip:IChip):Boolean {
+		static public function haveAnyMovements(chip:IChip):Boolean {
 			if ( chip.isFreezed ) {
 				return false;
 			}
-
-			for each(var movement:Number in DiceManager.leftMovements ) {
-				var triangle:ITriangle = TriangleManager.getFromChipToPosition(chip, movement);
-				if ( triangle && TriangleManager.canOwnIt(triangle, chip) ) {
-					return true; 
-				}
-			}
-			return false;
+			
+			TriangleManager.showMovementsOnBoard(chip, false);	
+			return ( TriangleManager.movements.length > 0 )
 		}
 		
 		static public function lastChipStanding(chip:IChip):Boolean {

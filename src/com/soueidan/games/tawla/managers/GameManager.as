@@ -42,26 +42,20 @@ package com.soueidan.games.tawla.managers
 			return false;
 		}
 		
-		static public function get canPlay():Boolean {
+		static public function get playerCanMoveAnyChip():Boolean {
 			var player:IPlayer = PlayerManager.player;	
-			var haveAnyMovements:Boolean;
-	
-			if ( player.isHome ) {
-				return true;
-			}
 			
 			for each(var chip:IChip in player.chips ) {
-				if ( ChipManager.canMove(chip)) {
-					haveAnyMovements = true;
-					break;
+				if ( ChipManager.haveAnyMovements(chip) ) {
+					return true;
 				}
 			}
 			
-			return haveAnyMovements;
+			return false;
 		}
 		
 		static public function canPlayerMove():void {
-			if ( !canPlay ) {
+			if ( !playerCanMoveAnyChip ) {
 				var player:IPlayer = PlayerManager.player;
 				dispatchEvent(new PlayerEvent(PlayerEvent.NO_CHIP_MOVEMENTS, false,false, player));
 			}

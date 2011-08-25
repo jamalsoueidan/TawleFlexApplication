@@ -1,10 +1,13 @@
 package com.soueidan.games.tawla.modes
 {
+	import com.soueidan.games.tawla.components.interfaces.IChip;
+	import com.soueidan.games.tawla.components.interfaces.ITriangle;
 	import com.soueidan.games.tawla.core.*;
 	import com.soueidan.games.tawla.events.*;
 	import com.soueidan.games.tawla.managers.*;
 	import com.soueidan.games.tawla.requests.*;
 	import com.soueidan.games.tawla.responses.*;
+	import com.soueidan.games.tawla.utils.ArrayUtil;
 	import com.soueidan.smartfoxclient.core.SmartFoxClient;
 
 	public class Network implements IMode
@@ -20,7 +23,7 @@ package com.soueidan.games.tawla.modes
 		}
 		
 		public function addListener():void {
-			_game.addEventListener(DiceEvent.CHANGED, diceChanged);
+			_game.addEventListener(DiceEvent.SHUFFLED, diceChanged);
 			_game.addEventListener(ChipEvent.MOVED, chipMoved);
 			_game.addEventListener(PlayerEvent.TURN_CHANGE, playerTurnChanged);
 			_game.addEventListener(PlayerEvent.IS_HOME, playerIsHome);
@@ -57,9 +60,11 @@ package com.soueidan.games.tawla.modes
 		}
 		
 		private function diceChanged(evt:DiceEvent):void {
-			trace("player cannot move");
-			if ( !GameManager.canPlay ) {
+			if ( !GameManager.playerCanMoveAnyChip ) {
+				trace("player cannot move");
 				nextTurn();
+			} else {
+				TestingManager.moveRandomChip();
 			}
 		}
 		
@@ -106,5 +111,6 @@ package com.soueidan.games.tawla.modes
 			var request:PlayerTurnIsFinishedRequest = new PlayerTurnIsFinishedRequest();
 			_server.send(request);
 		}
+		
 	}
 }

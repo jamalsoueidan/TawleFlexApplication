@@ -13,25 +13,42 @@ package com.soueidan.games.tawla.core
 	public class Player implements IPlayer
 	{
 		private var _chips:Array = new Array();
+		
 		private var _cup:ICup;
 		
 		private var _color:int;
+		
 		private var _name:String;
+		
 		private var _direction:Number = 1
+		
 		private var _isHome:Boolean;
 		
 		private var _sfsUser:SFSUser;
+		private var _id:int = 0;
+		private var _isRegistered:Boolean;
 		
 		public function Player(cup:ICup, user:SFSUser):void {
 			super();
 			
 			_cup = cup;
 			
-			_sfsUser = user;
+			if ( user ) {
+				_sfsUser = user;
+				_name = _sfsUser.name;
+				_isRegistered = _sfsUser.getVariable("isRegistered").getBoolValue();
+				_id = _sfsUser.id;
+			}
 		}
 		
+		public function set name(value:String):void
+		{
+			_name = value;
+		}
+		
+		
 		public function get id():int {
-			return _sfsUser.id;
+			return _id;
 		}
 		
 		public function get sfsUser():SFSUser
@@ -40,8 +57,7 @@ package com.soueidan.games.tawla.core
 		}
 		
 		
-		public function get cup():ICup
-		{
+		public function get cup():ICup {
 			return _cup;
 		}
 
@@ -79,7 +95,7 @@ package com.soueidan.games.tawla.core
 		}
 		
 		public function get name():String {
-			return _sfsUser.name;
+			return _name;
 		}
 		
 		public function addChip(chip:IChip):void {
@@ -87,11 +103,25 @@ package com.soueidan.games.tawla.core
 		}
 		
 		public function get isRegistered():Boolean {
-			return _sfsUser.getVariable("isRegistered").getBoolValue();
+			return _isRegistered;
 		}
 		
 		public function removeChip(chip:IChip):void {
 			_chips = ArrayUtil.remove(_chips, chip);
+		}
+		
+		private var _score:int = 0;
+		
+		public function addScore(value:int):void {
+			_score += value;
+		}
+		
+		public function get score():int {
+			if ( _sfsUser && _sfsUser.getVariable("score")) {
+				return _sfsUser.getVariable("score").getIntValue();
+			} else {
+				return _score;
+			}
 		}
 	}
 }

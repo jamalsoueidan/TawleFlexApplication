@@ -4,7 +4,7 @@ package com.soueidan.games.tawla.events
 	
 	public class DiceEvent extends Event
 	{
-		static public const CHANGED:String = "done";
+		static public const SHUFFLED:String = "done";
 		
 		public function DiceEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{

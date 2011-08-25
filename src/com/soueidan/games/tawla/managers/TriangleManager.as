@@ -21,7 +21,7 @@ package com.soueidan.games.tawla.managers
 		static private var _setupCup:Boolean; // have we tried to add the cup on the screen?
 		static private var _movements:Array = [];
 		
-		static public function showMovementsOnBoard(chip:IChip):void {
+		static public function showMovementsOnBoard(chip:IChip, lightMovements:Boolean=true):void {
 			if ( chip.isFreezed ) {
 				return;
 			}
@@ -31,7 +31,10 @@ package com.soueidan.games.tawla.managers
 			
 			setLeftMovements(chip);
 			filterOverlaps(chip);
-			lightMovements();
+			
+			if ( lightMovements ) {
+				lightAllTriangleMovements();
+			}
 		}
 		
 		static private function setLeftMovements(chip:IChip):void {
@@ -149,14 +152,14 @@ package com.soueidan.games.tawla.managers
 			}
 		}
 		
-		static private function lightMovements():void {
+		static private function lightAllTriangleMovements():void {
 			for each(var triangle:ITriangle in _movements) {
 				triangle.alert();
 			}	
 		}
 		
 		static public function removeAllMovementsOnBoard():void {
-			for each(var triangle:ITriangle in _movements) {
+			for each(var triangle:ITriangle in _triangles) {
 				triangle.unalert();
 			}
 			_movements = [];

@@ -41,7 +41,7 @@ package com.soueidan.games.tawla.components
 				btn.text = random();
 			}
 			
-			Game.getInstance().dispatchEvent(new DiceEvent(DiceEvent.CHANGED));
+			Game.getInstance().dispatchEvent(new DiceEvent(DiceEvent.SHUFFLED));
 		}
 		
 		private function random():String

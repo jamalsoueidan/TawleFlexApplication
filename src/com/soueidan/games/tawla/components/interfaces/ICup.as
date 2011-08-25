@@ -4,6 +4,6 @@ package com.soueidan.games.tawla.components.interfaces
 
 	public interface ICup extends IVisualElement, ITriangle
 	{
-
+		function set position(value:int):void;
 	}
 }

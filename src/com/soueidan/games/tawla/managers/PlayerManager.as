@@ -25,7 +25,7 @@ package com.soueidan.games.tawla.managers
 			_players.push(player);
 		}
 		
-		static public function create(user:SFSUser):IPlayer {
+		static public function create(user:SFSUser=null):IPlayer {
 			return new Player(CupManager.create(), user);
 		}
 		
@@ -42,14 +42,12 @@ package com.soueidan.games.tawla.managers
 		 * @return 
 		 * 
 		 */
-		static public function next():IPlayer {
+		static public function next():void {
 			if ( _player == _players[0]) {
 				setTurn(_players[1]);
 			} else {
 				setTurn(_players[0]);
 			}
-				
-			return _player;
 		}
 		
 		// check if the checker belongs to this current player who turn is on
@@ -64,10 +62,12 @@ package com.soueidan.games.tawla.managers
 		static public function setTurn(player:IPlayer):void {
 			_player = player;
 			
+			trace("Turn:", player.name);
+			
 			DiceManager.reset();
 			Game.getInstance().dispatchEvent(new PlayerEvent(PlayerEvent.TURN_CHANGE,false,false, _player));
 			
-			trace("Turn:", player.name);
+			
 		}
 		
 		static public function getPlayerByName(value:String):IPlayer {

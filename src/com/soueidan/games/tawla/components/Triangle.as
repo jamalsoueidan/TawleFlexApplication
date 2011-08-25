@@ -1,5 +1,7 @@
 package com.soueidan.games.tawla.components
 {
+	import com.soueidan.games.tawla.components.interfaces.IChip;
+	import com.soueidan.games.tawla.components.interfaces.ITriangle;
 	import com.soueidan.games.tawla.core.IPlayer;
 	import com.soueidan.games.tawla.managers.TriangleManager;
 	import com.soueidan.games.tawla.types.PlacementTypes;
@@ -16,8 +18,6 @@ package com.soueidan.games.tawla.components
 	import spark.layouts.VerticalAlign;
 	import spark.layouts.VerticalLayout;
 	import spark.primitives.Graphic;
-	import com.soueidan.games.tawla.components.interfaces.IChip;
-	import com.soueidan.games.tawla.components.interfaces.ITriangle;
 	
 	public class Triangle extends Group implements ITriangle
 	{
@@ -76,7 +76,11 @@ package com.soueidan.games.tawla.components
 			if ( index > -1 ) {
 				addElementAt(chip, index);	
 			} else {
-				addElement(chip);
+				if ( isBottom ) {
+					addElementAt(chip, 0);
+				} else {
+					addElement(chip);
+				}
 			}
 			
 			// this line must be after the chip is added to the element
@@ -99,7 +103,11 @@ package com.soueidan.games.tawla.components
 		
 		public function get lastChip():IChip {
 			if ( numElements > 0 ) {
-				return getElementAt((numElements-1)) as IChip;
+				if ( isBottom ) {
+					return getElementAt(0) as IChip;
+				} else {
+					return getElementAt((numElements-1)) as IChip;
+				}
 			} else {
 				return null;
 			}
@@ -124,6 +132,10 @@ package com.soueidan.games.tawla.components
 		public function get position():Number
 		{
 			return _position;
+		}
+		
+		public function get isBottom():Boolean {
+			return ( position > 12 ); 
 		}
 		
 		override public function toString():String {

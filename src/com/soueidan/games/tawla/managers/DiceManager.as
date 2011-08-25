@@ -18,6 +18,7 @@ package com.soueidan.games.tawla.managers
 		static public function registerMovement(triangle:ITriangle, chip:IChip):int {
 			var move:Number = Math.abs(triangle.position - chip.position);
 			var convertedMovements:Array = DiceManager.convertMovement(move);
+			trace("move", move, "convertedMovements", convertedMovements);
 			_registeredMovements = ArrayUtil.merge(_registeredMovements, convertedMovements);	
 			return move;
 		}
@@ -112,7 +113,7 @@ package com.soueidan.games.tawla.managers
 		
 		static public function setValues(object:ISFSObject):void {
 			dice.sfsObject = object;
-			Game.getInstance().dispatchEvent(new DiceEvent(DiceEvent.CHANGED));
+			Game.getInstance().dispatchEvent(new DiceEvent(DiceEvent.SHUFFLED));
 		}
 	}
 }

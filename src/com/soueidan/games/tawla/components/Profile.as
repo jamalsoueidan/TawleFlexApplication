@@ -66,13 +66,8 @@ package com.soueidan.games.tawla.components
 				} else {
 					_isRegistered.text = "Status: Guest";
 				}
-				
-				var score:String = "0";
-				if ( _player.sfsUser.getVariable("score")) {
-					score = String(_player.sfsUser.getVariable("score").getIntValue())
-				}
-				
-				_score.text = "Score: " + score;
+								
+				_score.text = "Score: " + _player.score.toString();
 			}
 		}
 		

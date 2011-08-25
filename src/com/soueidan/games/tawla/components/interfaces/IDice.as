@@ -8,7 +8,7 @@ package com.soueidan.games.tawla.components.interfaces
 
 	public interface IDice extends IVisualElement
 	{
-		//function shuffle():void;
+		function shuffle():void;
 		function get isDouble():Boolean;
 		function get total():Number;
 		function get all():Array;

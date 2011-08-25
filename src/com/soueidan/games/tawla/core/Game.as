@@ -6,32 +6,18 @@ package com.soueidan.games.tawla.core
 	import com.soueidan.games.tawla.events.*;
 	import com.soueidan.games.tawla.handlers.*;
 	import com.soueidan.games.tawla.managers.*;
-	import com.soueidan.games.tawla.modes.IMode;
-	import com.soueidan.games.tawla.modes.Network;
+	import com.soueidan.games.tawla.modes.*;
 	import com.soueidan.games.tawla.requests.*;
 	import com.soueidan.games.tawla.responses.*;
 	import com.soueidan.games.tawla.types.*;
 	import com.soueidan.games.tawla.utils.*;
 	import com.soueidan.smartfoxclient.core.SmartFoxClient;
 	
-	import flash.display.DisplayObject;
-	import flash.events.Event;
-	import flash.events.MouseEvent;
-	import flash.events.TimerEvent;
-	import flash.geom.Point;
-	import flash.ui.Mouse;
-	import flash.utils.Timer;
-	import flash.utils.getQualifiedClassName;
-	
-	import mx.events.CloseEvent;
 	import mx.events.FlexEvent;
-	import mx.managers.PopUpManager;
 	
 	import org.osflash.thunderbolt.Logger;
 	
 	import spark.components.Application;
-	import spark.components.Button;
-	import spark.components.VGroup;
 
 	
 	public class Game extends Application
@@ -42,7 +28,7 @@ package com.soueidan.games.tawla.core
 		static private var _instance:Game;
 		
 		static public const TOTAL_PLAYER:Number = 2;
-		static public const TOTAL_CHIPS:Number = 1; // how many chips to create
+		static public const TOTAL_CHIPS:Number = 4; // how many chips to create
 		
 		static public function getInstance():Game {
 			return _instance;
@@ -80,10 +66,12 @@ package com.soueidan.games.tawla.core
 			for each(var player:IPlayer in PlayerManager.all ) {
 				var cup:ICup;
 				cup = player.cup;
-				cup.setStyle("left", 150);
+				cup.setStyle("left", 0);
 				if ( player.direction == PlacementTypes.BOTTOM ) {
+					cup.position = 0;
 					cup.setStyle("top",160);
 				} else {
+					cup.position = 25;
 					cup.setStyle("bottom",160);
 				}
 				addElement(cup);
@@ -95,7 +83,7 @@ package com.soueidan.games.tawla.core
 			MouseManager.addHandler(new DiceHandler);
 			MouseManager.addHandler(new TriangleHandler);
 			
-			var mode:IMode = new Network(this);
+			var mode:IMode = new Local(this);
 			mode.start();
 		}
 		

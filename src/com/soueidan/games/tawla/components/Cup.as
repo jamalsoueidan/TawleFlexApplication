@@ -1,21 +1,22 @@
 package com.soueidan.games.tawla.components
 {
+	import com.soueidan.games.tawla.components.interfaces.IChip;
+	import com.soueidan.games.tawla.components.interfaces.ICup;
 	import com.soueidan.games.tawla.core.IPlayer;
 	
 	import spark.components.VGroup;
-	import com.soueidan.games.tawla.components.interfaces.IChip;
-	import com.soueidan.games.tawla.components.interfaces.ICup;
 	
 	public class Cup extends VGroup implements ICup
 	{
 		private var _drawColor:int = 0xFF0040;
 		private var _drawColorChanged:Boolean = true;
 		
+		private var _position:int = 0;
 		private var _chips:Array = [];
 		
 		public function Cup():void {
 			super();
-
+			
 			width = 100;
 			height = 100;
 		}
@@ -68,9 +69,9 @@ package com.soueidan.games.tawla.components
 			invalidateDisplayList();
 		}
 		
-		public function get position():Number
-		{
-			return 25;
+		
+		public function get position():Number {
+			return _position;
 		}
 		
 		public function get chips():Array {

@@ -30,9 +30,6 @@ package com.soueidan.games.tawla.components
 			
 			_num = num;
 			_player = player;
-			
-			//label = color + ":" + String(_num);
-			
 		}
 		
 		public function get num():Number {
