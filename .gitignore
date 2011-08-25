@@ -1,4 +1,7 @@
-bin-debug/**/* 
+bin-debug/**/*
+bin-debug/*.*
+bin-debug/*
+
 .DS_Store
 
 bin-debug/tawle.swf
