@@ -126,6 +126,7 @@ package com.soueidan.games.tawla.core
 		}
 		
 		public function removeAllChips():void {
+			_isHome = false;
 			_chips = [];
 		}
 		
