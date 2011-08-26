@@ -123,5 +123,9 @@ package com.soueidan.games.tawla.core
 				return _score;
 			}
 		}
+		
+		public function removeAllChips():void {
+			_chips = [];
+		}
 	}
 }

@@ -34,5 +34,7 @@ package com.soueidan.games.tawla.core
 		
 		function addChip(chip:IChip):void;
 		function removeChip(chip:IChip):void;
+		
+		function removeAllChips():void;
 	}
 }

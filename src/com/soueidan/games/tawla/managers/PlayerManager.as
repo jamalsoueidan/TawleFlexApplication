@@ -37,6 +37,12 @@ package com.soueidan.games.tawla.managers
 			return _player;
 		}
 		
+		static public function reset():void {
+			for each(var player:IPlayer in _players ) {
+				player.removeAllChips();
+			}
+		}
+
 		/**
 		 * Next player turn 
 		 * @return 
