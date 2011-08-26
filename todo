@@ -1,8 +1,11 @@
-features:
+next:
 	determine if win by 5 or 2
-	see mouse movements
 	double click to move chip/checker
 	when starting to move to cup, move the chip with one click no need to use mouse movements.
+	
+	
+	see mouse movements
+	
 	
 	
 options:
@@ -20,3 +23,5 @@ options:
 	chat/hint window/notification when changing player etc.
 	
 	maybe how many left movements you have?
+	
+	
