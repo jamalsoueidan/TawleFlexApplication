@@ -148,14 +148,23 @@ package com.soueidan.games.tawla.components
 				} else {
 					triangle = TriangleManager.getByPosition( 24 );
 				}
-				
+				trace("playerChips", player.chips.length);
 				for(var i:int=0;i<Game.TOTAL_CHIPS;i++) {
 					chip = ChipManager.create(player, i);
 					player.addChip(chip);
 					triangle.add(chip);
-					ChipManager.add(chip);
 				}	
 			}
+		}
+		
+		public function reset():void
+		{
+			for each(var triangle:ITriangle in TriangleManager.all ) {
+				triangle.removeAllChips();
+			}
+			
+			setupChips();
+			
 		}
 	}
 }

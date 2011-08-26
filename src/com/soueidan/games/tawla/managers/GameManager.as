@@ -28,10 +28,18 @@ package com.soueidan.games.tawla.managers
 					dispatchEvent(new PlayerEvent(PlayerEvent.FINISHED_PLAYING, false,false,player));
 				}
 			} else {
+				
+				setPlayerScore();
 				dispatchEvent(new PlayerEvent(PlayerEvent.HAVE_A_WINNER,false,false,player));
 			}
 		}
-	
+		
+		private static function setPlayerScore():void
+		{
+			PlayerManager.player.addScore(1);
+			
+		}
+		
 		static private function get playerHaveLeftMovements():Boolean {
 			if ( DiceManager.anyLeftMovements ) {
 				return true;

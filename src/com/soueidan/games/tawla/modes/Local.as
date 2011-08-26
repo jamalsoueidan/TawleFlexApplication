@@ -42,9 +42,6 @@ package com.soueidan.games.tawla.modes
 			_game.startGame();
 			
 			_dice = DiceManager.dice;
-		}
-		
-		public function start():void {
 			
 			_game.addEventListener(DiceEvent.SHUFFLED, diceShuffled);
 			_game.addEventListener(ChipEvent.MOVED, chipMoved);
@@ -53,16 +50,18 @@ package com.soueidan.games.tawla.modes
 			_game.addEventListener(PlayerEvent.HAVE_A_WINNER, haveAWinner);
 			_game.addEventListener(PlayerEvent.FINISHED_PLAYING, finishedPlaying);
 			_game.addEventListener(PlayerEvent.NO_CHIP_MOVEMENTS, noChipMovements);
-
-			MouseManager.listen();
-			
-			PlayerManager.next();
 			
 			timer.addEventListener(TimerEvent.TIMER, function():void {
 				if ( _autoPlay ) {
 					TestingManager.moveRandomChip();
 				}
 			});
+		}
+		
+		public function start():void {
+			MouseManager.listen();
+			
+			PlayerManager.next();
 			timer.start();
 		}
 		
@@ -155,7 +154,8 @@ package com.soueidan.games.tawla.modes
 		
 		
 		private function haveAWinner(evt:PlayerEvent):void {
-			trace("we have a winner");			
+			trace("we have a winner");
+			timer.stop();
 			_game.reset();
 		}
 		

@@ -88,6 +88,7 @@ package com.soueidan.games.tawla.components
 		public function removeAllChips():void {
 			_chips = [];
 			removeAllElements();
+			unalert();
 		}
 	}
 }

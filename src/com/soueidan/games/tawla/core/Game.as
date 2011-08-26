@@ -27,7 +27,9 @@ package com.soueidan.games.tawla.core
 		static private var _instance:Game;
 		
 		static public const TOTAL_PLAYER:Number = 2;
-		static public const TOTAL_CHIPS:Number = 3; // how many chips to create
+		static public const TOTAL_CHIPS:Number = 1; // how many chips to create
+		
+		static private var _mode:IMode;
 		
 		static public function getInstance():Game {
 			return _instance;
@@ -80,8 +82,8 @@ package com.soueidan.games.tawla.core
 			MouseManager.addHandler(new DiceHandler);
 			MouseManager.addHandler(new TriangleHandler);
 			
-			var mode:IMode = new Local(this);
-			mode.start();
+			_mode = new Local(this);
+			_mode.start();
 		}
 		
 		public function startGame():void
@@ -91,6 +93,14 @@ package com.soueidan.games.tawla.core
 			
 			var controls:Controls = new Controls();
 			addElement(controls);
+		}
+		
+		public function reset():void
+		{
+			CupManager.reset();
+			PlayerManager.reset();
+			_board.reset()
+			_mode.start();
 		}
 	}
 }
