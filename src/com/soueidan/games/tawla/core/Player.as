@@ -4,6 +4,7 @@ package com.soueidan.games.tawla.core
 	import com.smartfoxserver.v2.entities.SFSUser;
 	import com.soueidan.games.tawla.components.interfaces.IChip;
 	import com.soueidan.games.tawla.components.interfaces.ICup;
+	import com.soueidan.games.tawla.types.PlacementTypes;
 	import com.soueidan.games.tawla.utils.ArrayUtil;
 	
 	import flash.events.Event;
@@ -126,6 +127,22 @@ package com.soueidan.games.tawla.core
 		
 		public function removeAllChips():void {
 			_chips = [];
+		}
+		
+		public function get endPosition():int {
+			if ( startPosition == 24 ) {
+				return 1;
+			} else {
+				return 24;
+			}
+		}
+		
+		public function get startPosition():int {
+			if ( direction == PlacementTypes.BOTTOM ) {
+				return 24;
+			} else {
+				return 1;
+			}
 		}
 	}
 }

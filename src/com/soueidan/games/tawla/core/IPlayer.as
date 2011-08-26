@@ -24,6 +24,9 @@ package com.soueidan.games.tawla.core
 		
 		function get chips():Array;
 		
+		function get endPosition():int;
+		function get startPosition():int;
+		
 		function get isHome():Boolean;
 		function set isHome(value:Boolean):void;
 		
