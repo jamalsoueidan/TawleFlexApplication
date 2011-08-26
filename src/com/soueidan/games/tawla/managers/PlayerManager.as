@@ -106,14 +106,6 @@ package com.soueidan.games.tawla.managers
 			return null;
 		}
 		
-		static public function convertPosition(position:Number):Number {
-			var player:IPlayer = PlayerManager.player;
-			if ( player.direction == PlacementTypes.BOTTOM ) {
-				position = 25 - position;
-			}
-			return position;
-		}
-		
 		static public function getChip(num:Number):IChip {
 			for each(var chip:IChip in _player.chips) {
 				if ( chip.position == num ) return chip;

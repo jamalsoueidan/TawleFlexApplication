@@ -5,6 +5,7 @@ package com.soueidan.games.tawla.managers
 	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.core.IPlayer;
 	import com.soueidan.games.tawla.events.PlayerEvent;
+	import com.soueidan.games.tawla.types.PlacementTypes;
 	
 	import mx.core.FlexGlobals;
 
@@ -19,10 +20,9 @@ package com.soueidan.games.tawla.managers
 			isAllChipsHome();
 			
 			var player:IPlayer = PlayerManager.player;
-			trace("finishedplaying", player.name);
 			
 			if ( !winnerExists ) {
-				if ( playerHaveLeftMovements ) {
+				if ( DiceManager.anyLeftMovements ) {
 					if ( !canPlayerMoveAnyChip ) {
 						dispatchEvent(new PlayerEvent(PlayerEvent.NO_CHIP_MOVEMENTS, false,false, player));
 					}
@@ -65,13 +65,6 @@ package com.soueidan.games.tawla.managers
 			
 		}
 		
-		static private function get playerHaveLeftMovements():Boolean {
-			if ( DiceManager.anyLeftMovements ) {
-				return true;
-			}
-			return false;
-		}
-		
 		static public function get canPlayerMoveAnyChip():Boolean {
 			var player:IPlayer = PlayerManager.player;	
 			
@@ -85,17 +78,19 @@ package com.soueidan.games.tawla.managers
 		}
 		
 		static private function isAllChipsHome():void {
-			if ( PlayerManager.player.isHome ) {
+			var player:IPlayer = PlayerManager.player;
+			if ( player.isHome ) {
 				return;
 			}
 			
 			var isHome:Boolean = true;
-			var player:IPlayer = PlayerManager.player;
 			for each(var chip:IChip in player.chips ) {
-				var position:int = PlayerManager.convertPosition(chip.position)  + ( player.direction * 1);
-				if ( position < 20 ) {
-					isHome = false;
-					break;
+				if ( chip.position < 19 && player.direction == PlacementTypes.TOP ) {
+					isHome = false;	
+				}
+				
+				if ( chip.position > 6 && player.direction == PlacementTypes.BOTTOM ) {
+					isHome = false;	
 				}
 			}
 			
