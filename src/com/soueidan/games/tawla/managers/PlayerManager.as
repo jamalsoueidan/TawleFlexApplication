@@ -17,6 +17,14 @@ package com.soueidan.games.tawla.managers
 		static private var _player:IPlayer;
 		static private var _players:Array = new Array();
 		
+		static public function get opponent():IPlayer {
+			if ( _player == _players[0]) {
+				return _players[1];
+			} else {
+				return _player;
+			}	
+		}
+		
 		static public function get all():Array {
 			return _players;
 		}
