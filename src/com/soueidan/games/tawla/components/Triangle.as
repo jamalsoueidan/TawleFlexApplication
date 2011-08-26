@@ -141,5 +141,10 @@ package com.soueidan.games.tawla.components
 		override public function toString():String {
 			return String(_position);
 		}
+		
+		public function removeAllChips():void {
+			_chips = [];
+			removeAllElements();
+		}
 	}
 }

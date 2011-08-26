@@ -10,6 +10,7 @@ package com.soueidan.games.tawla.components.interfaces
 		// it's because when we need to use tween we can actually benefit of these two methods below
 		function add(chip:IChip, index:Number=-1):void;
 		function remove(chip:IChip):void;
+		function removeAllChips():void;
 		
 		function get chips():Array;
 		

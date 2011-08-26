@@ -84,5 +84,10 @@ package com.soueidan.games.tawla.components
 		public function get isBottom():Boolean {
 			return ( position > 12 ); 
 		}
+		
+		public function removeAllChips():void {
+			_chips = [];
+			removeAllElements();
+		}
 	}
 }
