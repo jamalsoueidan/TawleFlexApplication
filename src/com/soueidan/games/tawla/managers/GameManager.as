@@ -19,6 +19,7 @@ package com.soueidan.games.tawla.managers
 			isAllChipsHome();
 			
 			var player:IPlayer = PlayerManager.player;
+			trace("finishedplaying", player.name);
 			
 			if ( !winnerExists ) {
 				if ( playerHaveLeftMovements ) {
@@ -36,9 +37,13 @@ package com.soueidan.games.tawla.managers
 		
 		private static function setPlayerScore():void
 		{
-			var score:int = 1;
+			var score:int = 0;
 			var opponent:IPlayer = PlayerManager.opponent;
-
+			
+			if ( opponent.isHome ) {
+				score = 1;
+			}
+			
 			if ( !opponent.isHome ) {
 				score = 2;
 				
@@ -48,6 +53,7 @@ package com.soueidan.games.tawla.managers
 					score = 5;
 				} 
 			}
+			
 			PlayerManager.player.addScore(score);
 			
 			var eventName:String = PlayerEvent.NEW_ROUND;
@@ -79,12 +85,17 @@ package com.soueidan.games.tawla.managers
 		}
 		
 		static private function isAllChipsHome():void {
+			if ( PlayerManager.player.isHome ) {
+				return;
+			}
+			
 			var isHome:Boolean = true;
 			var player:IPlayer = PlayerManager.player;
 			for each(var chip:IChip in player.chips ) {
-				var position:int = PlayerManager.convertPosition(chip.position);
-				if ( position < 19 ) {
+				var position:int = PlayerManager.convertPosition(chip.position)  + ( player.direction * 1);
+				if ( position < 20 ) {
 					isHome = false;
+					break;
 				}
 			}
 			
