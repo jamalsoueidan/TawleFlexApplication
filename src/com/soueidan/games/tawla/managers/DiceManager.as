@@ -136,6 +136,8 @@ package com.soueidan.games.tawla.managers
 			if ( (dice.leftValue+dice.rightValue) == move ) {
 				return [dice.leftValue, dice.rightValue];	
 			}
+			
+			return [];
 		}
 		
 		static public function setValues(object:ISFSObject):void {
