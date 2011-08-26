@@ -19,7 +19,7 @@ package com.soueidan.games.tawla.modes
 	
 	public class Local implements IMode
 	{
-		private var _autoPlay:Boolean = false;
+		private var _autoPlay:Boolean = true;
 		
 		private var _dice:IDice;
 		private var _game:Game = FlexGlobals.topLevelApplication as Game;
@@ -138,36 +138,31 @@ package com.soueidan.games.tawla.modes
 		
 		private function diceShuffled(evt:DiceEvent):void {
 			trace("dices values", _dice.leftValue, _dice.rightValue);
-			if ( !GameManager.playerCanMoveAnyChip ) {
+			if ( GameManager.canPlayerMoveAnyChip == false ) {
 				trace("cannot play, next player");
 				PlayerManager.next();
 			}
 		}
 		
 		private function chipMoved(evt:ChipEvent):void {
-			//trace("chipMoved");
+			trace("chipMoved");
 			GameManager.finishedPlaying();
 		}
 		
 		private function playerIsHome(evt:PlayerEvent):void {
 			trace("player is home now");
-			//timer.stop();
 		}
 		
 		
 		private function haveAWinner(evt:PlayerEvent):void {
-			if ( GameManager.winnerExists ) {
-				trace("we have a winner");
-				PlayerManager.player.addScore(1);
-				timer.stop();
-			} else {
-				noChipMovements(evt);
-			}
+			trace("we have a winner");
+			PlayerManager.player.addScore(1);
+			timer.stop();
 		}
 		
 		private function finishedPlaying(evt:PlayerEvent):void {
 			trace("=====> no left movements");
-			haveAWinner(evt);	
+			noChipMovements(evt);
 		}
 		
 		private function noChipMovements(evt:PlayerEvent):void {

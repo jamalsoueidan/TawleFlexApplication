@@ -9,7 +9,7 @@ package com.soueidan.games.tawla.managers
 
 	public class GameManager
 	{
-		static public function dispatchEvent(evt:*):void {
+		static private function dispatchEvent(evt:*):void {
 			var game:Game = FlexGlobals.topLevelApplication as Game;
 			game.dispatchEvent(evt);
 		}
@@ -21,7 +21,9 @@ package com.soueidan.games.tawla.managers
 			
 			if ( !winnerExists ) {
 				if ( playerHaveLeftMovements ) {
-					canPlayerMove();
+					if ( !canPlayerMoveAnyChip ) {
+						dispatchEvent(new PlayerEvent(PlayerEvent.NO_CHIP_MOVEMENTS, false,false, player));
+					}
 				} else {
 					dispatchEvent(new PlayerEvent(PlayerEvent.FINISHED_PLAYING, false,false,player));
 				}
@@ -30,14 +32,14 @@ package com.soueidan.games.tawla.managers
 			}
 		}
 	
-		static public function get playerHaveLeftMovements():Boolean {
+		static private function get playerHaveLeftMovements():Boolean {
 			if ( DiceManager.anyLeftMovements ) {
 				return true;
 			}
 			return false;
 		}
 		
-		static public function get playerCanMoveAnyChip():Boolean {
+		static public function get canPlayerMoveAnyChip():Boolean {
 			var player:IPlayer = PlayerManager.player;	
 			
 			for each(var chip:IChip in player.chips ) {
@@ -49,14 +51,7 @@ package com.soueidan.games.tawla.managers
 			return false;
 		}
 		
-		static public function canPlayerMove():void {
-			if ( !playerCanMoveAnyChip ) {
-				var player:IPlayer = PlayerManager.player;
-				dispatchEvent(new PlayerEvent(PlayerEvent.NO_CHIP_MOVEMENTS, false,false, player));
-			}
-		}
-		
-		static public function isAllChipsHome():void {
+		static private function isAllChipsHome():void {
 			var isHome:Boolean = true;
 			var player:IPlayer = PlayerManager.player;
 			for each(var chip:IChip in player.chips ) {
@@ -72,7 +67,7 @@ package com.soueidan.games.tawla.managers
 			}
 		}
 		
-		static public function get winnerExists():Boolean {
+		static private function get winnerExists():Boolean {
 			var player:IPlayer = PlayerManager.player;
 			if ( player.chips.length == 0 ) {
 				return true;
