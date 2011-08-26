@@ -60,7 +60,7 @@ package com.soueidan.games.tawla.modes
 		}
 		
 		private function diceChanged(evt:DiceEvent):void {
-			if ( !GameManager.playerCanMoveAnyChip ) {
+			if ( !GameManager.canPlayerMoveAnyChip ) {
 				trace("player cannot move");
 				nextTurn();
 			} else {
