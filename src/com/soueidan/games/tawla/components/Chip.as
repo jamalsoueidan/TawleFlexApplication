@@ -66,10 +66,6 @@ package com.soueidan.games.tawla.components
 			
 			return false;
 		}
-	
-		/*override public function toString():String {
-			return "position: " + position + " color:" + color + " number:" + String(_num);
-		}*/
 		
 		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			graphics.beginFill(color);
