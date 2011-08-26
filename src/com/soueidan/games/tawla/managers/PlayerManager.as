@@ -20,9 +20,13 @@ package com.soueidan.games.tawla.managers
 		static public function get opponent():IPlayer {
 			if ( _player == _players[0]) {
 				return _players[1];
-			} else {
-				return _player;
+			}
+			
+			if ( _player == _players[1]) {
+				return _players[0];
 			}	
+			
+			return null;
 		}
 		
 		static public function get all():Array {
