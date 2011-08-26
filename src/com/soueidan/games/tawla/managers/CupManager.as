@@ -18,5 +18,13 @@ package com.soueidan.games.tawla.managers
 		static public function get cups():Array {
 			return _cups;
 		}
+		
+		public static function reset():void
+		{
+			for each(var cup:ICup in _cups ) {
+				cup.removeAllChips();
+			}
+			
+		}
 	}
 }
