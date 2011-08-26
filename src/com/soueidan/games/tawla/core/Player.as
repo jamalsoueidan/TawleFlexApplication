@@ -130,7 +130,7 @@ package com.soueidan.games.tawla.core
 		}
 		
 		public function get endPosition():int {
-			if ( startPosition == 24 ) {
+			if ( direction == PlacementTypes.BOTTOM ) {
 				return 1;
 			} else {
 				return 24;
