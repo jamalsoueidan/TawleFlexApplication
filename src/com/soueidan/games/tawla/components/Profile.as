@@ -3,6 +3,8 @@ package com.soueidan.games.tawla.components
 	import com.soueidan.games.tawla.core.IPlayer;
 	import com.soueidan.games.tawla.types.ColorTypes;
 	
+	import flash.events.Event;
+	
 	import spark.components.Label;
 	import spark.components.VGroup;
 	
@@ -19,10 +21,17 @@ package com.soueidan.games.tawla.components
 		{
 			super();
 			
-			
 			paddingLeft = paddingTop = paddingBottom = paddingRight = 20;
 			
 			_player = player;
+			_player.addEventListener("SCORE", updateScore);
+			_playerChanged = true;
+			
+			invalidateProperties();
+		}
+		
+		private function updateScore(evt:Event):void
+		{
 			_playerChanged = true;
 			invalidateProperties();
 		}

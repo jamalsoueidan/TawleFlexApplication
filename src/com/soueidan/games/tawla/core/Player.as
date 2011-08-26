@@ -2,15 +2,14 @@ package com.soueidan.games.tawla.core
 {
 
 	import com.smartfoxserver.v2.entities.SFSUser;
-	import com.soueidan.games.tawla.components.Chip;
 	import com.soueidan.games.tawla.components.interfaces.IChip;
 	import com.soueidan.games.tawla.components.interfaces.ICup;
-	import com.soueidan.games.tawla.components.interfaces.ITriangle;
-	import com.soueidan.games.tawla.managers.TriangleManager;
-	import com.soueidan.games.tawla.types.PlacementTypes;
 	import com.soueidan.games.tawla.utils.ArrayUtil;
+	
+	import flash.events.Event;
+	import flash.events.EventDispatcher;
 
-	public class Player implements IPlayer
+	public class Player extends EventDispatcher implements IPlayer
 	{
 		private var _chips:Array = new Array();
 		
@@ -114,6 +113,7 @@ package com.soueidan.games.tawla.core
 		
 		public function addScore(value:int):void {
 			_score += value;
+			dispatchEvent(new Event("SCORE"));
 		}
 		
 		public function get score():int {

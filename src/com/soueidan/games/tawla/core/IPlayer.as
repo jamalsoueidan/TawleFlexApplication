@@ -3,8 +3,10 @@ package com.soueidan.games.tawla.core
 	import com.smartfoxserver.v2.entities.SFSUser;
 	import com.soueidan.games.tawla.components.interfaces.IChip;
 	import com.soueidan.games.tawla.components.interfaces.ICup;
+	
+	import flash.events.IEventDispatcher;
 
-	public interface IPlayer
+	public interface IPlayer extends IEventDispatcher
 	{
 		function get sfsUser():SFSUser;
 		
