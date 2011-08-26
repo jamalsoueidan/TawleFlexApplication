@@ -113,6 +113,18 @@ package com.soueidan.games.tawla.components
 			}
 		}
 		
+		public function get firstChip():IChip {
+			if ( numElements > 0 ) {
+				if ( isBottom ) {
+					return getElementAt((numElements-1)) as IChip;
+				} else {
+					return getElementAt(0) as IChip;
+				}
+			} else {
+				return null;
+			}
+		}
+		
 		public function alert():void {
 			_drawColor = 0x666666;
 			_drawColorChanged = true;

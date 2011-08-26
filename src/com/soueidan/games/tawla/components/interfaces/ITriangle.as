@@ -21,6 +21,8 @@ package com.soueidan.games.tawla.components.interfaces
 		function unalert():void;
 		
 		function get lastChip():IChip;
+		function get firstChip():IChip;
+		
 		function get position():Number;
 		
 		function get isBottom():Boolean;

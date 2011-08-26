@@ -45,6 +45,10 @@ package com.soueidan.games.tawla.components
 			}
 		}
 		
+		public function get firstChip():IChip {
+			return null;
+		}
+		
 		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
