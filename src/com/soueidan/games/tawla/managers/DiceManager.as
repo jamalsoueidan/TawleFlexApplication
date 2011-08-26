@@ -19,10 +19,24 @@ package com.soueidan.games.tawla.managers
 			var move:Number = Math.abs(triangle.position - chip.position);
 			var convertedMovements:Array = DiceManager.convertMovement(move);
 			
+			// new fix for dice while player is home
+			for(var c:int=0;c<convertedMovements.length;c++) {
+				var found:Boolean;
+				for(var l:int=0;l<leftMovements.length;l++) {
+					if ( leftMovements[l] == convertedMovements[c] ) {
+						trace("dice fix num 1");
+						found = true;
+						break;
+					}
+				}	
+				if (!found) convertedMovements.slice(c,1);
+			}
+			
 			// small fix when user is home 
 			if ( ArrayUtil.isEmpty(convertedMovements) ) {
 				for(var i:int=0;i<leftMovements.length;i++) {
 					if ( leftMovements[i] > move ) { 
+						trace("dice fix num 2");
 						convertedMovements.push(leftMovements[i]); 
 						break; 
 					} 
@@ -30,7 +44,7 @@ package com.soueidan.games.tawla.managers
 			}
 			
 			_registeredMovements = ArrayUtil.merge(_registeredMovements, convertedMovements);
-			trace("move", move, "trianglePosition", triangle.position, "chipPosition", chip.position, "convertedMovements", convertedMovements, "registereted", _registeredMovements);
+			trace("move", move, "trianglePosition", triangle.position, "chipPosition", chip.position, "convertedMovements", convertedMovements, "registereted", _registeredMovements, "leftMovements", leftMovements);
 			return move;
 		}
 		
@@ -101,7 +115,7 @@ package com.soueidan.games.tawla.managers
 		 * @return 
 		 * 
 		 */
-		static public function convertMovement(move:Number):Array {			
+		static public function convertMovement(move:Number):Array {	
 			if ( move == dice.leftValue ) {
 				return [move];
 			}
@@ -122,8 +136,6 @@ package com.soueidan.games.tawla.managers
 			if ( (dice.leftValue+dice.rightValue) == move ) {
 				return [dice.leftValue, dice.rightValue];	
 			}
-			
-			return [];
 		}
 		
 		static public function setValues(object:ISFSObject):void {
