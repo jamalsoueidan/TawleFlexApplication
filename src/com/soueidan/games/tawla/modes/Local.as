@@ -155,19 +155,18 @@ package com.soueidan.games.tawla.modes
 		
 		
 		private function haveAWinner(evt:PlayerEvent):void {
-			trace("we have a winner");
-			PlayerManager.player.addScore(1);
-			timer.stop();
+			trace("we have a winner");			
+			_game.reset();
 		}
 		
 		private function finishedPlaying(evt:PlayerEvent):void {
 			trace("=====> no left movements");
-			noChipMovements(evt);
+			PlayerManager.next();
 		}
 		
 		private function noChipMovements(evt:PlayerEvent):void {
 			trace("=====> no chip movements anymore");
-			PlayerManager.next();
+			noChipMovements(evt);
 		}
 	}
 }

@@ -85,23 +85,18 @@ package com.soueidan.games.tawla.modes
 		
 		
 		private function haveAWinner(evt:PlayerEvent):void {			
-			if ( GameManager.winnerExists ) {
-				trace("I won the round");
-				var request:PlayerIsWinnerRequest = new PlayerIsWinnerRequest(evt);
-				_server.send(request);
-			} else {
-				noChipMovements(evt);	
-			}
+			var request:PlayerIsWinnerRequest = new PlayerIsWinnerRequest(evt);
+			_server.send(request);
 		}
 		
 		private function finishedPlaying(evt:PlayerEvent):void {
 			trace("=====> no left movements");
-			haveAWinner(evt);	
+			nextTurn();	
 		}
 		
 		private function noChipMovements(evt:PlayerEvent):void {
 			trace("=====> no chip movements anymore");
-			nextTurn();
+			finishedPlaying(evt);
 		}			
 		
 		private function nextTurn():void
