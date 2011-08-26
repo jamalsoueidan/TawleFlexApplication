@@ -19,7 +19,7 @@ package com.soueidan.games.tawla.responses
 			
 
 			
-			var chip:IChip = ChipManager.getChip(PlayerManager.player, chipNum);
+			var chip:IChip = PlayerManager.getChip(chipNum);
 			var position:int = chip.position + ( chip.player.direction * move);
 			var oldTriangle:ITriangle = chip.parent as ITriangle;
 

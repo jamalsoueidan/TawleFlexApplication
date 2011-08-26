@@ -95,5 +95,12 @@ package com.soueidan.games.tawla.managers
 			}
 			return position;
 		}
+		
+		static public function getChip(num:Number):IChip {
+			for each(var chip:IChip in _player.chips) {
+				if ( chip.position == num ) return chip;
+			}
+			return null;
+		}
 	}
 }
