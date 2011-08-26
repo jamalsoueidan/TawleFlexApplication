@@ -10,7 +10,8 @@ package com.soueidan.games.tawla.events
 		static public const IS_HOME:String = "is_home";
 		static public const FINISHED_PLAYING:String = "finished_playing"; // player have no left movements in the pocket :D
 		static public const NO_CHIP_MOVEMENTS:String = "no_chip_movements"; // cannot find any movements for his chip
-		static public const HAVE_A_WINNER:String = "WE_have_winner";
+		static public const HAVE_A_WINNER:String = "we_have_winner";
+		static public const NEW_ROUND:String = "new_round"; 
 		
 		private var _player:IPlayer;
 		
