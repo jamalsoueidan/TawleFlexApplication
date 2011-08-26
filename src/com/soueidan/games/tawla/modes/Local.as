@@ -8,6 +8,7 @@ package com.soueidan.games.tawla.modes
 	import com.soueidan.games.tawla.types.*;
 	import com.soueidan.games.tawla.utils.*;
 	
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -19,7 +20,7 @@ package com.soueidan.games.tawla.modes
 	
 	public class Local implements IMode
 	{
-		private var _autoPlay:Boolean = true;
+		private var _autoPlay:Boolean = false;
 		
 		private var _dice:IDice;
 		private var _game:Game = FlexGlobals.topLevelApplication as Game;
@@ -47,10 +48,10 @@ package com.soueidan.games.tawla.modes
 			_game.addEventListener(ChipEvent.MOVED, chipMoved);
 			_game.addEventListener(PlayerEvent.TURN_CHANGE, playerTurnChanged);
 			_game.addEventListener(PlayerEvent.IS_HOME, playerIsHome);
-			_game.addEventListener(PlayerEvent.HAVE_A_WINNER, haveAWinner);
 			_game.addEventListener(PlayerEvent.FINISHED_PLAYING, finishedPlaying);
 			_game.addEventListener(PlayerEvent.NO_CHIP_MOVEMENTS, noChipMovements);
-			
+			_game.addEventListener(PlayerEvent.NEW_ROUND, newRound);
+			_game.addEventListener(PlayerEvent.HAVE_A_WINNER, haveAWinner);
 			timer.addEventListener(TimerEvent.TIMER, function():void {
 				if ( _autoPlay ) {
 					TestingManager.moveRandomChip();
@@ -62,6 +63,7 @@ package com.soueidan.games.tawla.modes
 			MouseManager.listen();
 			
 			PlayerManager.next();
+				
 			timer.start();
 		}
 		
@@ -152,11 +154,16 @@ package com.soueidan.games.tawla.modes
 			trace("player is home now");
 		}
 		
+		private function newRound(event:Event):void
+		{
+			trace("new round");
+			_game.reset();
+			timer.stop();;
+		}
 		
 		private function haveAWinner(evt:PlayerEvent):void {
 			trace("we have a winner");
 			timer.stop();
-			_game.reset();
 		}
 		
 		private function finishedPlaying(evt:PlayerEvent):void {
