@@ -1,6 +1,7 @@
 package com.soueidan.games.tawla.managers
 {
 	import com.soueidan.games.tawla.components.interfaces.IChip;
+	import com.soueidan.games.tawla.components.interfaces.ITriangle;
 	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.core.IPlayer;
 	import com.soueidan.games.tawla.events.PlayerEvent;
@@ -30,13 +31,31 @@ package com.soueidan.games.tawla.managers
 			} else {
 				
 				setPlayerScore();
-				dispatchEvent(new PlayerEvent(PlayerEvent.HAVE_A_WINNER,false,false,player));
 			}
 		}
 		
 		private static function setPlayerScore():void
 		{
-			PlayerManager.player.addScore(1);
+			var score:int = 1;
+			var opponent:IPlayer = PlayerManager.opponent;
+
+			if ( !opponent.isHome ) {
+				score = 2;
+				
+				var triangle:ITriangle = TriangleManager.getByPosition(opponent.startPosition);
+				var chip:IChip = triangle.firstChip;
+				if ( chip && chip.player == opponent ) {
+					score = 5;
+				} 
+			}
+			PlayerManager.player.addScore(score);
+			
+			var eventName:String = PlayerEvent.NEW_ROUND;
+			if ( PlayerManager.player.score >= 5 ) {
+				eventName = PlayerEvent.HAVE_A_WINNER;
+			}
+			
+			dispatchEvent(new PlayerEvent(eventName,false,false,PlayerManager.player));
 			
 		}
 		
