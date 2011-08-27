@@ -2,22 +2,13 @@ package com.soueidan.games.tawla.components
 {
 	import com.soueidan.games.tawla.components.interfaces.IChip;
 	import com.soueidan.games.tawla.components.interfaces.ITriangle;
-	import com.soueidan.games.tawla.core.IPlayer;
-	import com.soueidan.games.tawla.managers.TriangleManager;
-	import com.soueidan.games.tawla.types.PlacementTypes;
 	
 	import flash.display.Graphics;
-	import flash.events.Event;
-	import flash.events.MouseEvent;
-	
-	import mx.core.IVisualElement;
-	import mx.events.FlexEvent;
 	
 	import spark.components.Group;
 	import spark.layouts.HorizontalAlign;
 	import spark.layouts.VerticalAlign;
 	import spark.layouts.VerticalLayout;
-	import spark.primitives.Graphic;
 	
 	public class Triangle extends Group implements ITriangle
 	{

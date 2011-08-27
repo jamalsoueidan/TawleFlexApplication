@@ -5,11 +5,6 @@ package com.soueidan.games.tawla.components
 	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.events.DiceEvent;
 	
-	import flash.events.Event;
-	import flash.geom.Point;
-	
-	import spark.components.Button;
-	import spark.components.Label;
 	import spark.components.TextInput;
 	import spark.components.VGroup;
 	

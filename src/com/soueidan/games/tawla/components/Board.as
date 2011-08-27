@@ -4,18 +4,11 @@ package com.soueidan.games.tawla.components
 	import com.soueidan.games.tawla.components.interfaces.ITriangle;
 	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.core.IPlayer;
-	import com.soueidan.games.tawla.core.Player;
 	import com.soueidan.games.tawla.managers.ChipManager;
 	import com.soueidan.games.tawla.managers.PlayerManager;
 	import com.soueidan.games.tawla.managers.TriangleManager;
 	import com.soueidan.games.tawla.types.PlacementTypes;
 	
-	import flash.display.DisplayObject;
-	import flash.events.MouseEvent;
-	
-	import mx.core.ITransientDeferredInstance;
-	
-	import spark.components.Button;
 	import spark.components.Group;
 	import spark.primitives.BitmapImage;
 

@@ -3,15 +3,8 @@ package com.soueidan.games.tawla.components
 	import com.soueidan.games.tawla.components.interfaces.IChip;
 	import com.soueidan.games.tawla.components.interfaces.ITriangle;
 	import com.soueidan.games.tawla.core.IPlayer;
-	import com.soueidan.games.tawla.events.ChipEvent;
-	import com.soueidan.games.tawla.managers.TriangleManager;
-	import com.soueidan.games.tawla.types.ColorTypes;
-	import com.soueidan.games.tawla.types.PlacementTypes;
-	
-	import flash.events.Event;
 	
 	import spark.components.Group;
-	import spark.components.supportClasses.SkinnableComponent;
 	
 	public class Chip extends Group implements IChip
 	{

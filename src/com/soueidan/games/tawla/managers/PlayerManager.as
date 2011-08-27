@@ -6,11 +6,6 @@ package com.soueidan.games.tawla.managers
 	import com.soueidan.games.tawla.core.IPlayer;
 	import com.soueidan.games.tawla.core.Player;
 	import com.soueidan.games.tawla.events.PlayerEvent;
-	import com.soueidan.games.tawla.types.PlacementTypes;
-	
-	import mx.core.FlexGlobals;
-	
-	import org.osflash.thunderbolt.Logger;
 
 	public class PlayerManager
 	{
@@ -84,8 +79,6 @@ package com.soueidan.games.tawla.managers
 			
 			DiceManager.reset();
 			Game.getInstance().dispatchEvent(new PlayerEvent(PlayerEvent.TURN_CHANGE,false,false, _player));
-			
-			
 		}
 		
 		static public function getPlayerByName(value:String):IPlayer {

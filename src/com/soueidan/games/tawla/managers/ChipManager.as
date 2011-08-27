@@ -2,14 +2,7 @@ package com.soueidan.games.tawla.managers
 {
 	import com.soueidan.games.tawla.components.Chip;
 	import com.soueidan.games.tawla.components.interfaces.IChip;
-	import com.soueidan.games.tawla.components.interfaces.IDice;
-	import com.soueidan.games.tawla.components.interfaces.ITriangle;
-	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.core.IPlayer;
-	
-	import mx.core.FlexGlobals;
-	
-	import org.osflash.thunderbolt.Logger;
 
 	public class ChipManager
 	{		

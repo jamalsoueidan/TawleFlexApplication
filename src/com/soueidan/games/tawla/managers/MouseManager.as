@@ -1,24 +1,12 @@
 package com.soueidan.games.tawla.managers
 {
 
-	import com.soueidan.games.tawla.components.Chip;
-	import com.soueidan.games.tawla.components.interfaces.IChip;
-	import com.soueidan.games.tawla.components.interfaces.ITriangle;
 	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.handlers.IHandler;
 	import com.soueidan.games.tawla.utils.ArrayUtil;
 	
-	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.geom.Point;
-	import flash.utils.getQualifiedClassName;
-	
-	import mx.core.IVisualElement;
-	
-	import org.osflash.thunderbolt.Logger;
-	
-	import spark.components.Application;
 
 	public class MouseManager
 	{
