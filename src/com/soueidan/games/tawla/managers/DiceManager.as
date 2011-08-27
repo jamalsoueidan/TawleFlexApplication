@@ -7,8 +7,6 @@ package com.soueidan.games.tawla.managers
 	import com.soueidan.games.tawla.events.DiceEvent;
 	import com.soueidan.games.tawla.types.*;
 	import com.soueidan.games.tawla.utils.*;
-	
-	import org.osflash.thunderbolt.Logger;
 
 	public class DiceManager
 	{
@@ -24,7 +22,7 @@ package com.soueidan.games.tawla.managers
 				var found:Boolean;
 				for(var l:int=0;l<leftMovements.length;l++) {
 					if ( leftMovements[l] == convertedMovements[c] ) {
-						trace("dice fix num 1");
+						//trace("dice fix num 1");
 						found = true;
 						break;
 					}
@@ -36,7 +34,7 @@ package com.soueidan.games.tawla.managers
 			if ( ArrayUtil.isEmpty(convertedMovements) ) {
 				for(var i:int=0;i<leftMovements.length;i++) {
 					if ( leftMovements[i] > move ) { 
-						trace("dice fix num 2");
+						//trace("dice fix num 2");
 						convertedMovements.push(leftMovements[i]); 
 						break; 
 					} 
@@ -44,7 +42,7 @@ package com.soueidan.games.tawla.managers
 			}
 			
 			_registeredMovements = ArrayUtil.merge(_registeredMovements, convertedMovements);
-			trace("move", move, "trianglePosition", triangle.position, "chipPosition", chip.position, "convertedMovements", convertedMovements, "registereted", _registeredMovements, "leftMovements", leftMovements);
+			//trace("move", move, "trianglePosition", triangle.position, "chipPosition", chip.position, "convertedMovements", convertedMovements, "registereted", _registeredMovements, "leftMovements", leftMovements);
 			return move;
 		}
 		

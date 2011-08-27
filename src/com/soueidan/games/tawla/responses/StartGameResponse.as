@@ -35,12 +35,10 @@ package com.soueidan.games.tawla.responses
 			}
 
 			_game.startGame();
+			
 			player = PlayerManager.getPlayerById(object.getInt("turn"));
 			PlayerManager.setTurn(player);
-			
 			DiceManager.setValues(object);
-			
-			
 		}
 	}
 }

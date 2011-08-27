@@ -17,8 +17,6 @@ package com.soueidan.games.tawla.responses
 			
 			trace("movement", move,"chip num", chipNum);
 			
-
-			
 			var chip:IChip = PlayerManager.getChip(chipNum);
 			var position:int = chip.position + ( chip.player.direction * move);
 			var oldTriangle:ITriangle = chip.parent as ITriangle;
@@ -30,7 +28,6 @@ package com.soueidan.games.tawla.responses
 			 	triangle = TriangleManager.getFromChipToPosition(chip, move);
 			}
 			
-			trace(_server.mySelf.name, oldTriangle.position, triangle.position);
 			triangle.add(chip);
 			oldTriangle.remove(chip);
 		}
