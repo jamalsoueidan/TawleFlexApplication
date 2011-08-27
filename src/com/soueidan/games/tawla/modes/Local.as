@@ -158,7 +158,7 @@ package com.soueidan.games.tawla.modes
 		{
 			trace("new round");
 			_game.reset();
-			timer.stop();;
+			start();
 		}
 		
 		private function haveAWinner(evt:PlayerEvent):void {

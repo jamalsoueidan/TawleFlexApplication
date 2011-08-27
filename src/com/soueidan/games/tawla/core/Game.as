@@ -82,7 +82,7 @@ package com.soueidan.games.tawla.core
 			MouseManager.addHandler(new DiceHandler);
 			MouseManager.addHandler(new TriangleHandler);
 			
-			_mode = new Local(this);
+			_mode = new Network(this);
 			_mode.start();
 		}
 		
@@ -100,7 +100,6 @@ package com.soueidan.games.tawla.core
 			CupManager.reset();
 			PlayerManager.reset();
 			_board.reset()
-			_mode.start();
 		}
 	}
 }
