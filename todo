@@ -1,5 +1,4 @@
 next:
-	[DONE] => determine if win by 5 or 2
 	double click to move chip/checker
 	win player start the game again.
 	when starting to move to cup, move the chip with one click no need to use mouse movements.
