@@ -1,14 +1,14 @@
 package com.soueidan.games.tawla.modes
 {
-	import com.soueidan.games.tawla.components.interfaces.IChip;
-	import com.soueidan.games.tawla.components.interfaces.ITriangle;
 	import com.soueidan.games.tawla.core.*;
 	import com.soueidan.games.tawla.events.*;
 	import com.soueidan.games.tawla.managers.*;
 	import com.soueidan.games.tawla.requests.*;
 	import com.soueidan.games.tawla.responses.*;
-	import com.soueidan.games.tawla.utils.ArrayUtil;
 	import com.soueidan.smartfoxclient.core.SmartFoxClient;
+	
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 
 	public class Network implements IMode
 	{
@@ -27,6 +27,7 @@ package com.soueidan.games.tawla.modes
 			_game.addEventListener(ChipEvent.MOVED, chipMoved);
 			_game.addEventListener(PlayerEvent.TURN_CHANGE, playerTurnChanged);
 			_game.addEventListener(PlayerEvent.IS_HOME, playerIsHome);
+			_game.addEventListener(PlayerEvent.NEW_ROUND, newRound);
 			_game.addEventListener(PlayerEvent.HAVE_A_WINNER, haveAWinner);
 			_game.addEventListener(PlayerEvent.FINISHED_PLAYING, finishedPlaying);
 			_game.addEventListener(PlayerEvent.NO_CHIP_MOVEMENTS, noChipMovements);
@@ -47,16 +48,11 @@ package com.soueidan.games.tawla.modes
 		}
 		
 		public function start():void {
-			_game.startGame();
+			
 		}
 		
 		private function playerTurnChanged(evt:PlayerEvent):void {
-			trace("player turn changed");
-			if ( _server.mySelf.id == evt.player.id ) {
-				MouseManager.listen();
-			} else {
-				MouseManager.stop();
-			}
+			//trace("player turn changed");
 		}
 		
 		private function diceChanged(evt:DiceEvent):void {
@@ -64,7 +60,17 @@ package com.soueidan.games.tawla.modes
 				trace("player cannot move");
 				nextTurn();
 			} else {
-				TestingManager.moveRandomChip();
+				trace("mouseManager listen");
+				
+				if ( isMyTurn) {
+					var timer:Timer = new Timer(1000, 4);
+					timer.addEventListener(TimerEvent.TIMER_COMPLETE, function():void {
+						if ( isMyTurn ) TestingManager.moveRandomChip();
+						else timer.stop();
+					}, false, 0, true);
+					timer.start();
+					MouseManager.listen();
+				}
 			}
 		}
 		
@@ -78,14 +84,21 @@ package com.soueidan.games.tawla.modes
 		}
 		
 		private function playerIsHome(evt:PlayerEvent):void {
-			trace("player is home");
+			//trace("player is home");
 			var playerHomeRequest:PlayerIsHomeRequest = new PlayerIsHomeRequest(evt);
 			_server.send(playerHomeRequest);
 		}
 		
 		
-		private function haveAWinner(evt:PlayerEvent):void {			
+		private function haveAWinner(evt:PlayerEvent):void {
+			trace(" WE HAVE A WINNNER");
 			var request:PlayerIsWinnerRequest = new PlayerIsWinnerRequest(evt);
+			_server.send(request);
+		}
+		
+		private function newRound(event:PlayerEvent):void {
+			trace(" > NEW ROUND < ");
+			var request:PlayerNewRoundRequest = new PlayerNewRoundRequest(event);
 			_server.send(request);
 		}
 		
@@ -96,7 +109,7 @@ package com.soueidan.games.tawla.modes
 		
 		private function noChipMovements(evt:PlayerEvent):void {
 			trace("=====> no chip movements anymore");
-			finishedPlaying(evt);
+			nextTurn();	
 		}			
 		
 		private function nextTurn():void
@@ -105,6 +118,10 @@ package com.soueidan.games.tawla.modes
 			
 			var request:PlayerTurnIsFinishedRequest = new PlayerTurnIsFinishedRequest();
 			_server.send(request);
+		}
+		
+		public function get isMyTurn():Boolean {
+			return ( SmartFoxClient.getInstance().mySelf.id == PlayerManager.player.id ) 
 		}
 		
 	}
