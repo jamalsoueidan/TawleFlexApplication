@@ -100,6 +100,7 @@ package com.soueidan.games.tawla.core
 			CupManager.reset();
 			PlayerManager.reset();
 			_board.reset()
+			DiceManager.reset();
 		}
 	}
 }

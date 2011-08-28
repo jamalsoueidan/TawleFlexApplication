@@ -18,6 +18,7 @@ package com.soueidan.games.tawla.requests
 		{
 			_params = new SFSObject();
 			_params.putInt("playerId", evt.player.id);
+			_params.putInt("playerScore", evt.player.score);
 			
 			super(action, _params, _server.currentRoom, false);
 		}

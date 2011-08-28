@@ -3,8 +3,13 @@ package com.soueidan.games.tawla.responses
 	import com.smartfoxserver.v2.core.SFSEvent;
 	import com.smartfoxserver.v2.entities.data.SFSObject;
 	import com.soueidan.games.tawla.core.IPlayer;
+	import com.soueidan.games.tawla.managers.DiceManager;
 	import com.soueidan.games.tawla.managers.GameManager;
 	import com.soueidan.games.tawla.managers.PlayerManager;
+	
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+	import flash.utils.setTimeout;
 	
 	import mx.managers.PopUpManager;
 
@@ -35,10 +40,11 @@ package com.soueidan.games.tawla.responses
 				// it must be last or else setPlayerScore(this) wouldn't work
 				// since it use the player state chips etc. at the moment.
 				_game.reset();
+				
+				DiceManager.setValues(object);
 			} else {
 				trace("player won game");
 			}
-			
 		}
 	}
 }

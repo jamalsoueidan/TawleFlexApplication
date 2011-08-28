@@ -139,6 +139,7 @@ package com.soueidan.games.tawla.managers
 		}
 		
 		static public function setValues(object:ISFSObject):void {
+			reset();
 			dice.sfsObject = object;
 			Game.getInstance().dispatchEvent(new DiceEvent(DiceEvent.SHUFFLED));
 		}
