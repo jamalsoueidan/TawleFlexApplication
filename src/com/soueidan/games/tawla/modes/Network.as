@@ -52,24 +52,23 @@ package com.soueidan.games.tawla.modes
 		}
 		
 		private function playerTurnChanged(evt:PlayerEvent):void {
-			//trace("player turn changed");
+			trace("player turn changed", evt.player.id);
+			
+			// you must set it to listen because we use the stopped boolean value to check 
+			// against sending player finished playing
+			if ( isMyTurn ) {
+				MouseManager.listen();
+			}
 		}
 		
 		private function diceChanged(evt:DiceEvent):void {
 			if ( !GameManager.canPlayerMoveAnyChip ) {
 				trace("player cannot move");
 				nextTurn();
-			} else {
-				trace("mouseManager listen");
-				
+			} else {				
 				if ( isMyTurn) {
-					var timer:Timer = new Timer(1000, 4);
-					timer.addEventListener(TimerEvent.TIMER_COMPLETE, function():void {
-						if ( isMyTurn ) TestingManager.moveRandomChip();
-						else timer.stop();
-					}, false, 0, true);
-					timer.start();
-					MouseManager.listen();
+					trace("MyTurn", "mouseManager listen");
+					autoPlay();
 				}
 			}
 		}
@@ -81,6 +80,25 @@ package com.soueidan.games.tawla.modes
 			
 			GameManager.finishedPlaying();
 			TriangleManager.removeAllMovementsOnBoard();
+			autoPlay();
+		}
+		
+		private function autoPlay():void
+		{
+			return;
+			var timer:Timer = new Timer(1000, 1);
+			timer.addEventListener(TimerEvent.TIMER_COMPLETE, function():void {
+				if ( isMyTurn && DiceManager.anyLeftMovements ) {
+				var keepTrying:Boolean = true;
+				do {
+					if ( TestingManager.moveRandomChip() ) {
+						keepTrying = false;
+					}
+				} while(keepTrying);
+					
+				}
+			}, false, 0, true);
+			timer.start();
 		}
 		
 		private function playerIsHome(evt:PlayerEvent):void {
@@ -103,17 +121,24 @@ package com.soueidan.games.tawla.modes
 		}
 		
 		private function finishedPlaying(evt:PlayerEvent):void {
-			trace("=====> no left movements");
+			trace("no LEFT movements");
 			nextTurn();	
 		}
 		
 		private function noChipMovements(evt:PlayerEvent):void {
-			trace("=====> no chip movements anymore");
+			trace("no chip MOVEMENTS anymore");
 			nextTurn();	
 		}			
 		
 		private function nextTurn():void
 		{
+			// fix to not keep sending player turn finish in case more events had nextTurn();
+			if ( MouseManager.stopped ) {
+				return;
+			}
+			
+			trace("send next turn request");
+			
 			MouseManager.stop();
 			
 			var request:PlayerTurnIsFinishedRequest = new PlayerTurnIsFinishedRequest();
