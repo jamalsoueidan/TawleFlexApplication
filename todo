@@ -5,7 +5,7 @@ next:
 	
 	arabic (left to right?)
 	see mouse movements
-	
+	change all array to vector for performance if needded.
 	
 	
 options:

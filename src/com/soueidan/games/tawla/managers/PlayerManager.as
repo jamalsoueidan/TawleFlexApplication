@@ -75,7 +75,8 @@ package com.soueidan.games.tawla.managers
 		static public function setTurn(player:IPlayer):void {
 			_player = player;
 			
-			trace("Turn:", player.name);
+			trace("__________________________________");
+			trace("::::: TURN ::::::", player.name);
 			
 			DiceManager.reset();
 			Game.getInstance().dispatchEvent(new PlayerEvent(PlayerEvent.TURN_CHANGE,false,false, _player));
