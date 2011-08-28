@@ -26,6 +26,7 @@ package com.soueidan.games.tawla.core
 		
 		private var _sfsUser:SFSUser;
 		private var _id:int = 0;
+		private var _score:int = 0;
 		private var _isRegistered:Boolean;
 		
 		public function Player(cup:ICup, user:SFSUser):void {
@@ -110,19 +111,13 @@ package com.soueidan.games.tawla.core
 			_chips = ArrayUtil.remove(_chips, chip);
 		}
 		
-		private var _score:int = 0;
-		
 		public function addScore(value:int):void {
 			_score += value;
 			dispatchEvent(new Event("SCORE"));
 		}
 		
 		public function get score():int {
-			if ( _sfsUser && _sfsUser.getVariable("score")) {
-				return _sfsUser.getVariable("score").getIntValue();
-			} else {
-				return _score;
-			}
+			return _score;
 		}
 		
 		public function removeAllChips():void {
