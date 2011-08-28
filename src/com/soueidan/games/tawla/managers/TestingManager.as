@@ -15,7 +15,7 @@ package com.soueidan.games.tawla.managers
 			return Math.floor(Math.random() * (1+high-low)) + low;
 		}
 		
-		static public function moveRandomChip():void {
+		static public function moveRandomChip():Boolean {
 			var game:Game = Game.getInstance();
 			
 			var chips:Array = PlayerManager.player.chips;
@@ -32,7 +32,7 @@ package com.soueidan.games.tawla.managers
 				var triangle:ITriangle = TriangleManager.movements[movementIndex];
 				if ( PlayerManager.player.isHome ) {
 					if ( Math.abs(triangle.position - chip.position) == DiceManager.dice.total ) {
-						return;
+						return false;
 					}
 				}
 				
@@ -64,8 +64,11 @@ package com.soueidan.games.tawla.managers
 						
 						game.dispatchEvent(new ChipEvent(ChipEvent.MOVED, false, false, chip.num, num));
 					}});
+					
+					return true;
 				}
 			}
+			return false;
 		}
 	}
 }
