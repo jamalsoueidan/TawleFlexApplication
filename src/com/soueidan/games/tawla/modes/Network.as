@@ -85,17 +85,19 @@ package com.soueidan.games.tawla.modes
 		
 		private function autoPlay():void
 		{
-			return;
+			if ( MouseManager.isStopped ) {
+				return;
+			}
+			
 			var timer:Timer = new Timer(1000, 1);
 			timer.addEventListener(TimerEvent.TIMER_COMPLETE, function():void {
-				if ( isMyTurn && DiceManager.anyLeftMovements ) {
-				var keepTrying:Boolean = true;
-				do {
-					if ( TestingManager.moveRandomChip() ) {
-						keepTrying = false;
-					}
-				} while(keepTrying);
-					
+				if ( isMyTurn && DiceManager.anyLeftMovements && GameManager.canPlayerMoveAnyChip ) {
+					var keepTrying:Boolean = true;
+					do {
+						if ( TestingManager.moveRandomChip() ) {
+							keepTrying = false;
+						}
+					} while(keepTrying);		
 				}
 			}, false, 0, true);
 			timer.start();
@@ -110,12 +112,18 @@ package com.soueidan.games.tawla.modes
 		
 		private function haveAWinner(evt:PlayerEvent):void {
 			trace(" WE HAVE A WINNNER");
+			
+			MouseManager.stop();
+			
 			var request:PlayerIsWinnerRequest = new PlayerIsWinnerRequest(evt);
 			_server.send(request);
 		}
 		
 		private function newRound(event:PlayerEvent):void {
 			trace(" > NEW ROUND < ");
+			
+			MouseManager.stop();
+			
 			var request:PlayerNewRoundRequest = new PlayerNewRoundRequest(event);
 			_server.send(request);
 		}
@@ -133,7 +141,7 @@ package com.soueidan.games.tawla.modes
 		private function nextTurn():void
 		{
 			// fix to not keep sending player turn finish in case more events had nextTurn();
-			if ( MouseManager.stopped ) {
+			if ( MouseManager.isStopped ) {
 				return;
 			}
 			

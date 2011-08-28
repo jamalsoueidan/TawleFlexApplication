@@ -28,7 +28,7 @@ package com.soueidan.games.tawla.managers
 			_instance.die();
 		}
 		
-		static public function get stopped():Boolean {
+		static public function get isStopped():Boolean {
 			return _stopped;
 		}
 		
