@@ -12,6 +12,7 @@ package com.soueidan.games.tawla.responses
 		override public function handleServerResponse(event:SFSEvent ):void {
 			var object:SFSObject = event.params.params as SFSObject;
 			var player:IPlayer = PlayerManager.getPlayerById(object.getInt("playerId"));
-		}
+			player.isHome = true;
+ 		}
 	}
 }
