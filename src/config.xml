@@ -16,7 +16,7 @@
 	<zone>Tawle</zone>
 	<!-- End Mandatory Settings -->
 	
-	<debug>true</debug>
+	<debug>false</debug>
 	
 	<!-- For generic http port communication -->
 	<httpPort>8080</httpPort>
