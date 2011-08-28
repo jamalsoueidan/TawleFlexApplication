@@ -22,20 +22,22 @@ package com.soueidan.games.tawla.managers
 			var player:IPlayer = PlayerManager.player;
 			
 			if ( !winnerExists ) {
+				trace("winner not exists");
 				if ( DiceManager.anyLeftMovements ) {
 					if ( !canPlayerMoveAnyChip ) {
+						trace("dispatch", "no chip movements");
 						dispatchEvent(new PlayerEvent(PlayerEvent.NO_CHIP_MOVEMENTS, false,false, player));
 					}
 				} else {
+					trace("dispatch", "finished playing");
 					dispatchEvent(new PlayerEvent(PlayerEvent.FINISHED_PLAYING, false,false,player));
 				}
 			} else {
-				
 				setPlayerScore();
 			}
 		}
 		
-		private static function setPlayerScore():void
+		public static function setPlayerScore(dispatch:Boolean=true):void
 		{
 			var score:int = 0;
 			var opponent:IPlayer = PlayerManager.opponent;
@@ -55,6 +57,10 @@ package com.soueidan.games.tawla.managers
 			}
 			
 			PlayerManager.player.addScore(score);
+			
+			if ( !dispatch ) {
+				return;
+			}
 			
 			var eventName:String = PlayerEvent.NEW_ROUND;
 			if ( PlayerManager.player.score >= 5 ) {
