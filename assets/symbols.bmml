@@ -1,0 +1,46 @@
+<mockup version="1.0" skin="sketch" measuredW="324" measuredH="175" mockupW="264" mockupH="155">
+  <controls>
+    <control controlID="0" controlTypeID="__group__" x="60" y="20" w="182" h="79" measuredW="182" measuredH="79" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <controlName>profile</controlName>
+      </controlProperties>
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::Image" x="0" y="0" w="-1" h="-1" measuredW="77" measuredH="79" zOrder="0" locked="false" isInGroup="0">
+          <controlProperties>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Label" x="87" y="4" w="-1" h="-1" measuredW="95" measuredH="21" zOrder="1" locked="false" isInGroup="0">
+          <controlProperties>
+            <text>jamalsoueidan</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="87" y="26" w="-1" h="-1" measuredW="42" measuredH="21" zOrder="2" locked="false" isInGroup="0">
+          <controlProperties>
+            <text>Guest</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="87" y="48" w="69" h="21" measuredW="53" measuredH="21" zOrder="3" locked="false" isInGroup="0">
+          <controlProperties>
+            <text>1%20points</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="1" controlTypeID="__group__" x="60" y="80" w="264" h="95" measuredW="264" measuredH="95" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <controlName>chat</controlName>
+      </controlProperties>
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="1" y="0" w="263" h="64" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="1"/>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="66" w="204" h="29" measuredW="100" measuredH="70" zOrder="1" locked="false" isInGroup="1"/>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Button" x="206" y="66" w="-1" h="-1" measuredW="56" measuredH="28" zOrder="2" locked="false" isInGroup="1">
+          <controlProperties>
+            <text>Send</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::VerticalScrollBar" x="243" y="4" w="-1" h="56" measuredW="16" measuredH="100" zOrder="3" locked="false" isInGroup="1"/>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+</mockup>
