@@ -1,25 +1,7 @@
-bin-debug/**/*
-bin-debug/*.*
-bin-debug/*
+bin-debug/
+bin-release/
 
 .DS_Store
+bin-release/config.xml
 
-bin-debug/tawle.swf
-
-bin-debug/tawle.html
-
-bin-debug/swfobject.js
-
-bin-debug/playerProductInstall.swf
-
-bin-debug/cookie.js
-
-bin-debug/history/history.css
-
-bin-debug/history/history.js
-
-bin-debug/config.xml
-
-bin-debug/history/historyFrame.html
-
-html-template/cookie.js
+bin-release/tawle.swf
