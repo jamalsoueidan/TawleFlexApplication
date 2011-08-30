@@ -2,8 +2,8 @@ package com.soueidan.games.tawla.components
 {
 	import com.smartfoxserver.v2.entities.data.ISFSObject;
 	import com.soueidan.games.tawla.components.interfaces.IDice;
-	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.events.DiceEvent;
+	import com.soueidan.games.tawla.managers.GameManager;
 	
 	import spark.components.TextInput;
 	import spark.components.VGroup;
@@ -36,7 +36,7 @@ package com.soueidan.games.tawla.components
 				btn.text = random();
 			}
 			
-			Game.getInstance().dispatchEvent(new DiceEvent(DiceEvent.SHUFFLED));
+			GameManager.getInstance().dispatchEvent(new DiceEvent(DiceEvent.SHUFFLED));
 		}
 		
 		private function random():String

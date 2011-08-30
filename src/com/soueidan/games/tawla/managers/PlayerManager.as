@@ -79,7 +79,7 @@ package com.soueidan.games.tawla.managers
 			trace("::::: TURN ::::::", player.name);
 			
 			DiceManager.reset();
-			Game.getInstance().dispatchEvent(new PlayerEvent(PlayerEvent.TURN_CHANGE,false,false, _player));
+			GameManager.getInstance().dispatchEvent(new PlayerEvent(PlayerEvent.TURN_CHANGE,false,false, _player));
 		}
 		
 		static public function getPlayerByName(value:String):IPlayer {

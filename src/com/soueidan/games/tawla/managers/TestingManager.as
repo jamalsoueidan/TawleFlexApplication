@@ -16,7 +16,7 @@ package com.soueidan.games.tawla.managers
 		}
 		
 		static public function moveRandomChip():Boolean {
-			var game:Game = Game.getInstance();
+			var game:Game = GameManager.getInstance();
 			
 			var chips:Array = PlayerManager.player.chips;
 			var num:int = randomNumber(0, (chips.length-1));

@@ -11,9 +11,19 @@ package com.soueidan.games.tawla.managers
 
 	public class GameManager
 	{
+		
+		static private var _instance:Game;
+		
+		static public function setGame(value:Game):void {
+			_instance = value;
+		}
+		
+		static public function getInstance():Game {
+			return _instance;
+		}
+		
 		static private function dispatchEvent(evt:*):void {
-			var game:Game = FlexGlobals.topLevelApplication as Game;
-			game.dispatchEvent(evt);
+			_instance.dispatchEvent(evt);
 		}
 		
 		static public function finishedPlaying():void {

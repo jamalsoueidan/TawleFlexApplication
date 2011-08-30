@@ -23,20 +23,14 @@ package com.soueidan.games.tawla.core
 	{
 		private var _board:Board;
 		private var _dice:IDice;
-	
-		static private var _instance:Game;
 		
 		static public const TOTAL_PLAYER:Number = 2;
 		static public const TOTAL_CHIPS:Number = 5; // how many chips to create
 		
 		static private var _mode:IMode;
 		
-		static public function getInstance():Game {
-			return _instance;
-		}
-		
 		public function Game() {	
-			_instance = this;
+			GameManager.setGame(this);
 			
 			Logger.includeTime = false;
 			Logger.showCaller = false;
