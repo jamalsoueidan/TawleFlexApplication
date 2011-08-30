@@ -27,7 +27,7 @@ package com.soueidan.games.tawla.core
 		static private var _instance:Game;
 		
 		static public const TOTAL_PLAYER:Number = 2;
-		static public const TOTAL_CHIPS:Number = 2; // how many chips to create
+		static public const TOTAL_CHIPS:Number = 5; // how many chips to create
 		
 		static private var _mode:IMode;
 		

@@ -6,6 +6,7 @@ package com.soueidan.games.tawla.modes
 	import com.soueidan.games.tawla.requests.*;
 	import com.soueidan.games.tawla.responses.*;
 	import com.soueidan.smartfoxclient.core.SmartFoxClient;
+	import com.soueidan.smartfoxclient.managers.SmartFoxManager;
 	
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -35,7 +36,7 @@ package com.soueidan.games.tawla.modes
 		
 		private function setupServer():void
 		{
-			_server = SmartFoxClient.getInstance();
+			_server = SmartFoxManager.getInstance();
 			
 			_server.addResponseHandler(StartGameResponse.START_GAME, StartGameResponse);
 			_server.addResponseHandler(EndGameResponse.END_GAME, EndGameResponse);
@@ -154,7 +155,7 @@ package com.soueidan.games.tawla.modes
 		}
 		
 		public function get isMyTurn():Boolean {
-			return ( SmartFoxClient.getInstance().mySelf.id == PlayerManager.player.id ) 
+			return ( SmartFoxManager.getInstance().mySelf.id == PlayerManager.player.id ) 
 		}
 		
 	}

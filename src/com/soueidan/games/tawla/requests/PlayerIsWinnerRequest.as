@@ -5,10 +5,11 @@ package com.soueidan.games.tawla.requests
 	import com.smartfoxserver.v2.requests.ExtensionRequest;
 	import com.soueidan.games.tawla.events.PlayerEvent;
 	import com.soueidan.smartfoxclient.core.SmartFoxClient;
+	import com.soueidan.smartfoxclient.managers.SmartFoxManager;
 
 	public class PlayerIsWinnerRequest extends ExtensionRequest
 	{
-		protected var _server:SmartFoxClient = SmartFoxClient.getInstance();
+		protected var _server:SmartFoxClient = SmartFoxManager.getInstance();
 		
 		protected var _params:ISFSObject;
 		
