@@ -11,12 +11,16 @@ package com.soueidan.games.tawla.core
 	import com.soueidan.games.tawla.responses.*;
 	import com.soueidan.games.tawla.types.*;
 	import com.soueidan.games.tawla.utils.*;
+	import com.soueidan.smartfoxclient.managers.SmartFoxManager;
+	
+	import flash.events.Event;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
 	
 	import mx.events.FlexEvent;
 	
-	import org.osflash.thunderbolt.Logger;
-	
 	import spark.components.Application;
+	import com.soueidan.smartfoxclient.core.SmartFoxClient;
 
 	
 	public class Game extends Application
@@ -31,10 +35,6 @@ package com.soueidan.games.tawla.core
 		
 		public function Game() {	
 			GameManager.setGame(this);
-			
-			Logger.includeTime = false;
-			Logger.showCaller = false;
-			Logger.console = true;
 			
 			enabled = false;
 			

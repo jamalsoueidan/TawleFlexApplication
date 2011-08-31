@@ -8,19 +8,39 @@ package com.soueidan.games.tawla.modes
 	import com.soueidan.smartfoxclient.core.SmartFoxClient;
 	import com.soueidan.smartfoxclient.managers.SmartFoxManager;
 	
+	import flash.events.Event;
 	import flash.events.TimerEvent;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
 	import flash.utils.Timer;
 
 	public class Network implements IMode
 	{
 		private var _server:SmartFoxClient;
 		private var _game:Game;
+		private var _urlLoader:URLLoader;
+		private var _parameters:Object;
+		
 		
 		public function Network(game:Game):void {
 			_game = game;
+			_parameters = _game.parameters;
 			
+			_server = SmartFoxManager.getInstance();
+			
+			_urlLoader = new URLLoader();
+			_urlLoader.addEventListener(Event.COMPLETE, configurationFileReady);
+			_urlLoader.load(new URLRequest(_parameters.config));
+			
+		}
+		
+		private function configurationFileReady(evt:Event):void {
+			trace("configuration ready");
 			addListener();
 			setupServer();
+			
+			_server.parameters = _parameters;
+			_server.start(_urlLoader.data);
 		}
 		
 		public function addListener():void {
@@ -36,8 +56,6 @@ package com.soueidan.games.tawla.modes
 		
 		private function setupServer():void
 		{
-			_server = SmartFoxManager.getInstance();
-			
 			_server.addResponseHandler(StartGameResponse.START_GAME, StartGameResponse);
 			_server.addResponseHandler(EndGameResponse.END_GAME, EndGameResponse);
 			
@@ -88,6 +106,11 @@ package com.soueidan.games.tawla.modes
 		{
 			if ( MouseManager.isStopped ) {
 				return;
+			}
+			
+			
+			if ( _parameters.auto_play == "false") {
+				return;	
 			}
 			
 			var timer:Timer = new Timer(1000, 1);

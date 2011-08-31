@@ -37,7 +37,10 @@ package com.soueidan.games.tawla.core
 			if ( user ) {
 				_sfsUser = user;
 				_name = _sfsUser.name;
-				_isRegistered = _sfsUser.getVariable("isRegistered").getBoolValue();
+				_isRegistered = true;
+				if ( _sfsUser.isGuest() ) {
+					_isRegistered = false;
+				}
 				_id = _sfsUser.id;
 			}
 		}
