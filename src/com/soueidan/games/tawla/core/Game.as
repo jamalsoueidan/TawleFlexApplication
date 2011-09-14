@@ -11,18 +11,12 @@ package com.soueidan.games.tawla.core
 	import com.soueidan.games.tawla.responses.*;
 	import com.soueidan.games.tawla.types.*;
 	import com.soueidan.games.tawla.utils.*;
-	import com.soueidan.smartfoxclient.managers.SmartFoxManager;
-	
-	import flash.events.Event;
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
 	
 	import mx.events.FlexEvent;
 	
 	import spark.components.Application;
-	import com.soueidan.smartfoxclient.core.SmartFoxClient;
 
-	
+	[ResourceBundle("resources")] 
 	public class Game extends Application
 	{
 		private var _board:Board;
@@ -38,6 +32,11 @@ package com.soueidan.games.tawla.core
 			
 			enabled = false;
 			
+			trace(parameters);
+			resourceManager.localeChain = ['ar'];
+			
+			layoutDirection = resourceManager.getString('resources','application.layoutDirection')
+			
 			addEventListener(FlexEvent.APPLICATION_COMPLETE, applicationReady);
 		}
 		
@@ -47,7 +46,7 @@ package com.soueidan.games.tawla.core
 			if ( !_board ) {
 				_board = new Board();
 				addElement(_board);
-			}		
+			}
 			
 			if ( !_dice) {
 				_dice = DiceManager.create();
