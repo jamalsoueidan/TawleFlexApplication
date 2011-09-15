@@ -9,26 +9,31 @@ package com.soueidan.games.tawla.components
 	import com.soueidan.games.tawla.managers.TriangleManager;
 	import com.soueidan.games.tawla.types.PlacementTypes;
 	
+	import mx.core.BitmapAsset;
+	
 	import spark.components.Group;
 	import spark.primitives.BitmapImage;
 
 	public class Board extends Group
 	{
+		[Embed(source="assets/board.jpg")] 
+		private var _image:Class;
+		
 		private var _bitmap:BitmapImage;
 		private var _graphicChanged:Boolean = true;
 		
 		public function Board():void {
 			super();
 			
-			width = 800;
-			height = 600;
+			width = 720;
+			height = 700;
 			
 			setStyle("top", 0);
 			setStyle("horizontalCenter", 0);
 		}
 		
 		override protected function createChildren():void {
-			//initBackground();
+			initBackground();
 			
 			initEnglishTriangles();
 			
@@ -36,21 +41,15 @@ package com.soueidan.games.tawla.components
 		}
 		
 		private function initBackground():void {
-			if ( !_bitmap ) {
-				trace("create image");
+			if ( !_bitmap ) {		
 				_bitmap = new BitmapImage();
-				_bitmap.source = "./assets/board.gif";
+				_bitmap.source = new _image();
 				_bitmap.smooth = true;
 				_bitmap.verticalCenter = 0;
 				_bitmap.horizontalCenter = 0;
-				_bitmap.percentWidth = 100;
-				_bitmap.percentHeight = 100;
+				_bitmap.percentWidth = _bitmap.percentHeight = 100;
 				addElement(_bitmap);
 			}
-		}
-		
-		private function initArabicTriangles():void {
-			
 		}
 		
 		private function initEnglishTriangles():void {				
@@ -60,14 +59,14 @@ package com.soueidan.games.tawla.components
 			var triangle:ITriangle;
 			var space:int = 0; 
 			
-			var left:Number = 27;
+			var left:Number = 19;
 			
 			for(i=0;i<total;i++) {
 				triangle = TriangleManager.create(position);
-				triangle.setStyle("top", 22);
+				triangle.setStyle("top", 18);
 				triangle.setStyle("left", left + space);
 				
-				space += triangle.width + 10;
+				space += triangle.width + 1;
 				
 				addElement(triangle);
 				
@@ -75,13 +74,14 @@ package com.soueidan.games.tawla.components
 			}
 			
 			space = 0;
-			left = 422;
+			left = 380;
 			
 			for(i=0;i<total;i++) {
 				triangle = TriangleManager.create(position);
-				triangle.setStyle("top", 22);
+				triangle.setStyle("top", 18);
 				triangle.setStyle("left", left + space);
-				space += triangle.width + 10;
+				
+				space += triangle.width + 1;
 				
 				addElement(triangle);
 				
@@ -89,13 +89,14 @@ package com.soueidan.games.tawla.components
 			}
 			
 			space = 0;
-			right = 28;
+			right = 22;
 			
 			for(i=0;i<total;i++) {
 				triangle = TriangleManager.create(position);
-				triangle.setStyle("bottom", 22);
+				triangle.setStyle("bottom", 20);
 				triangle.setStyle("right", right + space);
-				space += triangle.width + 10;
+				
+				space += triangle.width + 1;
 				
 				addElement(triangle);
 				
@@ -103,14 +104,14 @@ package com.soueidan.games.tawla.components
 			}
 			
 			space = 0;
-			right = 422;
+			right = 384;
 			
 			for(i=0;i<total;i++) {
 				triangle = TriangleManager.create(position);
-				triangle.setStyle("bottom", 22);
+				triangle.setStyle("bottom", 20);
 				triangle.setStyle("right", right + space);
-
-				space += triangle.width + 10;
+				
+				space += triangle.width + 1;
 				
 				addElement(triangle);
 				
@@ -118,7 +119,7 @@ package com.soueidan.games.tawla.components
 			}
 		}
 		
-		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+		/*override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
 			if ( _graphicChanged ) {
@@ -128,7 +129,7 @@ package com.soueidan.games.tawla.components
 				graphics.drawRect(0,0,width,height);
 				graphics.endFill();
 			}
-		}
+		}*/
 		
 		public function setupChips():void {
 			var triangle:ITriangle;

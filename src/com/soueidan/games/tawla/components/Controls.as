@@ -3,16 +3,15 @@ package com.soueidan.games.tawla.components
 	import com.soueidan.games.tawla.core.IPlayer;
 	import com.soueidan.games.tawla.managers.PlayerManager;
 	
-	import spark.components.HGroup;
+	import spark.components.VGroup;
 	
-	public class Controls extends HGroup
+	public class Controls extends VGroup
 	{
 		public function Controls():void {
 			super();
 			
-			percentWidth = 100;
-			
-			setStyle("bottom", 0);
+			setStyle("right", 0);
+			setStyle("top", 0);
 		}
 		
 		override protected function createChildren():void {

@@ -20,7 +20,7 @@ package com.soueidan.games.tawla.modes
 	
 	public class Local implements IMode
 	{
-		private var _autoPlay:Boolean = true;
+		private var _autoPlay:Boolean = false;
 		
 		private var _dice:IDice;
 		private var _game:Game = FlexGlobals.topLevelApplication as Game;

@@ -15,6 +15,7 @@ options:
 	fullscreen mode (on/off)
 	ask if the opponent want to lose 5 stream when player is sitting on him at the starter position
 	ask if the opponent want to lose 2 streak
+	surrender
 	
 	camera angle (free, or choices)?
 	hide controls in the bottom
@@ -24,4 +25,8 @@ options:
 	
 	maybe how many left movements you have?
 	
-	
+point:
+
+login points
+season (every 3 month reset points and reward players)
+

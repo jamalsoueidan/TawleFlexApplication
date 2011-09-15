@@ -17,8 +17,8 @@ package com.soueidan.games.tawla.components
 		public function Cup():void {
 			super();
 			
-			width = 100;
-			height = 100;
+			width = 200;
+			percentHeight = 48;
 		}
 		
 		public function add(chip:IChip, index:Number=-1):void {	

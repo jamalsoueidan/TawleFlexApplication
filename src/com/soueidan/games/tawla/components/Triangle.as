@@ -12,6 +12,7 @@ package com.soueidan.games.tawla.components
 	
 	public class Triangle extends Group implements ITriangle
 	{
+		private var _allowMovement:Boolean;
 		private var _drawColor:int = 0x6495ED;
 		private var _drawColorChanged:Boolean;
 		
@@ -21,9 +22,9 @@ package com.soueidan.games.tawla.components
 		public function Triangle(position:Number):void {
 			super();
 			
-			percentHeight = 48;
+			percentHeight = 30;
 			_position = position;
-			width = 50;
+			width = 52;
 		}
 		
 		public function get chips():Array {
@@ -36,14 +37,15 @@ package com.soueidan.games.tawla.components
 			if ( styleProp == "top" || styleProp == "bottom" ) {
 				var l:VerticalLayout = new VerticalLayout();
 				
-				if ( styleProp == "top" ) {
-					l.horizontalAlign = HorizontalAlign.CENTER;
-				} else {
+				l.horizontalAlign = HorizontalAlign.CENTER;
+				if ( styleProp != "top" ) {
 					l.verticalAlign = VerticalAlign.BOTTOM;
 				}
 				
+				l.gap = 0;
 				layout = l;
 			}
+			
 			_drawColorChanged = true;
 			invalidateDisplayList();
 		}
@@ -54,10 +56,14 @@ package com.soueidan.games.tawla.components
 			if ( _drawColorChanged ) {
 				_drawColorChanged = false;
 
-				var g:Graphics = this.graphics;	
-				g.beginFill(_drawColor);
-				g.drawRect(0,0,unscaledWidth,unscaledHeight);
-				g.endFill();
+				var _alpha:Number = 0;
+				if ( _allowMovement ) {
+					_alpha = .4
+				}
+				graphics.clear();
+				graphics.beginFill(_drawColor, 1);
+				graphics.drawRect(0,0,unscaledWidth,unscaledHeight);
+				graphics.endFill();
 			}
 		}
 		
@@ -117,18 +123,13 @@ package com.soueidan.games.tawla.components
 		}
 		
 		public function alert():void {
-			_drawColor = 0x666666;
-			_drawColorChanged = true;
+			_allowMovement = _drawColorChanged = true;
 			invalidateDisplayList();
 		}
 		
 		public function unalert():void {
-			if ( _drawColor == 0x6495ED ) {
-				return;
-			}
-			
-			_drawColor = 0x6495ED;
 			_drawColorChanged = true;
+			_allowMovement = false;
 			invalidateDisplayList();
 		}
 		

@@ -45,6 +45,8 @@ package com.soueidan.games.tawla.core
 			
 			if ( !_board ) {
 				_board = new Board();
+				var newSize:int = (height - _board.height);
+				_board.scaleX = _board.scaleY = (1+(newSize/height));
 				addElement(_board);
 			}
 			
@@ -61,11 +63,12 @@ package com.soueidan.games.tawla.core
 			for each( var player:IPlayer in PlayerManager.all ) {
 				cup = player.cup;
 				if ( player.direction == PlacementTypes.BOTTOM ) {
-					cup.setStyle("top",100);
+					cup.setStyle("top",0);
 				} else {
 					cup.setPosition(25);
-					cup.setStyle("bottom",200);
+					cup.setStyle("bottom",0);
 				}
+				cup.setStyle("right", (_board.x+_board.width))
 				addElement(cup);
 			}
 		}
