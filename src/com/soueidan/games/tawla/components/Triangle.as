@@ -61,7 +61,7 @@ package com.soueidan.games.tawla.components
 					_alpha = .4
 				}
 				graphics.clear();
-				graphics.beginFill(_drawColor, 1);
+				graphics.beginFill(_drawColor, _alpha);
 				graphics.drawRect(0,0,unscaledWidth,unscaledHeight);
 				graphics.endFill();
 			}

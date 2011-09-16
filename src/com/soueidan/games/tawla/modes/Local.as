@@ -20,7 +20,7 @@ package com.soueidan.games.tawla.modes
 	
 	public class Local implements IMode
 	{
-		private var _autoPlay:Boolean = false;
+		private var _autoPlay:Boolean = true;
 		
 		private var _dice:IDice;
 		private var _game:Game = FlexGlobals.topLevelApplication as Game;
@@ -81,8 +81,8 @@ package com.soueidan.games.tawla.modes
 		}
 		
 		private function createComponents():void {
-			_group = new VGroup();
-			_group.setStyle("right",0);
+			_group = new VGroup();;
+			_group.setStyle("bottom", 0);
 			_game.addElement(_group);
 			
 			_move = new Button();

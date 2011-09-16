@@ -4,9 +4,10 @@ package com.soueidan.games.tawla.components
 	import com.soueidan.games.tawla.components.interfaces.ICup;
 	import com.soueidan.games.tawla.core.IPlayer;
 	
+	import spark.components.SkinnableContainer;
 	import spark.components.VGroup;
 	
-	public class Cup extends VGroup implements ICup
+	public class Cup extends SkinnableContainer implements ICup
 	{
 		private var _drawColor:int = 0xFF0040;
 		private var _drawColorChanged:Boolean = true;
@@ -14,17 +15,12 @@ package com.soueidan.games.tawla.components
 		private var _chips:Array = [];
 		private var _position:int = 0;
 		
-		public function Cup():void {
-			super();
-			
-			width = 200;
-			percentHeight = 48;
-		}
-		
 		public function add(chip:IChip, index:Number=-1):void {	
 			var player:IPlayer = chip.player;
 			player.removeChip(chip);
-			
+			if ( position == 25 ) {
+				chip.y -= height;
+			}
 			addElement(chip);
 			_chips.push(chip);
 		}
@@ -51,14 +47,14 @@ package com.soueidan.games.tawla.components
 		
 		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
+		
 			
-			if ( _drawColorChanged ) {
 				_drawColorChanged = false;
-				
+				trace(unscaledHeight);
 				graphics.beginFill(_drawColor);
 				graphics.drawRect(0,0,unscaledWidth,unscaledHeight);
 				graphics.endFill();
-			}
+			
 		}
 		
 		public function alert():void {

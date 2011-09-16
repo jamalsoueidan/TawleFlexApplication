@@ -1,109 +1,117 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0014)about:internet -->
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 
-    <!-- 
-    Smart developers always View Source. 
-    
-    This application was built using Adobe Flex, an open source framework
-    for building rich Internet applications that get delivered via the
-    Flash Player or to desktops via Adobe AIR. 
-    
-    Learn more about Flex at http://flex.org 
-    // -->
-    <head>
-        <title>${title}</title>
-        <meta name="google" value="notranslate" />         
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <!-- Include CSS to eliminate any default margins/padding and set the height of the html element and 
-             the body element to 100%, because Firefox, or any Gecko based browser, interprets percentage as 
-             the percentage of the height of its parent container, which has to be set explicitly.  Fix for
-             Firefox 3.6 focus border issues.  Initially, don't display flashContent div so it won't show 
-             if JavaScript disabled.
-        -->
-        <style type="text/css" media="screen"> 
-            html, body  { height:100%; }
-            body { margin:0; padding:0; overflow:auto; text-align:center; 
-                   background-color: ${bgcolor}; }   
-            object:focus { outline:none; }
-            #flashContent { display:none; }
-        </style>
-        
-        <!-- Enable Browser History by replacing useBrowserHistory tokens with two hyphens -->
-        <!-- BEGIN Browser History required section ${useBrowserHistory}>
-        <link rel="stylesheet" type="text/css" href="history/history.css" />
-        <script type="text/javascript" src="history/history.js"></script>
-        <!${useBrowserHistory} END Browser History required section -->  
-            
-        <script type="text/javascript" src="swfobject.js"></script>
-		<script type="text/javascript" src="cookie.js"></script>
-        <script type="text/javascript">
-            // For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. 
-            var swfVersionStr = "${version_major}.${version_minor}.${version_revision}";
-            // To use express install, set to playerProductInstall.swf, otherwise the empty string. 
-            var xiSwfUrlStr = "${expressInstallSwf}";
-            var flashvars = {session:'testerne', auto_play:false, locale:'en', room:'oskpdkh', config:'config.xml'};
-            var params = {};
-            params.quality = "high";
-            params.bgcolor = "${bgcolor}";
-            params.allowscriptaccess = "sameDomain";
-            params.allowfullscreen = "true";
-            var attributes = {};
-            attributes.id = "${application}";
-            attributes.name = "${application}";
-            attributes.align = "middle";
-            swfobject.embedSWF(
-                "${swf}.swf", "flashContent", 
-                "${width}", "${height}", 
-                swfVersionStr, xiSwfUrlStr, 
-                flashvars, params, attributes);
-            // JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.
-            swfobject.createCSS("#flashContent", "display:block;text-align:left;");
-        </script>
-    </head>
-    <body>
-        <!-- SWFObject's dynamic embed method replaces this alternative HTML content with Flash content when enough 
-             JavaScript and Flash plug-in support is available. The div is initially hidden so that it doesn't show
-             when JavaScript is disabled.
-        -->
-        <div id="flashContent">
-            <p>
-                To view this page ensure that Adobe Flash Player version 
-                ${version_major}.${version_minor}.${version_revision} or greater is installed. 
-            </p>
-            <script type="text/javascript"> 
-                var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://"); 
-                document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='" 
-                                + pageHost + "www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /></a>" ); 
-            </script> 
-        </div>
-        
-        <noscript>
-            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="${width}" height="${height}" id="${application}">
-                <param name="movie" value="${swf}.swf" />
-                <param name="quality" value="high" />
-                <param name="bgcolor" value="${bgcolor}" />
-                <param name="allowScriptAccess" value="sameDomain" />
-                <param name="allowFullScreen" value="true" />
-                <!--[if !IE]>-->
-                <object type="application/x-shockwave-flash" data="${swf}.swf" width="${width}" height="${height}">
-                    <param name="quality" value="high" />
-                    <param name="bgcolor" value="${bgcolor}" />
-                    <param name="allowScriptAccess" value="sameDomain" />
-                    <param name="allowFullScreen" value="true" />
-                <!--<![endif]-->
-                <!--[if gte IE 6]>-->
-                    <p> 
-                        Either scripts and active content are not permitted to run or Adobe Flash Player version
-                        ${version_major}.${version_minor}.${version_revision} or greater is not installed.
-                    </p>
-                <!--<![endif]-->
-                    <a href="http://www.adobe.com/go/getflashplayer">
-                        <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" />
-                    </a>
-                <!--[if !IE]>-->
-                </object>
-                <!--<![endif]-->
-            </object>
-        </noscript>     
-   </body>
+<!DOCTYPE html>
+<html dir="rtl" lang="ar" xml:lang="ar" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>يلاإلعب.com | Home</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="content-language" content="ar">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+	    google.load("swfobject", "2.2");
+	</script>
+	
+  	<link href="http://localhost:3000/stylesheets/application.css?1316091545" media="screen" rel="stylesheet" type="text/css" />
+
+<link href="http://localhost:3000/stylesheets/ar/default.css?1316092808" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://localhost:3000/stylesheets/form.css?1316083154" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://localhost:3000/stylesheets/games.css?1316057212" media="screen" rel="stylesheet" type="text/css" />
+  	<script src="http://localhost:3000/javascripts/jquery.min.js?1314836380" type="text/javascript"></script>
+<script src="http://localhost:3000/javascripts/jquery_ujs.js?1314836380" type="text/javascript"></script>
+<script src="http://localhost:3000/javascripts/application.js?1316047809" type="text/javascript"></script>
+  	<meta content="authenticity_token" name="csrf-param" />
+<meta content="1ZGM3+OM0QDmsFllCU7unGbCTOuDLGb/9ea63H+U/WM=" name="csrf-token" />
+</head>
+<body>
+
+
+<div class="top">
+	<div id="top-center">
+	<span class="left">
+		<img alt="Right_navi" src="http://localhost:3000/images/right_navi.png?1315868055" />
+	</span>
+	<span class="top-content left">
+		<span class="left"><a href="/">يلاإلعب.com</a></span>
+		<ul class="main">
+				<li class="home الصفحة الرسمية "><a href="/">الصفحة الرسمية </a></li>
+
+				<li class="games ألعاب"><a href="http://localhost:3000/%D8%A3%D9%84%D8%B9%D8%A7%D8%A8">ألعاب</a></li>
+				<li class="help مساعدة"><a href="http://localhost:3000/%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D8%A9">مساعدة</a></li>
+				<li class="about_us من نحن"><a href="http://localhost:3000/%D9%85%D9%86%20%D9%86%D8%AD%D9%86">من نحن</a></li>
+				<li class="logout خروج"><a href="http://localhost:3000/%D8%AE%D8%B1%D9%88%D8%AC">خروج</a></li>
+		</ul>
+	</span>
+	<span class="right">
+
+		<img alt="Left_navi" src="http://localhost:3000/images/left_navi.png?1315868028" />
+	</span>
+</div>
+
+
+</div>
+
+<div class="content">
+	<h1>Tawla</h1>
+
+</div>
+	<script type="text/javascript">
+        // For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. 
+        var swfVersionStr = "${version_major}.${version_minor}.${version_revision}";
+        // To use express install, set to playerProductInstall.swf, otherwise the empty string. 
+        var xiSwfUrlStr = "${expressInstallSwf}";
+        var flashvars = {session:'testerne', auto_play:false, locale:'en', room:'oskpdkh', config:'config.xml', debug:true};
+        var params = {};
+        params.quality = "high";
+        params.bgcolor = "${bgcolor}";
+        params.allowscriptaccess = "sameDomain";
+        params.allowfullscreen = "true";
+        var attributes = {};
+        attributes.id = "${application}";
+        attributes.name = "${application}";
+        attributes.align = "middle";
+        swfobject.embedSWF(
+            "${swf}.swf", "flash-content", 
+            "100%", "600", 
+            swfVersionStr, xiSwfUrlStr, 
+            flashvars, params, attributes);
+        // JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.
+		swfobject.createCSS("#flash-content", "height:" + $(window).height() + "px;");  
+    </script>
+
+<div id="flash-content">
+	<h1>Alternative content</h1>
+	<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
+</div>
+
+<div class="content">
+<div class="corner-container">
+	<img src="/images/top_content.png">
+	<div class="white-container">
+		<h1><span class="translation_missing" title="translation missing: ar.game.tawla">Tawla</span>!</h1>
+
+		<p><span class="translation_missing" title="translation missing: ar.game.tawla_description">Tawla Description</span></p>
+	</div>
+	<img src="/images/bottom_content.png">
+</div>
+</div>
+
+<div class="bottom">
+	<div class="left copyright">
+		جميع حقوقي محفوظة @ El3ab.com	
+	</div>
+	<div class="right links">
+
+		<ul class="main">
+			<li><a href="/">الصفحة الرسمية </a></li>
+			<li><a href="/%D8%A3%D9%84%D8%B9%D8%A7%D8%A8">ألعاب</a></li>
+			<li><a href="/%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D8%A9">مساعدة</a></li>
+			<li><a href="/%D9%85%D9%86%20%D9%86%D8%AD%D9%86">من نحن</a></li>
+				<li><a href="/%D8%AE%D8%B1%D9%88%D8%AC">خروج</a></li>
+
+			<li><a href="http://application.net:3000">English</a></li>
+		</ul>
+	</div>
+</div>
+
+<br /><br />
+
+</body>
 </html>

@@ -11,15 +11,18 @@ package com.soueidan.games.tawla.components
 	
 	import mx.core.BitmapAsset;
 	
+	import spark.components.Button;
 	import spark.components.Group;
+	import spark.components.Image;
+	import spark.components.SkinnableContainer;
 	import spark.primitives.BitmapImage;
 
-	public class Board extends Group
+	public class Board extends SkinnableContainer
 	{
 		[Embed(source="assets/board.jpg")] 
-		private var _image:Class;
+		private var _imageSource:Class;
 		
-		private var _bitmap:BitmapImage;
+		private var _image:Image;
 		private var _graphicChanged:Boolean = true;
 		
 		public function Board():void {
@@ -27,44 +30,41 @@ package com.soueidan.games.tawla.components
 			
 			width = 720;
 			height = 700;
-			
-			setStyle("top", 0);
-			setStyle("horizontalCenter", 0);
 		}
 		
 		override protected function createChildren():void {
+
 			initBackground();
 			
-			initEnglishTriangles();
+			initTriangles();
 			
 			super.createChildren();
 		}
 		
 		private function initBackground():void {
-			if ( !_bitmap ) {		
-				_bitmap = new BitmapImage();
-				_bitmap.source = new _image();
-				_bitmap.smooth = true;
-				_bitmap.verticalCenter = 0;
-				_bitmap.horizontalCenter = 0;
-				_bitmap.percentWidth = _bitmap.percentHeight = 100;
-				addElement(_bitmap);
+			if ( !_image ) {		
+				_image = new Image();
+				_image.source = new _imageSource();
+				_image.smooth = true;
+				_image.x = _image.y = 0;
+				_image.percentWidth = _image.percentHeight = 100;
+				addElement(_image);
 			}
 		}
 		
-		private function initEnglishTriangles():void {				
+		private function initTriangles():void {				
 			var i:int = 0;
 			var position:int = 1;
 			var total:int = 6;// 6 triangles every round to place on the board		
 			var triangle:ITriangle;
 			var space:int = 0; 
 			
-			var left:Number = 19;
+			var fromLeft:int = 24;
 			
 			for(i=0;i<total;i++) {
 				triangle = TriangleManager.create(position);
 				triangle.setStyle("top", 18);
-				triangle.setStyle("left", left + space);
+				triangle.setStyle("left", fromLeft + space);
 				
 				space += triangle.width + 1;
 				
@@ -73,13 +73,30 @@ package com.soueidan.games.tawla.components
 				position += 1;
 			}
 			
+			
 			space = 0;
-			left = 380;
+			fromLeft = 386;
 			
 			for(i=0;i<total;i++) {
 				triangle = TriangleManager.create(position);
 				triangle.setStyle("top", 18);
-				triangle.setStyle("left", left + space);
+				triangle.setStyle("left", fromLeft + space);
+				
+				space += triangle.width + 1;
+				
+				addElement(triangle);
+				
+				position += 1;
+			}
+			
+			
+			space = 0;
+			var fromRight:int = 22;
+			
+			for(i=0;i<total;i++) {
+				triangle = TriangleManager.create(position);
+				triangle.setStyle("bottom", 20);
+				triangle.setStyle("right", fromRight + space);
 				
 				space += triangle.width + 1;
 				
@@ -89,27 +106,12 @@ package com.soueidan.games.tawla.components
 			}
 			
 			space = 0;
-			right = 22;
+			fromRight = 384;
 			
 			for(i=0;i<total;i++) {
 				triangle = TriangleManager.create(position);
 				triangle.setStyle("bottom", 20);
-				triangle.setStyle("right", right + space);
-				
-				space += triangle.width + 1;
-				
-				addElement(triangle);
-				
-				position += 1;
-			}
-			
-			space = 0;
-			right = 384;
-			
-			for(i=0;i<total;i++) {
-				triangle = TriangleManager.create(position);
-				triangle.setStyle("bottom", 20);
-				triangle.setStyle("right", right + space);
+				triangle.setStyle("right", fromRight + space);
 				
 				space += triangle.width + 1;
 				

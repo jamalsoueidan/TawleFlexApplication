@@ -11,7 +11,6 @@ package com.soueidan.games.tawla.components
 			super();
 			
 			setStyle("right", 0);
-			setStyle("top", 0);
 		}
 		
 		override protected function createChildren():void {

@@ -27,6 +27,8 @@ package com.soueidan.games.tawla.components
 			_player.addEventListener("SCORE", updateScore);
 			_playerChanged = true;
 			
+			width = 210;
+			
 			invalidateProperties();
 		}
 		
