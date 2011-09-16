@@ -9,9 +9,9 @@
 	    google.load("swfobject", "2.2");
 	</script>
 	
-  	<link href="http://localhost:3000/stylesheets/application.css?1316091545" media="screen" rel="stylesheet" type="text/css" />
+  	<link href="http://localhost:3000/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
 
-<link href="http://localhost:3000/stylesheets/ar/default.css?1316092808" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://localhost:3000/stylesheets/ar/default.css" media="screen" rel="stylesheet" type="text/css" />
 <link href="http://localhost:3000/stylesheets/form.css?1316083154" media="screen" rel="stylesheet" type="text/css" />
 <link href="http://localhost:3000/stylesheets/games.css?1316057212" media="screen" rel="stylesheet" type="text/css" />
   	<script src="http://localhost:3000/javascripts/jquery.min.js?1314836380" type="text/javascript"></script>
@@ -51,7 +51,7 @@
 <div class="content">
 	<h1>Tawla</h1>
 
-</div>
+
 	<script type="text/javascript">
         // For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. 
         var swfVersionStr = "${version_major}.${version_minor}.${version_revision}";
@@ -73,7 +73,7 @@
             swfVersionStr, xiSwfUrlStr, 
             flashvars, params, attributes);
         // JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.
-		swfobject.createCSS("#flash-content", "height:" + $(window).height() + "px;");  
+		swfobject.createCSS("#flash-content", "height:600px;");  
     </script>
 
 <div id="flash-content">
@@ -81,7 +81,7 @@
 	<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
 </div>
 
-<div class="content">
+
 <div class="corner-container">
 	<img src="/images/top_content.png">
 	<div class="white-container">

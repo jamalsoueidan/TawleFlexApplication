@@ -16,6 +16,7 @@ package com.soueidan.games.tawla.core
 	import flash.utils.getQualifiedClassName;
 	
 	import mx.events.FlexEvent;
+	import mx.events.ResizeEvent;
 
 	[ResourceBundle("resources")] 
 	public class Game extends EngineApplication
@@ -34,6 +35,59 @@ package com.soueidan.games.tawla.core
 			enabled = false;
 		
 			addEventListener(FlexEvent.APPLICATION_COMPLETE, applicationReady);
+			addEventListener(ResizeEvent.RESIZE, resizeApplication);
+		}
+		
+		private function resizeApplication(event:ResizeEvent=null):void
+		{
+			if (!_board ) {
+				return; 
+			}
+			
+			var newHeightSize:int = (height - _board.height);
+			var newHeightScale:Number = (newHeightSize/height);
+			
+			var newWidthSize:int = ((width - _board.width) - 350);
+			var newWidthScale:Number = (newWidthSize/width);
+			
+			//if ( newHeightScale > newWidthScale ) {
+				
+				_board.setStyle("horizontalCenter", null);
+				_board.setStyle("verticalCenter", null);
+				
+				_board.setStyle("left", 105);
+				
+				if ( newWidthScale > 0 ) {
+					_board.scaleX = _board.scaleY = (1+(newWidthSize/width));
+				} else {
+					_board.scaleX = _board.scaleY = (1+(newWidthSize/width));
+				}
+			/*} else {
+				_board.setStyle("horizontalCenter", 0);
+				_board.setStyle("verticalCenter", 0);
+				
+				if ( newHeightScale > 0 ) {
+					_board.scaleX = _board.scaleY = (1+(newHeightSize/height));
+				} else {
+					_board.scaleX = _board.scaleY = (1+(newHeightSize/height));
+				}
+			}*/
+			
+			var boardHeight:Number = (_board.scaleY*_board.height);
+			var cup:ICup;
+			for each( var player:IPlayer in PlayerManager.all ) {
+				cup = player.cup;
+				cup.percentWidth = 100;
+				cup.height = (boardHeight/2);
+				
+				if ( player.direction == PlacementTypes.BOTTOM ) {
+					cup.setStyle("top",0);
+				} else {
+					cup.alert();
+					cup.setPosition(25);
+					cup.setStyle("top", cup.height);
+				}
+			}
 		}
 		
 		override protected function createChildren():void {
@@ -42,17 +96,7 @@ package com.soueidan.games.tawla.core
 			if ( !_board ) {
 				
 				_board = new Board();
-				_board.setStyle("horizontalCenter", 0);
-				_board.setStyle("verticalCenter", 0);
-				
-				var newSize:int = (height - _board.height);
-				var newScale:Number = (newSize/height);
-				if ( newScale > 0 ) {
-					_board.scaleX = _board.scaleY = (1+(newSize/height));
-				} else {
-					_board.scaleX = _board.scaleY = (1+(newSize/height));
-				} 
-				
+				resizeApplication(null);
 				addElement(_board);
 			}
 			
@@ -65,22 +109,13 @@ package com.soueidan.games.tawla.core
 		}
 		
 		public function addCupsToStage():void {			
-			var boardHeight:Number = (_board.scaleY*_board.height);
 			var cup:ICup;
 			for each( var player:IPlayer in PlayerManager.all ) {
 				cup = player.cup;
-				cup.width = 100;
-				cup.height = (boardHeight/2);
-				
-				if ( player.direction == PlacementTypes.BOTTOM ) {
-					cup.setStyle("top",0);
-				} else {
-					cup.alert();
-					cup.setPosition(25);
-					cup.setStyle("top", cup.height);
-				}
 				addElementAt(cup, 0);
 			}
+			
+			resizeApplication(null);
 		}
 		
 		private function applicationReady(evt:FlexEvent):void {	

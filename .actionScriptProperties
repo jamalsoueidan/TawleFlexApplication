@@ -37,7 +37,6 @@
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
       <libraryPathEntry kind="1" linkType="1" path="${DOCUMENTS}/Libs"/>
-      <libraryPathEntry kind="3" linkType="1" path="${DOCUMENTS}/SmartFoxClient/bin/SmartFoxClient.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="${DOCUMENTS}/GameEngine/bin/GameEngine.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>

@@ -21,13 +21,13 @@ package com.soueidan.games.tawla.components
 		{
 			super();
 			
-			paddingLeft = paddingTop = paddingBottom = paddingRight = 20;
+			paddingLeft = paddingTop = paddingBottom = paddingRight = 5;
 			
 			_player = player;
 			_player.addEventListener("SCORE", updateScore);
 			_playerChanged = true;
 			
-			width = 210;
+			width = 200;
 			
 			invalidateProperties();
 		}
