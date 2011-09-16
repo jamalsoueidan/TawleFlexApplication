@@ -1,12 +1,12 @@
 package com.soueidan.games.tawla.modes
 {
+	import com.soueidan.games.engine.managers.ClientManager;
+	import com.soueidan.games.engine.net.Client;
 	import com.soueidan.games.tawla.core.*;
 	import com.soueidan.games.tawla.events.*;
 	import com.soueidan.games.tawla.managers.*;
 	import com.soueidan.games.tawla.requests.*;
 	import com.soueidan.games.tawla.responses.*;
-	import com.soueidan.smartfoxclient.core.SmartFoxClient;
-	import com.soueidan.smartfoxclient.managers.SmartFoxManager;
 	
 	import flash.events.Event;
 	import flash.events.TimerEvent;
@@ -16,7 +16,7 @@ package com.soueidan.games.tawla.modes
 
 	public class Network implements IMode
 	{
-		private var _server:SmartFoxClient;
+		private var _server:Client;
 		private var _game:Game;
 		private var _urlLoader:URLLoader;
 		private var _parameters:Object;
@@ -26,7 +26,7 @@ package com.soueidan.games.tawla.modes
 			_game = game;
 			_parameters = _game.parameters;
 			
-			_server = SmartFoxManager.getInstance();
+			_server = ClientManager.getInstance();
 			
 			_urlLoader = new URLLoader();
 			_urlLoader.addEventListener(Event.COMPLETE, configurationFileReady);
@@ -178,7 +178,7 @@ package com.soueidan.games.tawla.modes
 		}
 		
 		public function get isMyTurn():Boolean {
-			return ( SmartFoxManager.getInstance().mySelf.id == PlayerManager.player.id ) 
+			return ( ClientManager.getInstance().mySelf.id == PlayerManager.player.id ) 
 		}
 		
 	}

@@ -13,7 +13,6 @@ package com.soueidan.games.tawla.core
 		function get name():String;
 		function set name(value:String):void;
 		
-		function get isRegistered():Boolean;
 		function get id():int;
 		
 		function set color(value:int):void;

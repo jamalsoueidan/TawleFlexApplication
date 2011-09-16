@@ -1,5 +1,7 @@
 package com.soueidan.games.tawla.components
 {
+	import com.soueidan.games.engine.components.user.UserBase;
+	import com.soueidan.games.engine.skins.HGroupSkin;
 	import com.soueidan.games.tawla.core.IPlayer;
 	import com.soueidan.games.tawla.types.ColorTypes;
 	
@@ -8,20 +10,18 @@ package com.soueidan.games.tawla.components
 	import spark.components.Label;
 	import spark.components.VGroup;
 	
-	public class Profile extends VGroup
+	public class Profile extends UserBase
 	{
 		private var _player:IPlayer;
 		private var _playerChanged:Boolean;
-		
-		private var _nickname:Label;
-		private var _isRegistered:Label;
+
 		private var _score:Label;
 		
 		public function Profile(player:IPlayer):void
 		{
 			super();
 			
-			paddingLeft = paddingTop = paddingBottom = paddingRight = 5;
+			user = player.sfsUser;
 			
 			_player = player;
 			_player.addEventListener("SCORE", updateScore);
@@ -38,58 +38,26 @@ package com.soueidan.games.tawla.components
 			invalidateProperties();
 		}
 		
-		override protected function childrenCreated():void {
+		override protected function createChildren():void {
 			super.createChildren();
-			
-			if ( !_nickname ) {
-				_nickname = new Label();
-				_nickname.setStyle("fontSize", 18);
-				addElement(_nickname);
-			}
-			
-			if ( !_isRegistered ) {
-				_isRegistered = new Label();
-				_isRegistered.setStyle("fontSize", 18);
-				addElement(_isRegistered);
-			}
 			
 			if (!_score ) {
 				_score = new Label();
 				_score.setStyle("fontSize", 18);
-				addElement(_score);
+				_textGroup.addElement(_score);
 			}
-			
-			if ( _player.color == ColorTypes.BLACK ) {
-				_nickname.setStyle("color", "#FFFFFF");
-				_isRegistered.setStyle("color", "#FFFFFF");
-				_score.setStyle("color", "#FFFFFF");
-			}
-			
 		}
 		
 		override protected function commitProperties():void {
+			super.commitProperties();
+			
 			if ( _playerChanged ) {
 				_playerChanged = false;
 				
-				_nickname.text = "Nickname: " + _player.name;
-				if ( _player.isRegistered ) {
-					_isRegistered.text = "Status: Registered";
-				} else {
-					_isRegistered.text = "Status: Guest";
-				}
-								
 				_score.text = "Score: " + _player.score.toString();
 			}
 		}
 		
-		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
-			if ( _player ) {
-				graphics.beginFill(_player.color);
-				graphics.drawRect(0,0,unscaledWidth, unscaledHeight);
-				graphics.endFill();
-			}
-			
-			super.updateDisplayList(unscaledWidth, unscaledHeight);
-		}
+	
 	}
 }

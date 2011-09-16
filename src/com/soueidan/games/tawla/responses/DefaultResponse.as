@@ -1,8 +1,8 @@
 package com.soueidan.games.tawla.responses
 {
+	import com.soueidan.games.engine.net.responses.ServerResponseHandler;
 	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.managers.GameManager;
-	import com.soueidan.smartfoxclient.responses.ServerResponseHandler;
 	
 	public class DefaultResponse extends ServerResponseHandler
 	{

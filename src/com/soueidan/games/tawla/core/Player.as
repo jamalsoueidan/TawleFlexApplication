@@ -37,10 +37,6 @@ package com.soueidan.games.tawla.core
 			if ( user ) {
 				_sfsUser = user;
 				_name = _sfsUser.name;
-				_isRegistered = true;
-				if ( _sfsUser.isGuest() ) {
-					_isRegistered = false;
-				}
 				_id = _sfsUser.id;
 			}
 		}
@@ -104,10 +100,6 @@ package com.soueidan.games.tawla.core
 		
 		public function addChip(chip:IChip):void {
 			_chips.push(chip);
-		}
-		
-		public function get isRegistered():Boolean {
-			return _isRegistered;
 		}
 		
 		public function removeChip(chip:IChip):void {

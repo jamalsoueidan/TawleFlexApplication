@@ -1,6 +1,7 @@
 package com.soueidan.games.tawla.managers
 {
 	import com.smartfoxserver.v2.entities.SFSUser;
+	import com.soueidan.games.engine.managers.ClientManager;
 	import com.soueidan.games.tawla.components.interfaces.IChip;
 	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.core.IPlayer;
@@ -13,13 +14,21 @@ package com.soueidan.games.tawla.managers
 		static private var _players:Array = new Array();
 		
 		static public function get opponent():IPlayer {
-			if ( _player == _players[0]) {
+			if ( _players[0].sfsUser == ClientManager.getInstance().mySelf) {
 				return _players[1];
+			} else {
+				return _players[0];
 			}
 			
-			if ( _player == _players[1]) {
+			return null;
+		}
+		
+		static public function get myself():IPlayer {
+			if ( _players[0].sfsUser == ClientManager.getInstance().mySelf) {
 				return _players[0];
-			}	
+			} else {
+				return _players[1];
+			}
 			
 			return null;
 		}

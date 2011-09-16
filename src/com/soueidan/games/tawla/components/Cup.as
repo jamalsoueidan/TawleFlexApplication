@@ -51,7 +51,7 @@ package com.soueidan.games.tawla.components
 			
 				_drawColorChanged = false;
 				trace(unscaledHeight);
-				graphics.beginFill(_drawColor);
+				graphics.beginFill(_drawColor, 0);
 				graphics.drawRect(0,0,unscaledWidth,unscaledHeight);
 				graphics.endFill();
 			

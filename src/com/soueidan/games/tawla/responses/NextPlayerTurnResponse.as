@@ -2,10 +2,10 @@ package com.soueidan.games.tawla.responses
 {
 	import com.smartfoxserver.v2.core.SFSEvent;
 	import com.smartfoxserver.v2.entities.data.SFSObject;
+	import com.soueidan.games.engine.net.responses.ServerResponseHandler;
 	import com.soueidan.games.tawla.core.IPlayer;
 	import com.soueidan.games.tawla.managers.DiceManager;
 	import com.soueidan.games.tawla.managers.PlayerManager;
-	import com.soueidan.smartfoxclient.responses.ServerResponseHandler;
 	
 	public class NextPlayerTurnResponse extends ServerResponseHandler
 	{

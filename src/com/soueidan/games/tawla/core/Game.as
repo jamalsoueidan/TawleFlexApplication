@@ -47,7 +47,7 @@ package com.soueidan.games.tawla.core
 			var newHeightSize:int = (height - _board.height);
 			var newHeightScale:Number = (newHeightSize/height);
 			
-			var newWidthSize:int = ((width - _board.width) - 350);
+			var newWidthSize:int = ((width - _board.width) - 380);
 			var newWidthScale:Number = (newWidthSize/width);
 			
 			//if ( newHeightScale > newWidthScale ) {
@@ -123,11 +123,11 @@ package com.soueidan.games.tawla.core
 			MouseManager.addHandler(new DiceHandler);
 			MouseManager.addHandler(new TriangleHandler);
 			
-			if ( _parameters.debug == "true" ) {
+			/*if ( _parameters.debug == "true" ) {
 				_mode = new Local(this);
-			} else {
+			} else {*/
 				_mode = new Network(this);
-			}
+			//}
 			
 			_mode.start();
 		}
