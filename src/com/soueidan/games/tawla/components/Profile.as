@@ -1,7 +1,8 @@
 package com.soueidan.games.tawla.components
 {
 	import com.soueidan.games.engine.components.user.UserBase;
-	import com.soueidan.games.engine.skins.HGroupSkin;
+	import com.soueidan.games.engine.managers.ResourceManager;
+	import com.soueidan.games.engine.skins.HContainerSkin;
 	import com.soueidan.games.tawla.core.IPlayer;
 	import com.soueidan.games.tawla.types.ColorTypes;
 	
@@ -27,8 +28,6 @@ package com.soueidan.games.tawla.components
 			_player.addEventListener("SCORE", updateScore);
 			_playerChanged = true;
 			
-			width = 200;
-			
 			invalidateProperties();
 		}
 		
@@ -41,10 +40,11 @@ package com.soueidan.games.tawla.components
 		override protected function createChildren():void {
 			super.createChildren();
 			
+			_restTextGroup.removeElementAt(0);
+			
 			if (!_score ) {
 				_score = new Label();
-				_score.setStyle("fontSize", 18);
-				_textGroup.addElement(_score);
+				_restTextGroup.addElement(_score);
 			}
 		}
 		
@@ -54,7 +54,7 @@ package com.soueidan.games.tawla.components
 			if ( _playerChanged ) {
 				_playerChanged = false;
 				
-				_score.text = "Score: " + _player.score.toString();
+				_score.text = ResourceManager.getString("user.score") + ": " + _player.score.toString();
 			}
 		}
 		
