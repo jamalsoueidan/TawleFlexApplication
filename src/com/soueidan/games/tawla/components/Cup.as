@@ -9,17 +9,18 @@ package com.soueidan.games.tawla.components
 	
 	public class Cup extends SkinnableContainer implements ICup
 	{
-		private var _drawColor:int = 0xFF0040;
+		private var _drawColor:uint = 0x999999;
 		private var _drawColorChanged:Boolean = true;
 		
 		private var _chips:Array = [];
 		private var _position:int = 0;
+		private var _alpha:Number;
 		
 		public function add(chip:IChip, index:Number=-1):void {	
 			var player:IPlayer = chip.player;
 			player.removeChip(chip);
 			if ( position == 25 ) {
-				chip.y -= height;
+				chip.y -= (height);
 			}
 			addElement(chip);
 			_chips.push(chip);
@@ -48,27 +49,25 @@ package com.soueidan.games.tawla.components
 		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 		
-			
+			if ( _drawColorChanged ) {	
 				_drawColorChanged = false;
-				trace(unscaledHeight);
-				graphics.beginFill(_drawColor, 0);
+				graphics.beginFill(_drawColor, _alpha);
 				graphics.drawRect(0,0,unscaledWidth,unscaledHeight);
 				graphics.endFill();
+			}
 			
 		}
 		
 		public function alert():void {
-			_drawColor = 0x999999;
+			trace("alert");
+			_alpha = .2;
 			_drawColorChanged = true;
 			invalidateDisplayList();
 		}
 		
 		public function unalert():void {
-			if ( _drawColor == 0xFF0040 ) {
-				return;
-			}
-			
-			_drawColor = 0xFF0040;
+			trace("unalert");
+			_alpha = 0;
 			_drawColorChanged = true;
 			invalidateDisplayList();
 		}
@@ -88,7 +87,6 @@ package com.soueidan.games.tawla.components
 		public function removeAllChips():void {
 			_chips = [];
 			removeAllElements();
-			unalert();
 		}
 	}
 }
