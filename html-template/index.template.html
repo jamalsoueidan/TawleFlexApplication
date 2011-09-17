@@ -57,7 +57,7 @@
         var swfVersionStr = "${version_major}.${version_minor}.${version_revision}";
         // To use express install, set to playerProductInstall.swf, otherwise the empty string. 
         var xiSwfUrlStr = "${expressInstallSwf}";
-        var flashvars = {session:'testerne', auto_play:false, locale:'en', room:'oskpdkh', config:'config.xml', debug:true};
+        var flashvars = {session:'testerne', auto_play:false, language:'ar', room:'oskpdkh', config:'config.xml', debug:true};
         var params = {};
         params.quality = "high";
         params.bgcolor = "${bgcolor}";
@@ -69,11 +69,11 @@
         attributes.align = "middle";
         swfobject.embedSWF(
             "${swf}.swf", "flash-content", 
-            "100%", "600", 
+            "100%", "550", 
             swfVersionStr, xiSwfUrlStr, 
             flashvars, params, attributes);
         // JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.
-		swfobject.createCSS("#flash-content", "height:600px;");  
+		swfobject.createCSS("#flash-content", "height:540px;");  
     </script>
 
 <div id="flash-content">

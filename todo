@@ -3,10 +3,11 @@ next:
 	win player start the game again.
 	when starting to move to cup, move the chip with one click no need to use mouse movements.
 	
-	arabic (left to right?)
 	see mouse movements
 	change all array to vector for performance if needded.
 	
+	add chip behind avatar image
+	add sound effects like yallah el3ab, lose with 2 etc.
 	
 options:
 	username, and score etc.
@@ -17,11 +18,9 @@ options:
 	ask if the opponent want to lose 2 streak
 	surrender
 	
-	camera angle (free, or choices)?
 	hide controls in the bottom
 	
-	
-	chat/hint window/notification when changing player etc.
+	hint window/notification when changing player etc.
 	
 	maybe how many left movements you have?
 	
