@@ -1,5 +1,6 @@
 package com.soueidan.games.tawla.components
 {
+	import com.soueidan.games.engine.managers.ResourceManager;
 	import com.soueidan.games.tawla.components.interfaces.IChip;
 	import com.soueidan.games.tawla.components.interfaces.ITriangle;
 	import com.soueidan.games.tawla.core.Game;
@@ -59,11 +60,11 @@ package com.soueidan.games.tawla.components
 			var triangle:ITriangle;
 			var space:int = 0; 
 			
-			var fromLeft:int = 24;
+			var fromLeft:int = ResourceManager.getInt("board.start_left");;
 			
 			for(i=0;i<total;i++) {
 				triangle = TriangleManager.create(position);
-				triangle.setStyle("top", 18);
+				triangle.setStyle("top", 20);
 				triangle.setStyle("left", fromLeft + space);
 				
 				space += triangle.width + 1;
@@ -75,11 +76,11 @@ package com.soueidan.games.tawla.components
 			
 			
 			space = 0;
-			fromLeft = 386;
+			fromLeft = ResourceManager.getInt("board.end_left");
 			
 			for(i=0;i<total;i++) {
 				triangle = TriangleManager.create(position);
-				triangle.setStyle("top", 18);
+				triangle.setStyle("top", 20);
 				triangle.setStyle("left", fromLeft + space);
 				
 				space += triangle.width + 1;
@@ -91,7 +92,7 @@ package com.soueidan.games.tawla.components
 			
 			
 			space = 0;
-			var fromRight:int = 22;
+			var fromRight:int = ResourceManager.getInt("board.start_right");;
 			
 			for(i=0;i<total;i++) {
 				triangle = TriangleManager.create(position);
@@ -106,7 +107,7 @@ package com.soueidan.games.tawla.components
 			}
 			
 			space = 0;
-			fromRight = 384;
+			fromRight = ResourceManager.getInt("board.end_right");;
 			
 			for(i=0;i<total;i++) {
 				triangle = TriangleManager.create(position);
@@ -121,19 +122,7 @@ package com.soueidan.games.tawla.components
 			}
 		}
 		
-		/*override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
-			super.updateDisplayList(unscaledWidth, unscaledHeight);
-			
-			if ( _graphicChanged ) {
-				_graphicChanged = false;
-
-				graphics.beginFill(0xFF0040, 0.3);
-				graphics.drawRect(0,0,width,height);
-				graphics.endFill();
-			}
-		}*/
-		
-		public function setupChips():void {
+		public function setupChips():void {			
 			var triangle:ITriangle;
 			var chip:IChip;
 			var position:int = 0;
