@@ -109,22 +109,20 @@ package com.soueidan.games.tawla.modes
 			}
 			
 			
-			if ( _parameters.auto_play == "false") {
-				return;	
+			if ( _parameters.auto_play == "true") {
+				var timer:Timer = new Timer(1000, 1);
+				timer.addEventListener(TimerEvent.TIMER_COMPLETE, function():void {
+					if ( isMyTurn && DiceManager.anyLeftMovements && GameManager.canPlayerMoveAnyChip ) {
+						var keepTrying:Boolean = true;
+						do {
+							if ( TestingManager.moveRandomChip() ) {
+								keepTrying = false;
+							}
+						} while(keepTrying);		
+					}
+				}, false, 0, true);
+				timer.start();
 			}
-			
-			var timer:Timer = new Timer(1000, 1);
-			timer.addEventListener(TimerEvent.TIMER_COMPLETE, function():void {
-				if ( isMyTurn && DiceManager.anyLeftMovements && GameManager.canPlayerMoveAnyChip ) {
-					var keepTrying:Boolean = true;
-					do {
-						if ( TestingManager.moveRandomChip() ) {
-							keepTrying = false;
-						}
-					} while(keepTrying);		
-				}
-			}, false, 0, true);
-			timer.start();
 		}
 		
 		private function playerIsHome(evt:PlayerEvent):void {
