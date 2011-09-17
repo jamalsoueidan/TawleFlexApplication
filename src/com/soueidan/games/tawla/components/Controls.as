@@ -1,10 +1,8 @@
 package com.soueidan.games.tawla.components
 {
-	import com.smartfoxserver.v2.entities.SFSUser;
-	import com.soueidan.games.engine.components.TabContainer;
-	import com.soueidan.games.engine.core.EngineApplication;
-	import com.soueidan.games.engine.managers.ClientManager;
-	import com.soueidan.games.tawla.core.IPlayer;
+	import com.soueidan.games.engine.components.PanelContainer;
+	import com.soueidan.games.engine.components.chat.Chat;
+	import com.soueidan.games.engine.managers.ResourceManager;
 	import com.soueidan.games.tawla.managers.GameManager;
 	import com.soueidan.games.tawla.managers.PlayerManager;
 	
@@ -12,25 +10,29 @@ package com.soueidan.games.tawla.components
 	
 	public class Controls extends VGroup
 	{
-		private var _player1:TabContainer;
-		private var _player2:TabContainer;
+		private var _player1:PanelContainer;
+		private var _player2:PanelContainer;
 		
-		private var _chat:TabContainer;
+		private var _chatPanel:PanelContainer;
 		
 		public function Controls():void {
 			super();
 			
-			setStyle("top", 5);
+			setStyle("verticalCenter", 0);
 			setStyle("right", 0);
+			
+			width = 200;
+			percentHeight = 100;
 		}
 		
 		override protected function createChildren():void {
 			super.createChildren();
 			
-			_player1 = new TabContainer();
-			_player2 = new TabContainer();
-			_player1.title = "Oppount";
-			_player2.title = "Me";
+			_player1 = new PanelContainer();
+			_player1.title = ResourceManager.getString("opponent");
+			
+			_player2 = new PanelContainer();
+			_player2.title = ResourceManager.getString("myself");
 			
 			if ( GameManager.getInstance().parameters.debug == "true" ) {
 				_player1.addElement(new Profile(PlayerManager.all[0]));
@@ -40,14 +42,21 @@ package com.soueidan.games.tawla.components
 				_player2.addElement(new Profile(PlayerManager.myself));
 			}
 			
+
 			addElement(_player1);
 			
-			if ( !_chat ){
-				_chat = new TabContainer();
-				_chat.title = "Chat";
-				addElement(_chat);
+			if ( !_chatPanel ){
+				_chatPanel = new PanelContainer();
+				_chatPanel.title = ResourceManager.getString("chat.title");
+				_chatPanel.percentHeight = 100;
+				addElement(_chatPanel);
+				
+				var chat:Chat = new Chat();
+				chat.percentHeight = 100;
+				_chatPanel.addElement(chat);
 			}
 			
+			_player2.setStyle("bottom", 0);
 			addElement(_player2);
 		}
 	}
