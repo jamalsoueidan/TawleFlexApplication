@@ -17,6 +17,10 @@ package com.soueidan.games.tawla.core
 	
 	import mx.events.FlexEvent;
 	import mx.events.ResizeEvent;
+	import mx.graphics.BitmapFill;
+	import mx.graphics.BitmapFillMode;
+	
+	import spark.skins.spark.ApplicationSkin;
 
 	[ResourceBundle("resources")] 
 	public class Game extends EngineApplication
@@ -25,7 +29,7 @@ package com.soueidan.games.tawla.core
 		private var _dice:IDice;
 		
 		static public const TOTAL_PLAYER:Number = 2;
-		static public const TOTAL_CHIPS:Number = 2; // how many chips to create
+		static public const TOTAL_CHIPS:Number = 3; // how many chips to create
 		
 		static private var _mode:IMode;
 		
@@ -34,8 +38,19 @@ package com.soueidan.games.tawla.core
 			
 			enabled = false;
 		
+			addEventListener(FlexEvent.CREATION_COMPLETE, init);
 			addEventListener(FlexEvent.APPLICATION_COMPLETE, applicationReady);
 			addEventListener(ResizeEvent.RESIZE, resizeApplication);
+		}
+		
+		[Embed("assets/bg.jpg")]
+		protected const BgImg:Class
+		
+		protected function init(event:FlexEvent):void {
+			var bmpFill:BitmapFill = new BitmapFill();
+			bmpFill.source = BgImg;
+			bmpFill.fillMode = BitmapFillMode.REPEAT;
+			ApplicationSkin(skin).backgroundRect.fill = bmpFill;
 		}
 		
 		private function resizeApplication(event:ResizeEvent=null):void
@@ -52,8 +67,10 @@ package com.soueidan.games.tawla.core
 			
 			//if ( newHeightScale > newWidthScale ) {
 				
-				_board.setStyle("horizontalCenter", null);
-				_board.setStyle("verticalCenter", null);
+				_board.setStyle("verticalCenter", 0);
+				
+				/*_board.setStyle("horizontalCenter", null);
+				_board.setStyle("verticalCenter", null);*/
 				
 				_board.setStyle("left", 105);
 				
@@ -77,15 +94,14 @@ package com.soueidan.games.tawla.core
 			var cup:ICup;
 			for each( var player:IPlayer in PlayerManager.all ) {
 				cup = player.cup;
-				cup.percentWidth = 100;
+				cup.width = 100;
 				cup.height = (boardHeight/2);
 				
 				if ( player.direction == PlacementTypes.BOTTOM ) {
-					cup.setStyle("top",0);
+					cup.setStyle("top",_board.y);
 				} else {
-					cup.alert();
 					cup.setPosition(25);
-					cup.setStyle("top", cup.height);
+					cup.setStyle("top", (cup.height+_board.y));
 				}
 			}
 		}
