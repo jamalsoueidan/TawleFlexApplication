@@ -29,9 +29,13 @@ package com.soueidan.games.tawla.core
 		private var _dice:IDice;
 		
 		static public const TOTAL_PLAYER:Number = 2;
-		static public const TOTAL_CHIPS:Number = 3; // how many chips to create
+		static public const TOTAL_CHIPS:Number = 8; // how many chips to create
 		
 		static private var _mode:IMode;
+		
+		public function get board():Board {
+			return _board;
+		}
 		
 		public function Game() {	
 			GameManager.setGame(this);

@@ -4,8 +4,11 @@ package com.soueidan.games.tawla.components
 	import com.soueidan.games.tawla.components.interfaces.ITriangle;
 	
 	import flash.display.Graphics;
+	import flash.geom.Point;
 	
 	import spark.components.Group;
+	import spark.components.SkinnableContainer;
+	import spark.components.VGroup;
 	import spark.layouts.HorizontalAlign;
 	import spark.layouts.VerticalAlign;
 	import spark.layouts.VerticalLayout;
@@ -17,12 +20,14 @@ package com.soueidan.games.tawla.components
 		private var _drawColorChanged:Boolean;
 		
 		private var _chips:Array = [];
+		private var _groups:Array = [];
+		
 		private var _position:Number;
 		
 		public function Triangle(position:Number):void {
 			super();
 			
-			percentHeight = 30;
+			percentHeight = 21;
 			_position = position;
 			width = 52;
 		}
@@ -69,7 +74,7 @@ package com.soueidan.games.tawla.components
 		
 		public function add(chip:IChip, index:Number=-1):void {			
 			_chips.push(chip);
-			
+			 
 			if ( index > -1 ) {
 				addElementAt(chip, index);	
 			} else {

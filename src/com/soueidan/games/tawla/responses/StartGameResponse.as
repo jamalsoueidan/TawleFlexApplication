@@ -38,7 +38,12 @@ package com.soueidan.games.tawla.responses
 			
 			player = PlayerManager.getPlayerById(object.getInt("turn"));
 			PlayerManager.setTurn(player);
+			
+			NotificationManager.createStartTooltip(player);
+			NotificationManager.createWaitingPanel(player);
+
 			DiceManager.setValues(object);
 		}
+		
 	}
 }

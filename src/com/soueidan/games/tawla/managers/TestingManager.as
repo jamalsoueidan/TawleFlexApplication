@@ -1,10 +1,9 @@
 package com.soueidan.games.tawla.managers
 {
-	import com.gskinner.motion.GTween;
-	import com.soueidan.games.tawla.components.interfaces.*;
 	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.events.*;
 	import com.soueidan.games.tawla.utils.*;
+	import com.soueidan.games.tawla.components.interfaces.*;
 	
 	import flash.display.DisplayObject;
 	import flash.geom.Point;
@@ -55,7 +54,7 @@ package com.soueidan.games.tawla.managers
 					
 					Xx = (triangle as DisplayObject).localToGlobal(new Point()).x;
 					
-					var tween:GTween = new GTween(chip, .7, {x:Xx, y:Yy}, {onComplete:function():void {
+					//var tween:GTween = new GTween(chip, .7, {x:Xx, y:Yy}, {onComplete:function():void {
 						num = DiceManager.registerMovement(triangle, chip);
 						
 						trace("dice value PLAYED", num);
@@ -63,7 +62,7 @@ package com.soueidan.games.tawla.managers
 						triangle.add(chip);
 						
 						game.dispatchEvent(new ChipEvent(ChipEvent.MOVED, false, false, chip.num, num));
-					}});
+					//}});
 					
 					return true;
 				}

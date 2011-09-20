@@ -1,7 +1,7 @@
 package com.soueidan.games.tawla.managers
 {
 	import com.smartfoxserver.v2.entities.SFSUser;
-	import com.soueidan.games.engine.managers.ClientManager;
+	import com.soueidan.games.engine.managers.ServerManager;
 	import com.soueidan.games.tawla.components.interfaces.IChip;
 	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.core.IPlayer;
@@ -14,7 +14,7 @@ package com.soueidan.games.tawla.managers
 		static private var _players:Array = new Array();
 		
 		static public function get opponent():IPlayer {
-			if ( _players[0].sfsUser == ClientManager.getInstance().mySelf) {
+			if ( _players[0].sfsUser == ServerManager.getInstance().mySelf) {
 				return _players[1];
 			} else {
 				return _players[0];
@@ -24,7 +24,7 @@ package com.soueidan.games.tawla.managers
 		}
 		
 		static public function get myself():IPlayer {
-			if ( _players[0].sfsUser == ClientManager.getInstance().mySelf) {
+			if ( _players[0].sfsUser == ServerManager.getInstance().mySelf) {
 				return _players[0];
 			} else {
 				return _players[1];
@@ -74,18 +74,14 @@ package com.soueidan.games.tawla.managers
 		
 		// check if the checker belongs to this current player who turn is on
 		static public function currentPlayerTurnBelongsThisChipTo(chip:IChip):Boolean {
-			return isMyTurn(chip.player);
+			return ( player.color == chip.player.color );
 		}
-		
-		static private function isMyTurn(player:IPlayer):Boolean {
-			return ( _player.color == player.color );
-		}
-		
+
 		static public function setTurn(player:IPlayer):void {
 			_player = player;
 			
 			trace("__________________________________");
-			trace("::::: TURN ::::::", player.name);
+			trace("::::: TURN ::::::", _player.name);
 			
 			DiceManager.reset();
 			GameManager.getInstance().dispatchEvent(new PlayerEvent(PlayerEvent.TURN_CHANGE,false,false, _player));
@@ -114,6 +110,10 @@ package com.soueidan.games.tawla.managers
 				if ( chip.num == num ) return chip;
 			}
 			return null;
+		}
+		
+		public static function get isMyTurn():Boolean {
+			return ( ServerManager.getInstance().mySelf.id == _player.id ) 
 		}
 	}
 }

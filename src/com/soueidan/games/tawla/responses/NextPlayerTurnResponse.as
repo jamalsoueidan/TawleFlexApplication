@@ -5,6 +5,7 @@ package com.soueidan.games.tawla.responses
 	import com.soueidan.games.engine.net.responses.ServerResponseHandler;
 	import com.soueidan.games.tawla.core.IPlayer;
 	import com.soueidan.games.tawla.managers.DiceManager;
+	import com.soueidan.games.tawla.managers.NotificationManager;
 	import com.soueidan.games.tawla.managers.PlayerManager;
 	
 	public class NextPlayerTurnResponse extends ServerResponseHandler
@@ -18,6 +19,9 @@ package com.soueidan.games.tawla.responses
 			PlayerManager.setTurn(player);
 			
 			DiceManager.setValues(object);
+			
+			NotificationManager.createStartTooltip(player, true);
+			NotificationManager.createWaitingPanel(player, true);
 		}
 	}
 }

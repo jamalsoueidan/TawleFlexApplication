@@ -5,14 +5,6 @@ package com.soueidan.games.tawla.managers
 	import com.soueidan.games.tawla.core.*;
 	import com.soueidan.games.tawla.types.*;
 	import com.soueidan.games.tawla.utils.*;
-	
-	import flash.geom.Point;
-	import flash.sampler.NewObjectSample;
-	
-	import mx.core.ITransientDeferredInstance;
-	import mx.core.mx_internal;
-	
-	import org.osflash.thunderbolt.Logger;
 
 	public class TriangleManager
 	{

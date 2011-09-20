@@ -32,14 +32,14 @@ package com.soueidan.games.tawla.managers
 			var player:IPlayer = PlayerManager.player;
 			
 			if ( !winnerExists ) {
-				trace("winner not exists");
+				//trace("winner not exists");
 				if ( DiceManager.anyLeftMovements ) {
 					if ( !canPlayerMoveAnyChip ) {
-						trace("dispatch", "no chip movements");
+						//trace("dispatch", "no chip movements");
 						dispatchEvent(new PlayerEvent(PlayerEvent.NO_CHIP_MOVEMENTS, false,false, player));
 					}
 				} else {
-					trace("dispatch", "finished playing");
+					//trace("dispatch", "finished playing");
 					dispatchEvent(new PlayerEvent(PlayerEvent.FINISHED_PLAYING, false,false,player));
 				}
 			} else {

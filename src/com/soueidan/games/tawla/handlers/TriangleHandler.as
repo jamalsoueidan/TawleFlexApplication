@@ -1,30 +1,20 @@
 package com.soueidan.games.tawla.handlers
 {
+	import com.soueidan.games.engine.managers.ToolTipManager;
 	import com.soueidan.games.tawla.components.Chip;
 	import com.soueidan.games.tawla.components.interfaces.IChip;
 	import com.soueidan.games.tawla.components.interfaces.ITriangle;
 	import com.soueidan.games.tawla.core.Game;
 	import com.soueidan.games.tawla.events.ChipEvent;
-	import com.soueidan.games.tawla.managers.ChipManager;
 	import com.soueidan.games.tawla.managers.DiceManager;
 	import com.soueidan.games.tawla.managers.PlayerManager;
 	import com.soueidan.games.tawla.managers.TriangleManager;
-	import com.soueidan.games.tawla.utils.ArrayUtil;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.geom.Point;
-	import flash.ui.Mouse;
-	import flash.ui.MouseCursor;
-	import flash.ui.MouseCursorData;
-	import flash.utils.getQualifiedClassName;
 	
 	import mx.core.FlexGlobals;
-	import mx.core.IFlexDisplayObject;
-	import mx.events.FlexEvent;
-	
-	import org.osflash.thunderbolt.Logger;
 
 	public class TriangleHandler implements IHandler
 	{
@@ -59,6 +49,8 @@ package com.soueidan.games.tawla.handlers
 			if ( chip.isFreezed ) {
 				return;
 			}
+			
+			ToolTipManager.hide();
 			
 			_chip = chip;
 			

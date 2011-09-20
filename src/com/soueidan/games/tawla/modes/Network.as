@@ -1,7 +1,7 @@
 package com.soueidan.games.tawla.modes
 {
-	import com.soueidan.games.engine.managers.ClientManager;
-	import com.soueidan.games.engine.net.Client;
+	import com.soueidan.games.engine.managers.ServerManager;
+	import com.soueidan.games.engine.net.Server;
 	import com.soueidan.games.tawla.core.*;
 	import com.soueidan.games.tawla.events.*;
 	import com.soueidan.games.tawla.managers.*;
@@ -16,7 +16,7 @@ package com.soueidan.games.tawla.modes
 
 	public class Network implements IMode
 	{
-		private var _server:Client;
+		private var _server:Server;
 		private var _game:Game;
 		private var _urlLoader:URLLoader;
 		private var _parameters:Object;
@@ -26,7 +26,7 @@ package com.soueidan.games.tawla.modes
 			_game = game;
 			_parameters = _game.parameters;
 			
-			_server = ClientManager.getInstance();
+			_server = ServerManager.getInstance();
 			
 			_urlLoader = new URLLoader();
 			_urlLoader.addEventListener(Event.COMPLETE, configurationFileReady);
@@ -75,7 +75,7 @@ package com.soueidan.games.tawla.modes
 			
 			// you must set it to listen because we use the stopped boolean value to check 
 			// against sending player finished playing
-			if ( isMyTurn ) {
+			if ( PlayerManager.isMyTurn ) {
 				MouseManager.listen();
 			}
 		}
@@ -85,7 +85,7 @@ package com.soueidan.games.tawla.modes
 				trace("player cannot move");
 				nextTurn();
 			} else {				
-				if ( isMyTurn) {
+				if ( PlayerManager.isMyTurn) {
 					trace("MyTurn", "mouseManager listen");
 					autoPlay();
 				}
@@ -112,7 +112,7 @@ package com.soueidan.games.tawla.modes
 			if ( _parameters.auto_play == "true") {
 				var timer:Timer = new Timer(1000, 1);
 				timer.addEventListener(TimerEvent.TIMER_COMPLETE, function():void {
-					if ( isMyTurn && DiceManager.anyLeftMovements && GameManager.canPlayerMoveAnyChip ) {
+					if ( PlayerManager.isMyTurn && DiceManager.anyLeftMovements && GameManager.canPlayerMoveAnyChip ) {
 						var keepTrying:Boolean = true;
 						do {
 							if ( TestingManager.moveRandomChip() ) {
@@ -173,11 +173,6 @@ package com.soueidan.games.tawla.modes
 			
 			var request:PlayerTurnIsFinishedRequest = new PlayerTurnIsFinishedRequest();
 			_server.send(request);
-		}
-		
-		public function get isMyTurn():Boolean {
-			return ( ClientManager.getInstance().mySelf.id == PlayerManager.player.id ) 
-		}
-		
+		}		
 	}
 }

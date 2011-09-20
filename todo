@@ -1,17 +1,18 @@
+* add sound effects like yallah el3ab, lose with 2 etc. at the bottom of the screen
+* animation of the chips
+* stack chip on each other
+* see mouse movements on both players
+* if disconnect the winner is one that are left in the game
+
 next:
 	double click to move chip/checker
 	win player start the game again.
 	when starting to move to cup, move the chip with one click no need to use mouse movements.
 	
-	see mouse movements
 	change all array to vector for performance if needded.
 	
-	add chip behind avatar image
-	add sound effects like yallah el3ab, lose with 2 etc.
 	
 options:
-	username, and score etc.
-	
 	auto shuffle (on/off)
 	fullscreen mode (on/off)
 	ask if the opponent want to lose 5 stream when player is sitting on him at the starter position
@@ -20,10 +21,7 @@ options:
 	
 	hide controls in the bottom
 	
-	hint window/notification when changing player etc.
-	
 	maybe how many left movements you have?
-	
 point:
 
 login points
