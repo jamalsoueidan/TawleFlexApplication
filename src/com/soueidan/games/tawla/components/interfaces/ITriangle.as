@@ -1,5 +1,7 @@
 package com.soueidan.games.tawla.components.interfaces
 {
+	import flash.geom.Point;
+	
 	import mx.core.IFlexDisplayObject;
 	import mx.core.IVisualElement;
 	import mx.core.IVisualElementContainer;
@@ -26,6 +28,8 @@ package com.soueidan.games.tawla.components.interfaces
 		function get position():Number;
 		
 		function get isBottom():Boolean;
+
+		function chipPosition(chip:IChip):Point;
 		
 		function setStyle(styleProp:String, newValue:*):void;
 	}

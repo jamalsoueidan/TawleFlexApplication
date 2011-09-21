@@ -30,7 +30,7 @@ package com.soueidan.games.tawla.managers
 		}
 		
 		static private function setLeftMovements(chip:IChip):void {
-			var triangle:ITriangle= (chip.parent as ITriangle);
+			var triangle:ITriangle= chip.triangle;
 			var spot:ITriangle;
 			var position:int = 0;
 			

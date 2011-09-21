@@ -4,6 +4,8 @@ package com.soueidan.games.tawla.components
 	import com.soueidan.games.tawla.components.interfaces.ICup;
 	import com.soueidan.games.tawla.core.IPlayer;
 	
+	import flash.geom.Point;
+	
 	import spark.components.SkinnableContainer;
 	import spark.components.VGroup;
 	
@@ -28,6 +30,10 @@ package com.soueidan.games.tawla.components
 		
 		public function remove(chip:IChip):void {
 			
+		}
+		
+		public function chipPosition(chip:IChip):Point {
+			return new Point();
 		}
 		
 		public function setPosition(value:Number):void {

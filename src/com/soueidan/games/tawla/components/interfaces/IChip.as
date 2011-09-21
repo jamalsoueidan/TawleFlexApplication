@@ -15,5 +15,7 @@ package com.soueidan.games.tawla.components.interfaces
 		function get isFreezed():Boolean;
 		function hitTestObject(obj:DisplayObject):Boolean;
 		function get player():IPlayer; 
+		function set triangle(value:ITriangle):void;
+		function get triangle():ITriangle;
 	}
 }

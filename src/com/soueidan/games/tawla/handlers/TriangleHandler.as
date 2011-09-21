@@ -1,5 +1,6 @@
 package com.soueidan.games.tawla.handlers
 {
+	import com.smartfoxserver.v2.requests.IRequest;
 	import com.soueidan.games.engine.managers.ToolTipManager;
 	import com.soueidan.games.tawla.components.Chip;
 	import com.soueidan.games.tawla.components.interfaces.IChip;
@@ -9,12 +10,15 @@ package com.soueidan.games.tawla.handlers
 	import com.soueidan.games.tawla.managers.DiceManager;
 	import com.soueidan.games.tawla.managers.PlayerManager;
 	import com.soueidan.games.tawla.managers.TriangleManager;
+	import com.soueidan.games.tawla.requests.MouseMovementRequest;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.ui.Mouse;
 	
 	import mx.core.FlexGlobals;
+	import mx.events.Request;
 
 	public class TriangleHandler implements IHandler
 	{
@@ -54,7 +58,7 @@ package com.soueidan.games.tawla.handlers
 			
 			_chip = chip;
 			
-			_oldTriangle = _chip.parent as ITriangle
+			_oldTriangle = _chip.triangle;
 			_oldNumChildren = _oldTriangle.getElementIndex(_chip);
 			
 			// cannot be moved below next linies because we use parent in the register method

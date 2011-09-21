@@ -39,6 +39,14 @@ package com.soueidan.games.tawla.components
 			_player = player;
 		}
 		
+		public function set triangle(value:ITriangle):void {
+			_triangle = value;	
+		}
+		
+		public function get triangle():ITriangle {
+			return _triangle;
+		}
+		
 		override protected function createChildren():void {
 			super.createChildren();
 			
@@ -71,7 +79,6 @@ package com.soueidan.games.tawla.components
 		
 		public function set position(value:Number):void {
 			_position = value;
-			_triangle = parent as ITriangle;
 		}
 		
 		public function get color():int {
@@ -79,14 +86,8 @@ package com.soueidan.games.tawla.components
 		}
 		
 		public function get isFreezed():Boolean {
-			if ( _triangle.numElements == 1 ) {
-				return false;
-			}
-			
-			if ( _triangle.numElements > 1 ) {
-				if ( _triangle.lastChip.color != color ) {
-					return true;
-				}
+			if ( _triangle.lastChip && _triangle.lastChip.color != color ) {
+				return true;
 			}
 			
 			return false;
