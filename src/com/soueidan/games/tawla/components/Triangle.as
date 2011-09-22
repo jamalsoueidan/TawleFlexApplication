@@ -84,10 +84,10 @@ package com.soueidan.games.tawla.components
 				
 				if ( _chips.length > 5 && _chips.length < 11) {
 					positionY += chip.height/1.3;
-				}
-				
-				if ( _chips.length > 10 ) {
+				} else if ( _chips.length > 10 ) {
 					positionY += chip.height/2;
+				} else {
+					positionY += chip.height;	
 				}
 				
 				_lastPosition = new Point(positionX, positionY);
@@ -118,10 +118,10 @@ package com.soueidan.games.tawla.components
 				
 				if ( _chips.length > 5 && _chips.length < 11) {
 					positionY -= chip.height/1.3;
-				}
-				
-				if ( _chips.length > 10 ) {
+				} else if ( _chips.length > 10 ) {
 					positionY -= chip.height/2;
+				} else {
+					positionY -= chip.height;
 				}
 				
 				_lastPosition = new Point(positionX, positionY);

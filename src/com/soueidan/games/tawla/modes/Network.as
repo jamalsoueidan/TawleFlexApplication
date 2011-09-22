@@ -59,7 +59,6 @@ package com.soueidan.games.tawla.modes
 			_server.addResponseHandler(StartGameResponse.START_GAME, StartGameResponse);
 			_server.addResponseHandler(EndGameResponse.END_GAME, EndGameResponse);
 			
-			_server.addResponseHandler(ChipMovedResponse.CHIP_MOVED, ChipMovedResponse);
 			_server.addResponseHandler(NextPlayerTurnResponse.NEXT_PLAYER_TURN, NextPlayerTurnResponse);
 			_server.addResponseHandler(PlayerIsHomeResponse.PLAYER_IS_HOME, PlayerIsHomeResponse);
 			_server.addResponseHandler(PlayerIsWinnerResponse.PLAYER_WIN_ROUND, PlayerIsWinnerResponse);
@@ -71,7 +70,7 @@ package com.soueidan.games.tawla.modes
 		}
 		
 		private function playerTurnChanged(evt:PlayerEvent):void {
-			trace("player turn changed", evt.player.id);
+			//trace("player turn changed", evt.player.id);
 			
 			// you must set it to listen because we use the stopped boolean value to check 
 			// against sending player finished playing
@@ -82,18 +81,18 @@ package com.soueidan.games.tawla.modes
 		
 		private function diceChanged(evt:DiceEvent):void {
 			if ( !GameManager.canPlayerMoveAnyChip ) {
-				trace("player cannot move");
+				//trace("player cannot move");
 				nextTurn();
 			} else {				
 				if ( PlayerManager.isMyTurn) {
-					trace("MyTurn", "mouseManager listen");
+					//trace("MyTurn", "mouseManager listen");
 					autoPlay();
 				}
 			}
 		}
 		
 		private function chipMoved(evt:ChipEvent):void {
-			trace("chip moved");
+			//trace("chip moved");
 			var extension:ChipMovedRequest = new ChipMovedRequest(evt);
 			_server.send(extension);
 			
@@ -133,7 +132,7 @@ package com.soueidan.games.tawla.modes
 		
 		
 		private function haveAWinner(evt:PlayerEvent):void {
-			trace(" WE HAVE A WINNNER");
+			//trace(" WE HAVE A WINNNER");
 			
 			MouseManager.stop();
 			
@@ -142,7 +141,7 @@ package com.soueidan.games.tawla.modes
 		}
 		
 		private function newRound(event:PlayerEvent):void {
-			trace(" > NEW ROUND < ");
+			//trace(" > NEW ROUND < ");
 			
 			MouseManager.stop();
 			
@@ -151,12 +150,12 @@ package com.soueidan.games.tawla.modes
 		}
 		
 		private function finishedPlaying(evt:PlayerEvent):void {
-			trace("no LEFT movements");
+			//trace("no LEFT movements");
 			nextTurn();	
 		}
 		
 		private function noChipMovements(evt:PlayerEvent):void {
-			trace("no chip MOVEMENTS anymore");
+			//trace("no chip MOVEMENTS anymore");
 			nextTurn();	
 		}			
 		
@@ -167,7 +166,7 @@ package com.soueidan.games.tawla.modes
 				return;
 			}
 			
-			trace("send next turn request");
+			//trace("send next turn request");
 			
 			MouseManager.stop();
 			

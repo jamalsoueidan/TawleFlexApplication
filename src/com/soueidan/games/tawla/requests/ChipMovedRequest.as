@@ -14,7 +14,7 @@ package com.soueidan.games.tawla.requests
 		
 		protected var _params:ISFSObject;
 		
-		static private const action:String = "chip_moved";
+		public static const action:String = "chip_moved";
 		
 		public function ChipMovedRequest(evt:ChipEvent)
 		{

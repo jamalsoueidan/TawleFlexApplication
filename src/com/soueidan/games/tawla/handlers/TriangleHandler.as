@@ -1,6 +1,10 @@
 package com.soueidan.games.tawla.handlers
 {
+	import com.smartfoxserver.v2.entities.data.ISFSObject;
+	import com.smartfoxserver.v2.entities.data.SFSObject;
 	import com.smartfoxserver.v2.requests.IRequest;
+	import com.smartfoxserver.v2.requests.ObjectMessageRequest;
+	import com.soueidan.games.engine.managers.ServerManager;
 	import com.soueidan.games.engine.managers.ToolTipManager;
 	import com.soueidan.games.tawla.components.Chip;
 	import com.soueidan.games.tawla.components.interfaces.IChip;
@@ -10,6 +14,7 @@ package com.soueidan.games.tawla.handlers
 	import com.soueidan.games.tawla.managers.DiceManager;
 	import com.soueidan.games.tawla.managers.PlayerManager;
 	import com.soueidan.games.tawla.managers.TriangleManager;
+	import com.soueidan.games.tawla.requests.ChipMovedRequest;
 	import com.soueidan.games.tawla.requests.MouseMovementRequest;
 	
 	import flash.display.DisplayObject;
@@ -66,6 +71,13 @@ package com.soueidan.games.tawla.handlers
 			
 			_oldTriangle.remove(_chip);
 			_game.addElement(_chip);
+			
+			var params:ISFSObject = new SFSObject();
+			params.putUtfString("cmd", ChipMovedRequest.action);
+			params.putUtfString("action", "down");
+			params.putInt("chip_num", _chip.num);
+			var request:IRequest = new ObjectMessageRequest(params);
+			ServerManager.getInstance().send(request);
 		}
 		
 		public function up(evt:MouseEvent):void
@@ -95,6 +107,13 @@ package com.soueidan.games.tawla.handlers
 			}
 			
 			if ( _chip ) {
+				var params:ISFSObject = new SFSObject();
+				params.putUtfString("cmd", ChipMovedRequest.action); 
+				params.putUtfString("action", "up");
+				params.putInt("chip_num", _chip.num);
+				var request:IRequest = new ObjectMessageRequest(params);
+				ServerManager.getInstance().send(request)
+					
 				_oldTriangle.add(_chip);
 				_chip = null;
 			}
