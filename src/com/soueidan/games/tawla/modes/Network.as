@@ -59,6 +59,7 @@ package com.soueidan.games.tawla.modes
 			_server.addResponseHandler(StartGameResponse.START_GAME, StartGameResponse);
 			_server.addResponseHandler(EndGameResponse.END_GAME, EndGameResponse);
 			
+			_server.addResponseHandler(ChipMovedResponse.CHIP_MOVED, ChipMovedResponse);
 			_server.addResponseHandler(NextPlayerTurnResponse.NEXT_PLAYER_TURN, NextPlayerTurnResponse);
 			_server.addResponseHandler(PlayerIsHomeResponse.PLAYER_IS_HOME, PlayerIsHomeResponse);
 			_server.addResponseHandler(PlayerIsWinnerResponse.PLAYER_WIN_ROUND, PlayerIsWinnerResponse);
