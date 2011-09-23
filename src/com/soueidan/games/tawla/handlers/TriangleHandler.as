@@ -20,6 +20,7 @@ package com.soueidan.games.tawla.handlers
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.geom.Point;
 	import flash.ui.Mouse;
 	
 	import mx.core.FlexGlobals;
@@ -112,9 +113,14 @@ package com.soueidan.games.tawla.handlers
 				params.putUtfString("action", "up");
 				params.putInt("chip_num", _chip.num);
 				var request:IRequest = new ObjectMessageRequest(params);
-				ServerManager.getInstance().send(request)
-					
+				ServerManager.getInstance().send(request);
+				
+				
 				_oldTriangle.add(_chip);
+				
+				_chip.x = _game.board.mouseX - 34;
+				_chip.y = _game.board.mouseY - 34;
+				
 				_chip = null;
 			}
 			
