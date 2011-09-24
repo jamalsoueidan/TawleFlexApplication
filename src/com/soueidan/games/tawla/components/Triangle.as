@@ -3,7 +3,6 @@ package com.soueidan.games.tawla.components
 	import com.gskinner.motion.GTween;
 	import com.soueidan.games.tawla.components.interfaces.IChip;
 	import com.soueidan.games.tawla.components.interfaces.ITriangle;
-	import com.soueidan.games.tawla.types.PlacementTypes;
 	
 	import flash.geom.Point;
 	
@@ -37,7 +36,7 @@ package com.soueidan.games.tawla.components
 		
 		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
-			
+
 			if ( _chipsChanged ) {
 				_chipsChanged = false;
 				
@@ -76,8 +75,9 @@ package com.soueidan.games.tawla.components
 				if ( !_tweenEnabled ) {
 					chip.x = positionX;
 					chip.y = positionY;
+					chip.visible = true;
 				} else {
-					var myTween:GTween = new GTween(chip,1);
+					var myTween:GTween = new GTween(chip, .3);
 					myTween.proxy.x = positionX;
 					myTween.proxy.y = positionY;
 				}
@@ -110,8 +110,9 @@ package com.soueidan.games.tawla.components
 				if ( !_tweenEnabled ) {
 					chip.x = positionX;
 					chip.y = positionY;
+					chip.visible = true;
 				} else {
-					var myTween:GTween = new GTween(chip,1);
+					var myTween:GTween = new GTween(chip, .3);
 					myTween.proxy.x = positionX;
 					myTween.proxy.y = positionY;
 				}
@@ -128,7 +129,7 @@ package com.soueidan.games.tawla.components
 			}
 		}
 		
-		public function chipPosition(chip:IChip):Point {
+		/*public function getPositionXY(chip:IChip):Point {
 			if ( !_lastPosition ) {
 				if ( isBottom ) {
 					_lastPosition = new Point(6,chip.height);
@@ -137,13 +138,39 @@ package com.soueidan.games.tawla.components
 				}
 			}
 			
-			return localToGlobal(_lastPosition);
+			if ( isBottom ) {
+				var realY:Number = y + _lastPosition.y; 
+				trace("isBottom", x, y, _lastPosition.y, height);
+				return new Point(x, y);
+			} else {
+				trace("isTop", x, (y-_lastPosition.y));
+				return new Point(x, (y-_lastPosition.y));
+			}
 		}
 		
-		public function add(chip:IChip, index:Number=-1):void {
+		public function chipPosition(chip:IChip):Point {
+			if ( !_lastPosition ) {
+				if ( isBottom ) {
+					_lastPosition = new Point(6,chip.height);
+				} else {
+					_lastPosition = new Point(6,0);
+				}
+			}
+
+			return localToGlobal(_lastPosition);
+		}*/
+		
+		public function add(chip:IChip, travelBack:Boolean=false):void {
 			chip.triangle = this;
 			_chips.push(chip);
+			
 			addElement(chip);
+			
+			if ( travelBack ) {
+				chip.visible = false;
+				_tweenEnabled = false;
+			}
+			
 			updateList();
 			
 			// this line must be after the chip is added to the element

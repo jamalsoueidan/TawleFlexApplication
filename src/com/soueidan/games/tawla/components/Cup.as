@@ -18,10 +18,14 @@ package com.soueidan.games.tawla.components
 		private var _position:int = 0;
 		private var _alpha:Number;
 		
-		public function add(chip:IChip, index:Number=-1):void {	
+		/*public function getPositionXY(chip:IChip):Point {
+			return new Point();
+		}*/
+		
+		public function add(chip:IChip, travelBack:Boolean=false):void {	
 			var player:IPlayer = chip.player;
 			player.removeChip(chip);
-			if ( position == 25 ) {
+			if ( _position == 25 ) {
 				chip.y -= (height);
 			}
 			addElement(chip);

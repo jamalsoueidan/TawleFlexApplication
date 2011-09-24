@@ -10,7 +10,7 @@ package com.soueidan.games.tawla.components.interfaces
 	{
 		// don't remove these methods and use addElement and removeelement,
 		// it's because when we need to use tween we can actually benefit of these two methods below
-		function add(chip:IChip, index:Number=-1):void;
+		function add(chip:IChip, travelBack:Boolean=false):void;
 		function remove(chip:IChip):void;
 		function removeAllChips():void;
 		
@@ -29,7 +29,7 @@ package com.soueidan.games.tawla.components.interfaces
 		
 		function get isBottom():Boolean;
 
-		function chipPosition(chip:IChip):Point;
+		//function getPositionXY(chip:IChip):Point;
 		
 		function setStyle(styleProp:String, newValue:*):void;
 	}
