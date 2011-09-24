@@ -15,16 +15,12 @@ package com.soueidan.games.tawla.handlers
 	import com.soueidan.games.tawla.managers.PlayerManager;
 	import com.soueidan.games.tawla.managers.TriangleManager;
 	import com.soueidan.games.tawla.requests.ChipMovedRequest;
-	import com.soueidan.games.tawla.requests.MouseMovementRequest;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.geom.Point;
-	import flash.ui.Mouse;
 	
 	import mx.core.FlexGlobals;
-	import mx.events.Request;
 
 	public class TriangleHandler implements IHandler
 	{
@@ -114,7 +110,6 @@ package com.soueidan.games.tawla.handlers
 				params.putInt("chip_num", _chip.num);
 				var request:IRequest = new ObjectMessageRequest(params);
 				ServerManager.getInstance().send(request);
-				
 				
 				_oldTriangle.add(_chip);
 				

@@ -13,20 +13,15 @@ package com.soueidan.games.tawla.managers
 	import com.soueidan.games.tawla.handlers.IHandler;
 	import com.soueidan.games.tawla.requests.ChipMovedRequest;
 	import com.soueidan.games.tawla.requests.MouseMovementRequest;
-	import com.soueidan.games.tawla.responses.MouseMovementResponse;
 	import com.soueidan.games.tawla.utils.ArrayUtil;
 	
-	import flash.display.Graphics;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
-	import flash.ui.MouseCursor;
 	import flash.utils.Timer;
 	
-	import spark.components.Group;
 	import spark.components.Image;
 	import spark.components.SkinnableContainer;
-	import spark.components.VGroup;
 
 	public class MouseManager
 	{
@@ -47,7 +42,7 @@ package com.soueidan.games.tawla.managers
 		static public function init(game:Game):void {
 			_instance = new MouseManager();
 			_instance.game = game;
-			_instance.startTimer();	
+			_instance.startTimer();
 		}
 		
 		static public function listen():void {
@@ -134,8 +129,22 @@ package com.soueidan.games.tawla.managers
 			}
 			
 			if ( action == "up" ) {
-				chip.triangle.add(chip);
-				chip = null;
+				chip.triangle.add(chip, true);
+				/*
+				_game.addElement(chip);
+				
+				chip.x = _cursorContainer.x;
+				chip.y = _cursorContainer.y;
+				
+				var point:Point = chip.triangle.getPositionXY(chip);
+				point.y += _game.board.y;
+				point.x += _game.board.x;
+				
+				var tween:GTween = new GTween(chip, 1, {x:point.x,y:point.y});
+				tween.onComplete = function():void {
+					trace("done");
+					//chip.triangle.add(chip, true);
+				}*/
 			}
 		}
 		
@@ -143,14 +152,9 @@ package com.soueidan.games.tawla.managers
 		{
 			var mouseX:int = object.getInt("mouseX") * _game.scaleX;
 			var mouseY:int = object.getInt("mouseY") * _game.scaleY;
-			
-			if ( ResourceManager.isRTL ) {
-				mouseX += _cursor.width;
-				mouseY -= _cursor.height;
-			} else {
-				mouseX -= _cursor.width;
-				mouseY += _cursor.height;
-			}
+						
+			mouseX -= 6;
+			mouseY += _cursor.height;
 			
 			var tween:GTween = new GTween(_cursorContainer, .3);
 			tween.proxy.x = Math.abs(mouseX)
@@ -166,8 +170,12 @@ package com.soueidan.games.tawla.managers
 			params.putInt("mouseX", newMouseX);
 			params.putInt("mouseY", newMouseY);
 			
-			var request:IRequest = new MouseMovementRequest(params);
-			ServerManager.getInstance().send(request);
+			try {
+				var request:IRequest = new MouseMovementRequest(params);
+				ServerManager.getInstance().send(request);
+			} catch (err:Error) {
+				
+			}
 		}
 		
 		private function die():void {
@@ -187,16 +195,15 @@ package com.soueidan.games.tawla.managers
 		}
 		
 		private function up(evt:MouseEvent):void {
+
+			_game.removeEventListener(Event.ENTER_FRAME, updateScreen);
 			
 			for each(var handler:IHandler in _handlers ) {
 				handler.up(evt);
 			}
-			
-			_game.removeEventListener(Event.ENTER_FRAME, updateScreen);
 		}
 		
 		private function updateScreen(evt:Event):void {
-			//trace("running");	
 			
 			for each(var handler:IHandler in _handlers ) {
 				handler.update(evt);
