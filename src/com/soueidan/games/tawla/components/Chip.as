@@ -35,6 +35,10 @@ package com.soueidan.games.tawla.components
 			
 			height = width = 36;
 			
+			if ( player.sfsUser.isItMe ) {
+				buttonMode = useHandCursor = true;
+			}
+			
 			_num = num;
 			_player = player;
 		}
